@@ -11,7 +11,8 @@ UserModel = get_user_model()
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ('first_name', 'last_name', 'phone', 'photo_url')
+        fields = ('first_name', 'last_name', 'phone', 'photo_url', 'city_office',
+                  'manager', 'is_manager', 'role_type', 'role_description', 'managing_city_offices')
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
@@ -35,6 +36,12 @@ class UserCreateSerializer(serializers.ModelSerializer):
             last_name=profile_data['last_name'],
             phone=profile_data['phone'],
             photo_url=profile_data['photo_url'],
+            city_office=profile_data['city_office'],
+            manager=profile_data['manager'],
+            is_manager=profile_data['is_manager'],
+            role_type=profile_data['role_type'],
+            role_description=profile_data['role_description'],
+            managing_city_offices=profile_data['managing_city_offices'],
             user=user,
         )
 
@@ -61,3 +68,15 @@ class UserCreateSerializer(serializers.ModelSerializer):
         result = super().to_representation(instance)
         result.pop('password')
         return result
+
+
+class ProfileForUpdateAndDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ('first_name', 'last_name', 'phone', 'photo_url', 'city_office',
+                  'manager', 'is_manager', 'role_type', 'role_description', 'managing_city_offices')
+
+# add user in validate data ( even if it's not in meta-fields ( for creation of new ticket with user)
+#     def create(self, validated_data):
+#         validated_data['user'] = self.context['request'].user
+#         return super().create(validated_data)
