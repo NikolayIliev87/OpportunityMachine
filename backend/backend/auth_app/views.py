@@ -27,16 +27,16 @@ class ChangeUserPasswordView(api_generic_views.UpdateAPIView):
     )
 
 
-class UserLoginView(auth_views.ObtainAuthToken):
-    permission_classes = (
-        permissions.AllowAny,
-    )
-
-#To check during app creation do i need customer token and if yes change UserLoginView
-# class UserLoginView(CustomObtainAuthToken):
+# class UserLoginView(auth_views.ObtainAuthToken):
 #     permission_classes = (
 #         permissions.AllowAny,
 #     )
+
+#To check during app creation do i need customer token and if yes change UserLoginView
+class UserLoginView(CustomObtainAuthToken):
+    permission_classes = (
+        permissions.AllowAny,
+    )
 
 
 class UserLogoutView(api_views.APIView):
