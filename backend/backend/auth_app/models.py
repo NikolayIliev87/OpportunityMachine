@@ -98,8 +98,8 @@ class Profile(models.Model):
     )
 
     manager = models.EmailField(
-        null=False,
-        blank=False,
+        null=True,
+        blank=True,
     )
 
     is_manager = models.BooleanField()
@@ -123,6 +123,8 @@ class Profile(models.Model):
     managing_city_offices = models.ManyToManyField(
         CityOffice,
         related_name="profile_managing_city",
+        blank=True,
+        null=True
     )
 
     user = models.OneToOneField(

@@ -20,3 +20,21 @@ export const logout = async() => {
 
     return result
 }
+
+export const getAllCityOffices = async () => {
+    const result = request.get(`${authserver}/city_offices/`)
+
+    return result
+}
+
+export const getAllRoleTypes = async () => {
+    const result = request.get(`${authserver}/role_type/`)
+
+    return result
+}
+
+export const getAllManagers = async () => {
+    const result = request.get(`${authserver}/managers/`)
+
+    return result
+}

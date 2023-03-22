@@ -86,6 +86,46 @@ export const validator = (ev) => {
             return false
         } 
     }
+    else if (ev.target.id==='city_office') {
+        if (ev.target.value.length < 1) {
+            return "You should select your office country from dropdown list."
+        }
+        else {
+            return false
+        } 
+    }
+    else if (ev.target.id==='manager') {
+        if (ev.target.value.length < 1) {
+            return "You should select your manager from dropdown list."
+        }
+        else {
+            return false
+        } 
+    }
+    else if (ev.target.id==='role_type') {
+        if (ev.target.value.length < 1) {
+            return "You should select your role type from dropdown list."
+        }
+        else {
+            return false
+        } 
+    }
+    else if (ev.target.id==='role_description') {
+        if (ev.target.value.length < 1) {
+            return "Please include brief description of your role."
+        }
+        else {
+            return false
+        } 
+    }
+    else if (ev.target.id==='managing_city_offices') {
+        if (ev.target.value.length < 1) {
+            return "Please select city offices wich you will be responsible of."
+        }
+        else {
+            return false
+        } 
+    }
     else if (ev.target.id==='title') {
         if (ev.target.value.length < 1) {
             return "Field should be populated."

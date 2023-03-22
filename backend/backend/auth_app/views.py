@@ -7,8 +7,9 @@ from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 
 from backend.auth_app.managers import CustomObtainAuthToken
-from backend.auth_app.models import Profile
-from backend.auth_app.serializers import UserCreateSerializer, ProfileSerializer, ProfileForUpdateAndDetailsSerializer
+from backend.auth_app.models import Profile, CityOffice, Role
+from backend.auth_app.serializers import UserCreateSerializer, ProfileSerializer, ProfileForUpdateAndDetailsSerializer, \
+    OfficeCitySerializer, RoleTypeSerializer
 
 UserModel = get_user_model()
 
@@ -95,3 +96,33 @@ class ProfileDetailsAndUpdateView(api_generic_views.RetrieveUpdateAPIView):
             raise exceptions.PermissionDenied
         return the_object
 
+
+class OfficeCityListView(api_generic_views.ListAPIView):
+    queryset = CityOffice.objects.all()
+    serializer_class = OfficeCitySerializer
+    permission_classes = (
+        permissions.AllowAny,
+    )
+
+
+class RoleTypeListView(api_generic_views.ListAPIView):
+    queryset = Role.objects.all()
+    serializer_class = RoleTypeSerializer
+    permission_classes = (
+        permissions.AllowAny,
+    )
+
+
+class ManagersListView(api_generic_views.ListAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    permission_classes = (
+        permissions.AllowAny,
+    )
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        queryset = queryset.filter(is_manager=True)
+
+        return queryset
