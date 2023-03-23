@@ -8,7 +8,7 @@ from rest_framework.response import Response
 
 from backend.auth_app.managers import CustomObtainAuthToken
 from backend.auth_app.models import Profile, CityOffice, Role
-from backend.auth_app.serializers import UserCreateSerializer, ProfileSerializer, ProfileForUpdateAndDetailsSerializer, \
+from backend.auth_app.serializers import UserCreateSerializer, ProfileSerializerManagers, ProfileForUpdateAndDetailsSerializer, \
     OfficeCitySerializer, RoleTypeSerializer
 
 UserModel = get_user_model()
@@ -68,7 +68,7 @@ class ProfilesListView(api_generic_views.ListAPIView):
         permissions.IsAuthenticated,
     )
 
-    serializer_class = ProfileSerializer
+    serializer_class = ProfileForUpdateAndDetailsSerializer
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -115,7 +115,7 @@ class RoleTypeListView(api_generic_views.ListAPIView):
 
 class ManagersListView(api_generic_views.ListAPIView):
     queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
+    serializer_class = ProfileSerializerManagers
     permission_classes = (
         permissions.AllowAny,
     )

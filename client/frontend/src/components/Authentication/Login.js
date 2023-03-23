@@ -80,11 +80,14 @@ export const Login = () => {
               type="password" 
               onChange={passwordChangeHandler} 
               value={password}
-              onBlur={validateInputs}  
             />
-            {errors.password && <p>{errors.password}</p>}
           </div>
-          <button type="submit" >Login</button>
+          {errors.length > 0 || username === '' || password === ''
+          ?
+            <></>
+          :
+            <button type="submit" >Login</button>
+          }
         </form>
         <p>If you don't have account yet please <Link to="/register">Register!</Link></p>
       </section>

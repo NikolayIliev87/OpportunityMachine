@@ -35,7 +35,6 @@ export const Register = () => {
           })
     },[]);
 
-
     const [errors, setErrors] = useState({});
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -260,9 +259,7 @@ export const Register = () => {
               type="text" 
               onChange={photoUrlChangeHandler} 
               value={photourl}
-              onBlur={validateInputs} 
             />
-            {errors.photo_url && <p>{errors.photo_url}</p>}
           </div>
           <div>
             <label htmlFor="city_office">City Office:</label>
@@ -280,7 +277,7 @@ export const Register = () => {
           </div>
           <div>
             <label htmlFor="manager">Manager:</label>
-            <select id='manager' value={manager} onChange={managerChangeHandler} onBlur={validateInputs}> 
+            <select id='manager' value={manager} onChange={managerChangeHandler}> 
                   <>
                   <option value=""></option>
                   {filteredManagers.map(manager =>
@@ -290,7 +287,6 @@ export const Register = () => {
                   )}
                   </>
             </select>
-            {errors.manager && <p>{errors.manager}</p>}
           </div>
           <div>
             <label htmlFor="is_manager">Are you Manager?:</label>
@@ -298,9 +294,7 @@ export const Register = () => {
               id='is_manager' 
               type="checkbox" 
               onChange={isManagerChangeHandler} 
-              onBlur={validateInputs}
             />
-            {errors.is_manager && <p>{errors.is_manager}</p>}
           </div>
           <div>
             <label htmlFor="role_type">Role Type:</label>
@@ -323,9 +317,7 @@ export const Register = () => {
               type="text" 
               onChange={roleDescriptionChangeHandler} 
               value={role_description}
-              onBlur={validateInputs} 
             />
-            {errors.role_description && <p>{errors.role_description}</p>}
           </div>
           {is_manager && role_type !== '' && role_type_name !== 'Team Manager'
             ?
@@ -338,17 +330,22 @@ export const Register = () => {
                           <input key={office.id} value={office.id} name={office.name}
                             type="checkbox" 
                             onChange={managingCityOfficesChangeHandler}
-                            onBlur={validateInputs}
                           />
                         </>
                       )}
               </div>
-              {errors.managing_city_offices && <p>{errors.managing_city_offices}</p>}
             </div>
             :
             <></>
           }
-          <button type="submit" >Register</button>
+          {errors.length > 0 || username === '' || password === '' || firstname === '' ||
+           lastname === '' || phone === '' || city_office === '' || role_type === ''
+          ?
+            <></>
+          :
+            <button type="submit" >Register</button>
+          }
+
         </form>
       </section>
     )

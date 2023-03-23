@@ -8,14 +8,12 @@ from django.core import exceptions
 UserModel = get_user_model()
 
 
-class ProfileSerializer(serializers.ModelSerializer):
+class ProfileSerializerManagers(serializers.ModelSerializer):
     user_email = serializers.ReadOnlyField(source='user.email')
 
     class Meta:
         model = Profile
-        fields = ('first_name', 'last_name', 'phone', 'photo_url', 'city_office',
-                  'manager', 'is_manager', 'role_type', 'role_description', 'managing_city_offices', 'user', 'user_email')
-        # depth = 1
+        fields = ('city_office', 'role_description', 'managing_city_offices', 'user', 'user_email')
 
 
 class ProfileSerializerForRegister(serializers.ModelSerializer):
@@ -92,10 +90,14 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
 
 class ProfileForUpdateAndDetailsSerializer(serializers.ModelSerializer):
+    user_email = serializers.ReadOnlyField(source='user.email')
+
     class Meta:
         model = Profile
         fields = ('first_name', 'last_name', 'phone', 'photo_url', 'city_office',
-                  'manager', 'is_manager', 'role_type', 'role_description', 'managing_city_offices')
+                  'manager', 'is_manager', 'role_type', 'role_description', 'managing_city_offices', 'user',
+                  'user_email')
+        depth = 1
 
 # add user in validate data ( even if it's not in meta-fields ( for creation of new ticket with user)
 #     def create(self, validated_data):
