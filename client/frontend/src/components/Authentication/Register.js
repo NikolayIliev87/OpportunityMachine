@@ -325,13 +325,13 @@ export const Register = () => {
               <label htmlFor="managing_city_offices">Managing Cities:</label>
               <div>
                 {cityOffices.map(office => 
-                        <>
+                        <div key={office.id}>
                           <label>{office.name}</label>
                           <input key={office.id} value={office.id} name={office.name}
                             type="checkbox" 
                             onChange={managingCityOfficesChangeHandler}
                           />
-                        </>
+                        </div>
                       )}
               </div>
             </div>

@@ -24,14 +24,14 @@ export const Login = () => {
           'username': username,
           "password": password,
         }
-
+        
         authService.login(logInData)
           .then(result => {
             userLogin(result);
             navigate('/');
           })
           .catch(() => {navigate('/login');
-        })
+          })
     };
 
     const usernameChangeHandler = (ev) => {

@@ -3,6 +3,7 @@ from django.contrib.auth.hashers import make_password
 from rest_framework.authtoken import views as auth_views
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+from django.core import exceptions
 
 
 class OpportunityMachineUserManager(BaseUserManager):
@@ -37,5 +38,10 @@ class CustomObtainAuthToken(auth_views.ObtainAuthToken):
         response = super(CustomObtainAuthToken, self).post(request, *args, **kwargs)
         token = Token.objects.get(key=response.data['token'])
         user_data = Token.objects.get(key=token.key).user
-        return Response({'token': token.key, 'id': token.user_id, 'email': str(token.user),
-                         'is_staff': user_data.is_staff, 'is_superuser': user_data.is_superuser})
+        user_profile_id_delete = Token.objects.get(key=token.key).user.profile.is_deleted
+        if user_profile_id_delete:
+            token.delete()
+            raise exceptions.PermissionDenied
+        else:
+            return Response({'token': token.key, 'id': token.user_id, 'email': str(token.user),
+                             'is_staff': user_data.is_staff, 'is_superuser': user_data.is_superuser})

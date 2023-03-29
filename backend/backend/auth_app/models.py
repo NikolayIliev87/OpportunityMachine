@@ -133,6 +133,10 @@ class Profile(models.Model):
         primary_key=True,
     )
 
+    is_deleted = models.BooleanField(
+        default=False
+    )
+
     @property
     def full_name(self):
         return f"{self.first_name} {self.last_name}"
