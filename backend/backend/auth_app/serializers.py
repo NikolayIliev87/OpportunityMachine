@@ -95,7 +95,7 @@ class ProfileForUpdateAndDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ('first_name', 'last_name', 'phone', 'photo_url', 'city_office',
-                  'manager', 'is_manager', 'role_type', 'role_description', 'managing_city_offices', 'user',
+                  'manager', 'is_manager', 'role_type', 'role_description', 'managing_city_offices', 'is_deleted', 'user',
                   'user_email')
         depth = 1
 

@@ -1,6 +1,12 @@
 export const Profile = (props) => {
     return (
-        <>
+        <>  
+            {props.is_deleted
+            ?
+            <div>Deleted</div>
+            :
+            <div>Active</div>
+            }
             <h2><span>Name:</span><span>{props.first_name} {props.last_name}</span></h2>
             <h2><span>Phone:</span><span>{props.phone}</span></h2>
             <h2><span>City Office:</span><span>{props.city_office.name}</span></h2>
@@ -10,7 +16,12 @@ export const Profile = (props) => {
             <h2><span>UserID:</span><span>{props.user}</span></h2>
             <h2><span>UserName:</span><span>{props.user_email}</span></h2>
             <h2><span>Manager:</span><span>{props.manager}</span></h2>
-            <button onClick={() => props.onDeleteClick(props)}>Delete</button>
+            {props.is_deleted
+            ?
+            <button onClick={() => props.onDeleteActivateClick(props)}>Activate</button>
+            :
+            <button onClick={() => props.onDeleteActivateClick(props)}>Delete</button>
+            }
         </>
     );
 }

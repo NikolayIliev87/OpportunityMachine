@@ -15,20 +15,28 @@ export const ProfilesList = () => {
             .then(profiles => setProfiles(profiles))
       },[]);
 
-    const onProfileDeleteHandler = (profile) => {
-        // const values = {
-        //     first_name: `${profile.first_name}`,
-        //     last_name: `${profile.last_name}`,
-        //     phone: `${profile.phone}`,
-        //     photo_url: `${profile.photo_url}`,
-        //     user: `${profile.user}`,
-        //     is_deleted: true,
-        // }
-        // profileService.updateProfile(values)
-        //     .then(() =>
-        //         profileService.getProfiles()
-        //     .       then(profiles => setProfiles(profiles))
-        //     );
+    const onProfileDeleteActivateHandler = (profile) => {
+        const values = {
+            first_name: `${profile.first_name}`,
+            last_name: `${profile.last_name}`,
+            phone: `${profile.phone}`,
+            photo_url: `${profile.photo_url}`,
+            city_office: `${profile.city_office.id}`,
+            manager: `${profile.manager===null?'':profile.manager}`,
+            is_manager: `${profile.is_manager}`,
+            role_type: `${profile.role_type.id}`,
+            role_description: `${profile.role_description}`,
+            managing_city_offices: `${profile.managing_city_offices.map(function (item) {
+                return item['id']
+            })}`,
+            user: `${profile.user}`,
+            is_deleted: !profile.is_deleted,
+        }
+        profileService.updateProfile(values)
+            .then(() =>
+                profileService.getProfiles()
+            .       then(profiles => setProfiles(profiles))
+            );
     };
 
     // pagination client side
@@ -49,7 +57,7 @@ export const ProfilesList = () => {
                 <h1>Active profiles without your own</h1>
                 {currentProfiles.map(profile => 
                     <article key={profile.user}>
-                        <Profile {...profile} onDeleteClick={onProfileDeleteHandler} />
+                        <Profile {...profile} onDeleteActivateClick={onProfileDeleteActivateHandler} />
                     </article>
                 )}
             <PaginationProfiles 
