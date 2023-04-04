@@ -137,6 +137,7 @@ export const validator = (ev) => {
             return false
         } 
     }
+
     else if (ev.target.id==='description') {
         if (ev.target.value.length < 1) {
             return "Field should be populated."
@@ -148,4 +149,98 @@ export const validator = (ev) => {
             return false
         } 
     }
+
+    else if (ev.target.id==='name') {
+        if (ev.target.value.length < 1) {
+            return "Field should be populated."
+        }
+        else if(ev.target.value.length > 25) {
+            return "Field should be max 25 chars long."
+        }
+        else {
+            return false
+        } 
+    }
+
+    else if (ev.target.id==='city') {
+        if (ev.target.value.length < 1) {
+            return "Field should be populated."
+        }
+        else if(ev.target.value.length > 25) {
+            return "Field should be max 25 chars long."
+        }
+        else {
+            return false
+        } 
+    }
+
+    else if (ev.target.id==='managing_city') {
+        if (ev.target.value.length < 1) {
+            return "Please select city offices wich will be responsible for this clinet."
+        }
+        else {
+            return false
+        } 
+    }
+
+    else if (ev.target.id==='address') {
+        if (ev.target.value.length < 1) {
+            return "Field should be populated."
+        }
+        else if(ev.target.value.length > 100) {
+            return "Field should be max 100 chars long."
+        }
+        else {
+            return false
+        } 
+    }
+
+    else if (ev.target.id==='discount') {
+        if (ev.target.value < 0) {
+            return "Please set discount to positive number"
+        }
+        else if(!Number.isInteger(Number(ev.target.value))) {
+            return "Please set discount to integer whole number"
+        }
+        else {
+            return false
+        } 
+    }
+
+    if (ev.target.id==='contact') {
+        if (ev.target.value.length < 1) {
+            return "Field should be populated."
+        }
+        else if(validemail.test(ev.target.value)===false) {
+            return "Field should be populated with valid email Jhon@doe.xx"
+        }
+        else {
+            return false
+        } 
+    }
+
+    else if (ev.target.id==='description') {
+        if (ev.target.value.length < 1) {
+            return "Field should be populated."
+        }
+        else if(ev.target.value.length > 75) {
+            return "Field should be max 75 chars long."
+        }
+        else {
+            return false
+        } 
+    }
+
+    else if (ev.target.id==='price') {
+        if (ev.target.value < 0) {
+            return "Please set price to positive number"
+        }
+        else if(isNaN(Number(ev.target.value))) {
+            return "Please set price to be a number"
+        }
+        else {
+            return false
+        } 
+    }
+    
   } 

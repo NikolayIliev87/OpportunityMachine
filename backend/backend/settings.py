@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 
     'backend.auth_app',
+    'backend.opportunity_app',
 ]
 
 MIDDLEWARE = [

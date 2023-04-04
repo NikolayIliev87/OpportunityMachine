@@ -20,7 +20,6 @@ export const Navigation = () => {
                         : ""
                         }
                         <li><i className="fas fa-user-circle"></i><Link to="/profile">Profile</Link></li>
-                        <li><i className="fas fa-ticket-alt"></i><Link to="/ticketlist">Your Tickets</Link></li>
                         <li><i className="fas fa-sign-out-alt"></i><Link to="/logout">Logout</Link></li>
                     </ul>
 

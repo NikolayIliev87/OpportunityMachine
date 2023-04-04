@@ -12,6 +12,13 @@ import { Logout } from "./components/Authentication/Logout";
 import { ProfilesList } from './components/Profile/ProfilesList';
 import { YourProfile } from './components/Profile/YourProfile';
 
+import { ClientDetails } from './components/Client/ClientDetails';
+import { ClientList } from './components/Client/ClientList';
+import { ProductGroupDetails } from './components/ProductGroup/ProductGroupDetails';
+import { ProductGroupList } from './components/ProductGroup/ProductGroupList';
+import { ProductDetails } from './components/Product/ProductDetails';
+import { ProductList } from './components/Product/ProductList';
+
 import { AuthContext } from './contexts/AuthContext';
 import { ProfileContext } from './contexts/ProfileContext';
 
@@ -46,6 +53,15 @@ function App() {
             <Route path="/logout" element={<Logout />}></Route>
             <Route path="/profile" element={<YourProfile />}></Route>
             <Route path="/profileslist" element={<ProfilesList />}></Route>
+
+            <Route path="/clientlist" element={<ClientList />}></Route>
+            <Route path="/clientlist/:clientId" element={<ClientDetails />}></Route>
+
+            <Route path="/productgrouplist" element={<ProductGroupList />}></Route>
+            <Route path="/productgrouplist/:productGroupId" element={<ProductGroupDetails />}></Route>
+
+            <Route path="/productlist" element={<ProductList />}></Route>
+            <Route path="/productlist/:productId" element={<ProductDetails />}></Route>
           </Routes>
 
           <Footer />
