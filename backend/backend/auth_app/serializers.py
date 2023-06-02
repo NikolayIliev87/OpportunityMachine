@@ -27,7 +27,7 @@ class ProfileSerializerForRegister(serializers.ModelSerializer):
 class OfficeCitySerializer(serializers.ModelSerializer):
     class Meta:
         model = CityOffice
-        fields = ('id', 'name')
+        fields = ('id', 'name', 'is_deleted')
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
@@ -89,7 +89,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
         return result
 
 
-class ProfileForUpdateAndDetailsSerializer(serializers.ModelSerializer):
+class ProfileForDetailsSerializer(serializers.ModelSerializer):
     user_email = serializers.ReadOnlyField(source='user.email')
 
     class Meta:
@@ -105,7 +105,32 @@ class ProfileForUpdateAndDetailsSerializer(serializers.ModelSerializer):
 #         return super().create(validated_data)
 
 
+class ProfileForUpdateSerializer(serializers.ModelSerializer):
+    user_email = serializers.ReadOnlyField(source='user.email')
+    # managing_city_offices = OfficeCitySerializer(required=True, many=True)
+
+    class Meta:
+        model = Profile
+        fields = ('first_name', 'last_name', 'phone', 'photo_url', 'city_office',
+                  'manager', 'is_manager', 'role_type', 'role_description', 'managing_city_offices', 'is_deleted', 'user',
+                  'user_email')
+
+    def update(self, instance, validated_data):
+        city_offices_list = validated_data.pop('managing_city_offices')
+        instance = super().update(instance, validated_data)
+
+        instance.save()
+
+        for old_city in instance.managing_city_offices.all():
+            instance.managing_city_offices.remove(old_city)
+
+        for new_city in city_offices_list:
+            instance.managing_city_offices.add(new_city)
+
+        return instance
+
+
 class RoleTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Role
-        fields = ('id', 'name')
+        fields = ('id', 'name', 'is_deleted')

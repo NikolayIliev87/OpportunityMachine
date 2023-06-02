@@ -13,7 +13,15 @@ export const YourProfile = () => {
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
     const {auth} = useContext(AuthContext);
-    const {yourprofile, setYourProfile} = useContext(ProfileContext);
+    // const {yourprofile, setYourProfile} = useContext(ProfileContext);
+
+    const [yourprofile, setYourProfile] = useState([]);
+
+    useEffect(() => {if(auth.id) {
+        profileService.getProfileDetails(auth.id)
+            .then(profile => setYourProfile(profile))}
+    },[auth.id]);
+    
 
     const anonymusProfilePicture = "https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_960_720.png"
 
@@ -57,7 +65,9 @@ export const YourProfile = () => {
             })
       },[]);
 
-      const [role_type_name, setRoleTypeName] = useState(yourprofile.role_type.name);
+    //   const [role_type_name, setRoleTypeName] = useState(yourprofile.role_type.name);
+      const [role_type_name, setRoleTypeName] = useState(yourprofile.role_type?yourprofile.role_type.name:'');
+
     
       const [editableProfile, setEditableProfile] = useState(false)
 
@@ -67,23 +77,40 @@ export const YourProfile = () => {
 
     const onCancelHandler = () => {
         setEditableProfile(false)
+        profileService.getProfileDetails(auth.id)
+            .then(profile => setYourProfile(profile))
     }
 
-    const [values, setValues] = useState({
-        first_name: `${yourprofile.first_name}`,
-        last_name: `${yourprofile.last_name}`,
-        phone: `${yourprofile.phone}`,
-        photo_url: `${yourprofile.photo_url===null?'':yourprofile.photo_url}`,
-        city_office: `${yourprofile.city_office.id}`,
-        manager: `${yourprofile.manager===null?'':yourprofile.manager}`,
-        is_manager: `${yourprofile.is_manager}`,
-        role_type: `${yourprofile.role_type.id}`,
-        role_description: `${yourprofile.role_description}`,
-        managing_city_offices: yourprofile.managing_city_offices.map(function (item) {
-            return item['id']
-        }),
-        user: `${auth.id}`,
-    })
+    const [values, setValues] = useState({})
+    useEffect(() => {
+        setValues(
+            {
+                first_name: `${yourprofile.first_name}`,
+                last_name: `${yourprofile.last_name}`,
+                phone: `${yourprofile.phone}`,
+                photo_url: `${yourprofile.photo_url===null?'':yourprofile.photo_url}`,
+                // city_office: `${yourprofile.city_office.id}`,
+                city_office: `${yourprofile.city_office?yourprofile.city_office.id:''}`,
+                manager: `${yourprofile.manager===null?'':yourprofile.manager}`,
+                is_manager: `${yourprofile.is_manager}`,
+                // role_type: `${yourprofile.role_type.id}`,
+                role_type: `${yourprofile.role_type?yourprofile.role_type.id:''}`,
+                role_description: `${yourprofile.role_description}`,
+                // managing_city_offices: yourprofile.managing_city_offices.map(function (item) {
+                //     return item['id']
+                    
+                // }),
+                managing_city_offices: yourprofile.managing_city_offices
+                    ?
+                    yourprofile.managing_city_offices.map(function (item) {
+                        return item['id']})
+                    :
+                    ''
+                ,
+                user: `${auth.id}`,
+            }
+        )
+    },[yourprofile])
 
     const changeHandler = (ev) => {
         if (ev.target.id === 'city_office') {
@@ -236,15 +263,18 @@ export const YourProfile = () => {
                             <h2><p>Last Name:</p><span>{yourprofile.last_name}</span></h2>
                             <h2><p>Phone:</p><span>{yourprofile.phone}</span></h2>
                             <h2><p>Username:</p><span>{yourprofile.user_email}</span></h2>
-                            <h2><p>Office City:</p><span>{yourprofile.city_office.name}</span></h2>
+                            <h2><p>Office City:</p><span>{yourprofile.city_office?yourprofile.city_office.name:''}</span></h2>
                             <h2><p>Manager:</p><span>{yourprofile.manager===null?'':yourprofile.manager}</span></h2>
                             <h2><p>Are you manager?:</p><span>{yourprofile.is_manager}</span></h2>
-                            <h2><p>Role Type:</p><span>{yourprofile.role_type.name}</span></h2>
+                            <h2><p>Role Type:</p><span>{yourprofile.role_type?yourprofile.role_type.name:''}</span></h2>
                             <h2><p>Role Description:</p><span>{yourprofile.role_description}</span></h2>
                             <h2><p>Managing office cities:
-                                {yourprofile.managing_city_offices.map(office => 
-                                    <span key={office.id}>{office.name}</span>
-                                )}
+                                {yourprofile.managing_city_offices
+                                    ?
+                                    yourprofile.managing_city_offices.map(office => 
+                                    <span key={office.id}>{office.name}</span>)
+                                    :''
+                                }
                                 </p>
                             </h2>
                             <button onClick={onEditHandler}>Edit</button>

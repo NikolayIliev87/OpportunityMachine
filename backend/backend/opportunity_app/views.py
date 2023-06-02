@@ -1,10 +1,11 @@
 from django.core import exceptions
 
 from rest_framework import generics as api_generic_views, permissions
+from backend.common.permissions import UserAllStaffAllButEditOrReadOnly
 
-from backend.opportunity_app.models import ProductGroup, Product, Client
+from backend.opportunity_app.models import ProductGroup, Product, Client, Opportunity
 from backend.opportunity_app.serializers import ProductGroupSerializer, ProductSerializer, ClientSerializer, \
-    ClientSerializerDetails, ProductSerializerDetails
+    ClientSerializerDetails, ProductSerializerDetails, OpportunityCreateSerializer, OpportunitySerializer
 
 
 class ClientListandCreateView(api_generic_views.ListCreateAPIView):
@@ -129,3 +130,31 @@ class ProductUpdateandDetailsView(api_generic_views.RetrieveUpdateAPIView):
         if self.request.method.lower() == "put":
             return [permission() for permission in self.permission_classes]
         return [permissions.IsAuthenticated()]
+
+
+class OpportunityCreateView(api_generic_views.ListCreateAPIView):
+    queryset = Opportunity.objects.all()
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )
+
+    list_serializer_class = OpportunitySerializer
+    create_serializer_class = OpportunityCreateSerializer
+
+    def get_serializer_class(self):
+        if self.request.method.lower() == 'post':
+            return self.create_serializer_class
+        return self.list_serializer_class
+
+
+class OpportunityUpdateandDetailsView(api_generic_views.RetrieveUpdateAPIView):
+    queryset = Opportunity.objects.all()
+    permission_classes = [UserAllStaffAllButEditOrReadOnly]
+
+    details_serializer_class = OpportunitySerializer
+    update_serializer_class = OpportunityCreateSerializer
+
+    def get_serializer_class(self):
+        if self.request.method.lower() == 'put':
+            return self.update_serializer_class
+        return self.details_serializer_class

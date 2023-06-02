@@ -1,8 +1,18 @@
 from django.db import models
 
+import uuid
+
 from backend.auth_app.models import CityOffice
 
 from backend.common.validators import validate_phone_number
+
+from django.contrib.auth import get_user_model
+
+UserModel = get_user_model()
+
+
+def generate_opportunity_id():
+    return str(uuid.uuid4()).split("-")[-1]
 
 
 class ProductGroup(models.Model):
@@ -23,7 +33,7 @@ class ProductGroup(models.Model):
 
 class Product(models.Model):
     NAME_MAX_LENGTH = 25
-    DESCRIPTION_MAX_LENGTH = 75
+    DESCRIPTION_MAX_LENGTH = 100
 
     name = models.CharField(
         max_length=NAME_MAX_LENGTH,
@@ -31,7 +41,7 @@ class Product(models.Model):
     )
 
     description = models.CharField(
-        max_length=NAME_MAX_LENGTH,
+        max_length=DESCRIPTION_MAX_LENGTH,
     )
 
     price = models.FloatField()
@@ -109,3 +119,91 @@ class Client(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Opportunity(models.Model):
+    NAME_MAX_LENGTH = 25
+    DESCRIPTION_MAX_LENGTH = 100
+    OPPORTUNITY_ID_MAX_LENGTH = 255
+
+    STATUSES = [
+        ('Ongoing', 'Ongoing'),
+        ('Lost', 'Lost'),
+        ('Won', 'Won')
+    ]
+
+    # opportunity_id = models.CharField(
+    #     max_length=OPPORTUNITY_ID_MAX_LENGTH,
+    #     # blank=True,
+    #     # null=True,
+    #     primary_key=True,
+    #     default="0"
+    # )
+
+    name = models.CharField(
+        max_length=NAME_MAX_LENGTH,
+        null=False,
+        blank=False,
+    )
+
+    description = models.TextField(
+        max_length=DESCRIPTION_MAX_LENGTH,
+        null=False,
+        blank=False,
+    )
+
+    created_date = models.DateField(
+        auto_now_add=True,
+    )
+
+    last_modified_date = models.DateField(
+        null=False,
+        blank=False,
+    )
+
+    close_date = models.DateField(
+        null=False,
+        blank=False,
+    )
+
+    status = models.CharField(
+        max_length=15,
+        choices=STATUSES,
+    )
+
+    client = models.ForeignKey(
+        Client,
+        on_delete=models.DO_NOTHING,
+        primary_key=False,
+        blank=False,
+        null=False,
+        related_name="opportunity_client",
+    )
+
+    user = models.ForeignKey(
+        UserModel,
+        on_delete=models.DO_NOTHING,
+    )
+
+    products = models.ManyToManyField(
+        Product,
+        through='OpportunityProducts',
+        related_name="opportunity_products_list",
+        blank=True,
+        null=True
+    )
+
+    def __str__(self):
+        return "{} - {}".format(self.name, self.id)
+
+
+class OpportunityProducts(models.Model):
+    opportunity = models.ForeignKey(
+        Opportunity,
+        on_delete=models.DO_NOTHING,
+    )
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.DO_NOTHING,
+    )
+    quantity = models.PositiveIntegerField()

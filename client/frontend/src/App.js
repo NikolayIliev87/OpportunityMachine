@@ -18,6 +18,12 @@ import { ProductGroupDetails } from './components/ProductGroup/ProductGroupDetai
 import { ProductGroupList } from './components/ProductGroup/ProductGroupList';
 import { ProductDetails } from './components/Product/ProductDetails';
 import { ProductList } from './components/Product/ProductList';
+import { CityOfficeDetails } from './components/CityOffice/CityOfficeDetails';
+import { CityOfficeList } from './components/CityOffice/CityOfficeList';
+import { RoleTypeDetails } from './components/RoleType/RoleTypeDetails';
+import { RoleTypeList } from './components/RoleType/RoleTypeList';
+import { OpportunityDetails } from './components/Opportunity/OpportunityDetails';
+import { OpportunityList } from './components/Opportunity/OpportunityList';
 
 import { AuthContext } from './contexts/AuthContext';
 import { ProfileContext } from './contexts/ProfileContext';
@@ -33,17 +39,17 @@ function App() {
     setAuth(authData)
   };
 
-  const [yourprofile, setYourProfile] = useState([]);
+  // const [yourprofile, setYourProfile] = useState([]);
 
-  useEffect(() => {if(auth.id) {
-    profileService.getProfileDetails(auth.id)
-          .then(profile => setYourProfile(profile))}
-  },[auth.id]);
+  // useEffect(() => {if(auth.id) {
+  //   profileService.getProfileDetails(auth.id)
+  //         .then(profile => setYourProfile(profile))}
+  // },[auth.id]);
 
   return (
     <div className={styles.AppMain}>
       <AuthContext.Provider value={{auth, userLogin}}>
-        <ProfileContext.Provider value={{yourprofile, setYourProfile}}>
+        {/* <ProfileContext.Provider value={{yourprofile, setYourProfile}}> */}
           <Header />
 
           <Routes>
@@ -62,10 +68,19 @@ function App() {
 
             <Route path="/productlist" element={<ProductList />}></Route>
             <Route path="/productlist/:productId" element={<ProductDetails />}></Route>
+
+            <Route path="/cityofficelist" element={<CityOfficeList />}></Route>
+            <Route path="/cityofficelist/:cityofficeId" element={<CityOfficeDetails />}></Route>
+
+            <Route path="/roletypelist" element={<RoleTypeList />}></Route>
+            <Route path="/roletypelist/:roletypeId" element={<RoleTypeDetails />}></Route>
+
+            <Route path="/opportunitylist" element={<OpportunityList />}></Route>
+            <Route path="/opportunitylist/:opportunityId" element={<OpportunityDetails />}></Route>
           </Routes>
 
           <Footer />
-        </ProfileContext.Provider>
+        {/* </ProfileContext.Provider> */}
       </AuthContext.Provider>
     </div>
   );

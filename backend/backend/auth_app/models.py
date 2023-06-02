@@ -38,6 +38,10 @@ class CityOffice(models.Model):
         unique=True,
     )
 
+    is_deleted = models.BooleanField(
+        default=False
+    )
+
     def __str__(self):
         return self.name
 
@@ -48,6 +52,10 @@ class Role(models.Model):
     name = models.CharField(
         max_length=NAME_MAX_LENGTH,
         unique=True,
+    )
+
+    is_deleted = models.BooleanField(
+        default=False
     )
 
     def __str__(self):

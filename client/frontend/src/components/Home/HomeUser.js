@@ -20,6 +20,9 @@ export const HomeUser = () => {
             <li><Link to="/clientlist">Clients</Link></li>
             <li><Link to="/productgrouplist">Product Groups</Link></li>
             <li><Link to="/productlist">Products</Link></li>
+            <li><Link to="/cityofficelist">City Offices</Link></li>
+            <li><Link to="/roletypelist">Role Types</Link></li>
+            <li><Link to="/opportunitylist">Opportunities</Link></li>
         </div>
     )
 }

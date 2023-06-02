@@ -8,8 +8,8 @@ from rest_framework.response import Response
 
 from backend.auth_app.managers import CustomObtainAuthToken
 from backend.auth_app.models import Profile, CityOffice, Role
-from backend.auth_app.serializers import UserCreateSerializer, ProfileSerializerManagers, ProfileForUpdateAndDetailsSerializer, \
-    OfficeCitySerializer, RoleTypeSerializer
+from backend.auth_app.serializers import UserCreateSerializer, ProfileSerializerManagers, ProfileForDetailsSerializer, \
+    OfficeCitySerializer, RoleTypeSerializer, ProfileForUpdateSerializer
 
 UserModel = get_user_model()
 
@@ -68,7 +68,7 @@ class ProfilesListView(api_generic_views.ListAPIView):
         permissions.IsAuthenticated,
     )
 
-    serializer_class = ProfileForUpdateAndDetailsSerializer
+    serializer_class = ProfileForDetailsSerializer
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -82,11 +82,19 @@ class ProfilesListView(api_generic_views.ListAPIView):
 class ProfileDetailsAndUpdateView(api_generic_views.RetrieveUpdateAPIView):
     queryset = Profile.objects.all()
 
+    details_serializer_class = ProfileForDetailsSerializer
+    update_serializer_class = ProfileForUpdateSerializer
+
+    def get_serializer_class(self):
+        if self.request.method.lower() == 'put':
+            return self.update_serializer_class
+        return self.details_serializer_class
+
     permission_classes = (
         permissions.IsAuthenticated,
     )
 
-    serializer_class = ProfileForUpdateAndDetailsSerializer
+    # serializer_class = ProfileForUpdateAndDetailsSerializer
 
     def get_object(self):
         the_object = super().get_object()
@@ -97,20 +105,78 @@ class ProfileDetailsAndUpdateView(api_generic_views.RetrieveUpdateAPIView):
         return the_object
 
 
-class OfficeCityListView(api_generic_views.ListAPIView):
+# class OfficeCityListView(api_generic_views.ListAPIView):
+#     queryset = CityOffice.objects.all()
+#     serializer_class = OfficeCitySerializer
+#     permission_classes = (
+#         permissions.AllowAny,
+#     )
+
+
+# class RoleTypeListView(api_generic_views.ListAPIView):
+#     queryset = Role.objects.all()
+#     serializer_class = RoleTypeSerializer
+#     permission_classes = (
+#         permissions.AllowAny,
+#     )
+
+
+class OfficeCityListandCreateView(api_generic_views.ListCreateAPIView):
     queryset = CityOffice.objects.all()
+    permission_classes = [permissions.IsAdminUser]
     serializer_class = OfficeCitySerializer
-    permission_classes = (
-        permissions.AllowAny,
-    )
+
+    def get_permissions(self):
+        if self.request.method == "POST":
+            return [permission() for permission in self.permission_classes]
+        return [permissions.IsAuthenticated()]
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        queryset = queryset.filter(is_deleted=False)
+
+        return queryset
 
 
-class RoleTypeListView(api_generic_views.ListAPIView):
+class OfficeCityUpdateandDetailsView(api_generic_views.RetrieveUpdateAPIView):
+    queryset = CityOffice.objects.all()
+    permission_classes = [permissions.IsAdminUser]
+    serializer_class = OfficeCitySerializer
+
+    def get_permissions(self):
+        if self.request.method == "PUT":
+            return [permission() for permission in self.permission_classes]
+        return [permissions.IsAuthenticated()]
+
+
+class RoleTypeListandCreateView(api_generic_views.ListCreateAPIView):
     queryset = Role.objects.all()
+    permission_classes = [permissions.IsAdminUser]
     serializer_class = RoleTypeSerializer
-    permission_classes = (
-        permissions.AllowAny,
-    )
+
+    def get_permissions(self):
+        if self.request.method == "POST":
+            return [permission() for permission in self.permission_classes]
+        return [permissions.IsAuthenticated()]
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        queryset = queryset.filter(is_deleted=False)
+
+        return queryset
+
+
+class RoleTypeUpdateandDetailsView(api_generic_views.RetrieveUpdateAPIView):
+    queryset = Role.objects.all()
+    permission_classes = [permissions.IsAdminUser]
+    serializer_class = RoleTypeSerializer
+
+    def get_permissions(self):
+        if self.request.method == "PUT":
+            return [permission() for permission in self.permission_classes]
+        return [permissions.IsAuthenticated()]
 
 
 class ManagersListView(api_generic_views.ListAPIView):
