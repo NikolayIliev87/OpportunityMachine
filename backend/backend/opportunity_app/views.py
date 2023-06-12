@@ -30,7 +30,15 @@ class ClientListandCreateView(api_generic_views.ListCreateAPIView):
 
         queryset = queryset.filter(is_deleted=False)
 
-        # queryset = queryset.filter(managing_cities=self.request.user_city)
+        cities = []
+        user_city = cities.append(self.request.user.profile.city_office)
+        manage_cities = self.request.user.profile.managing_city_offices.all()
+
+        for m in manage_cities:
+            cities.append(m)
+
+        # queryset = queryset.filter(managing_city=self.request.user.profile.city_office)
+        queryset = queryset.filter(managing_city__in=cities)
 
         return queryset
 

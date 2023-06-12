@@ -1,4 +1,5 @@
 import styles from './Opportunity.module.css'
+import Select from 'react-select';
 
 import { useState, useContext, useEffect } from "react";
 import { validator } from '../../services/validator';
@@ -14,6 +15,15 @@ export const OpportunityDetails = (props) => {
 
     const [opportunity_products, setOpportunityProducts] = useState(props.products);
 
+    const [selectedProduct, setSelectedProduct] = useState({});
+
+    const clacTotalProductsValue = () => {
+        let total = 0;
+        opportunity_products.map(({product,quantity}) => 
+        total = total + ((product.price-(product.price * (props.client.discount/100))) * quantity))
+
+        return total;
+    }
 
     const [products, setProducts] = useState([]);
     useEffect(() => {
@@ -34,11 +44,30 @@ export const OpportunityDetails = (props) => {
         user: `${auth.id}`,
     })
 
+    const changeSelectHandler = (ev, element) => {
+        if(element === 'product' && ev != null) {
+            setSelectedProduct(state => ({
+                ...state,
+                [element]: ev.id
+            }))
+        }
+        else if (element === 'product' && ev == null) {
+            setSelectedProduct({})
+        }
+    };
+
     const changeHandler = (ev) => {
-        setValues(state => ({
+        if (ev.target.id === 'quantity'){
+            setSelectedProduct(state => ({
+                ...state,
+                [ev.target.id]: ev.target.value
+            }))
+        }
+        else {setValues(state => ({
             ...state,
             [ev.target.id]: ev.target.value
         }))
+        }
     };
 
     const onSubmitHandler = (ev) => {
@@ -68,11 +97,14 @@ export const OpportunityDetails = (props) => {
           }))
         }
         else {
-          setErrors(state => ({
-            ...state,
-            [ev.target.id]: validated,
-          }))
-        }
+            setErrors({})
+          }
+        // else {
+        //   setErrors(state => ({
+        //     ...state,
+        //     [ev.target.id]: validated,
+        //   }))
+        // }
       }
 
       const [newProduct, setNewProduct] = useState(null);
@@ -85,12 +117,15 @@ export const OpportunityDetails = (props) => {
       const onCancleProductClick = (ev) => {
           ev.preventDefault()
           setNewProduct(null)
+          setSelectedProduct({})
       };
         
       const onAddProductClick = ev => {
           ev.preventDefault()
-          let productselected = products.filter(item => item.id==ev.target.parentElement.childNodes[0].value)[0]
-          let quantity = Number(ev.target.parentElement.childNodes[1].value)
+        //   let productselected = products.filter(item => item.id==ev.target.parentElement.childNodes[0].value)[0]
+            let productselected = products.filter(item => 
+                item.id==ev.target.parentElement.childNodes[0].textContent.split(' - ')[0])[0]
+            let quantity = Number(ev.target.parentElement.childNodes[1].value)
           
           let is_existing = false
   
@@ -108,6 +143,7 @@ export const OpportunityDetails = (props) => {
           }
   
           setNewProduct(null)
+          setSelectedProduct({})
       }
 
       const onRemoveProductClick = (ev, key) => {
@@ -122,7 +158,7 @@ export const OpportunityDetails = (props) => {
                     <div>
                         <label htmlFor="name"  value={values.name} >Opportunity Name:</label>
                         <input
-                            readOnly={auth.is_superuser || auth.email == values.user?false:true} 
+                            readOnly={auth.is_superuser || auth.email == props.username?false:true} 
                             id='name' 
                             type="text"  
                             onChange={changeHandler} 
@@ -152,7 +188,7 @@ export const OpportunityDetails = (props) => {
                     <div>
                         <label htmlFor="description"  value={values.description} >Opportunity Description:</label>
                         <input
-                            readOnly={auth.is_superuser || auth.email == values.user?false:true} 
+                            readOnly={auth.is_superuser || auth.email == props.username?false:true} 
                             id='description' 
                             type="text"  
                             onChange={changeHandler} 
@@ -191,7 +227,7 @@ export const OpportunityDetails = (props) => {
                     <div>
                         <label htmlFor="close_date"  value={values.close_date} >Close Date:</label>
                         <input
-                            readOnly={auth.is_superuser || auth.email == values.user?false:true} 
+                            readOnly={auth.is_superuser || auth.email == props.username?false:true} 
                             id='close_date' 
                             type="date"
                             onChange={changeHandler} 
@@ -201,7 +237,33 @@ export const OpportunityDetails = (props) => {
                         {errors.close_date && <p>{errors.close_date}</p>}
                     </div>
                     <div>
+                        {auth.is_superuser || auth.email == props.username
+                        ?
+                        <>
                         <label htmlFor="status">Opportunity Status:</label>
+                        <select 
+                            // readOnly={auth.is_superuser || auth.email == values.user?false:true} 
+                            id='status' 
+                            value={values.status} 
+                            onChange={changeHandler}
+                        >
+                         <option value='Ongoing' key='Ongoing'>Ongoing</option>
+                         <option value='Lost' key='Lost'>Lost</option>
+                         <option value='Won' key='Won'>Won</option>
+                        </select>
+                        </>
+                        :
+                        <>
+                        <label htmlFor="status">Opportunity Status:</label>
+                        <input
+                            readOnly={true} 
+                            id='status' 
+                            type="text"
+                            defaultValue={props.status}
+                        />
+                        </>
+                        }
+                        {/* <label htmlFor="status">Opportunity Status:</label>
                         <select 
                             readOnly={auth.is_superuser || auth.email == values.user?false:true} 
                             id='status' 
@@ -211,31 +273,57 @@ export const OpportunityDetails = (props) => {
                          <option value='Ongoing' key='Ongoing'>Ongoing</option>
                          <option value='Lost' key='Lost'>Lost</option>
                          <option value='Won' key='Won'>Won</option>
-                        </select>
+                        </select> */}
                     </div>
                     
                     <div>Included Products:
                         {opportunity_products.length !== 0
                         ?
-                        opportunity_products.map(product => 
+                        <>
+                        {opportunity_products.map(product => 
                         <div key={product.product.id}>
                             <span>{product.product.name}</span>
                             <span>{product.quantity}</span>
                             <span>{product.product.price}</span>
-                            <button onClick={event => onRemoveProductClick(event, product.product.id)}>remove</button>
+                            <span>{product.product.price * product.quantity}</span>
+                            <span>{props.client.discount}%</span>
+                            <span>
+                                {(product.product.price - (product.product.price * (props.client.discount/100)))
+                                 * product.quantity}</span>
+                            <button 
+                                onClick={event => onRemoveProductClick(event, product.product.id)}
+                                hidden={auth.is_superuser || auth.email == props.username?false:true}
+                            >remove</button>
                         </div>
-                        )
+                        )}
+                        <div><span>Total before VAT </span><span>{clacTotalProductsValue()}</span></div>
+                        <div><span>VAT</span><span>20%</span></div>
+                        <div><span>Total after VAT </span><span>{clacTotalProductsValue()+clacTotalProductsValue()*(20/100)}</span></div>
+                        </>
                         :
                         <p>No Products included!</p>
                         }
                     </div>
                     <div>
                         <div> 
-                            <button onClick={onIncludeProductClick}>Include Product</button>
+                            <button 
+                                onClick={onIncludeProductClick}
+                                hidden={auth.is_superuser || auth.email == props.username?false:true}
+                            >Include Product</button>
                             {newProduct
                             ?
                             <div>
-                                <select id='product' value={products.id}>
+                                <Select
+                                    id='product'
+                                    options={products}
+                                    getOptionLabel={(option) => `${option.id} - ${option.name}`}
+                                    getOptionValue={(option) => option.id}
+                                    isSearchable={true}
+                                    placeholder={'Search Product Name/ID'}
+                                    onChange={option => changeSelectHandler(option, "product")}
+                                    isClearable
+                                />
+                                {/* <select id='product' value={products.id}>
                                     <>
                                     <option value=""></option>
                                     {products.map(product => 
@@ -244,10 +332,21 @@ export const OpportunityDetails = (props) => {
                                         </option>
                                     )}
                                     </>
-                                </select>
-                                <input type="number" min='0'/>
+                                </select> */}
+                                <input 
+                                type="number" 
+                                min='0'
+                                id='quantity'
+                                value={selectedProduct.quantity?selectedProduct.quantity:''} 
+                                onChange={changeHandler}
+                                />
 
-                                <button onClick={onAddProductClick}>Add</button>
+                                <button 
+                                    onClick={onAddProductClick}
+                                    disabled={selectedProduct.product && selectedProduct.quantity?false:true}
+                                >
+                                Add
+                                </button>
                                 <button onClick={onCancleProductClick}>Cancle</button>
                             </div>
                             :
@@ -255,12 +354,25 @@ export const OpportunityDetails = (props) => {
                             } 
                         </div>
                         <div>
+                            {/* {Object.keys(errors).length > 0 || values.name === '' || 
+                            values.description === '' || values.close_date === '' */}
+                            {Object.keys(errors).length > 0
+                            ?
+                            <></>
+                            :
                             <button 
-                            hidden={auth.is_superuser || auth.email == values.user?false:true}  
+                            hidden={auth.is_superuser || auth.email == props.username?false:true}  
                             type="submit" name='update'
                             >
                             Save
                             </button>
+                            }
+                            {/* <button 
+                            hidden={auth.is_superuser || auth.email == props.username?false:true}  
+                            type="submit" name='update'
+                            >
+                            Save
+                            </button> */}
                             <button onClick={props.onCloseClick}>Close</button>
                         </div>
                     </div>

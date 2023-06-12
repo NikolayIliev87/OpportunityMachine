@@ -15,10 +15,10 @@ export const Navigation = () => {
                 {auth.id
                     ?
                     <ul>
-                        {auth.is_staff || auth._is_superuser?
+                        {/* {auth.is_staff || auth._is_superuser?
                         <li><i className="fas fa-users"></i><Link to="/profileslist">Profiles List</Link></li>
                         : ""
-                        }
+                        } */}
                         <li><i className="fas fa-user-circle"></i><Link to="/profile">Profile</Link></li>
                         <li><i className="fas fa-sign-out-alt"></i><Link to="/logout">Logout</Link></li>
                     </ul>

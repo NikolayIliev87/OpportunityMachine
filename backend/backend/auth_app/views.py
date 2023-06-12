@@ -129,7 +129,7 @@ class OfficeCityListandCreateView(api_generic_views.ListCreateAPIView):
     def get_permissions(self):
         if self.request.method == "POST":
             return [permission() for permission in self.permission_classes]
-        return [permissions.IsAuthenticated()]
+        return [permissions.AllowAny()]
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -158,7 +158,7 @@ class RoleTypeListandCreateView(api_generic_views.ListCreateAPIView):
     def get_permissions(self):
         if self.request.method == "POST":
             return [permission() for permission in self.permission_classes]
-        return [permissions.IsAuthenticated()]
+        return [permissions.AllowAny()]
 
     def get_queryset(self):
         queryset = super().get_queryset()

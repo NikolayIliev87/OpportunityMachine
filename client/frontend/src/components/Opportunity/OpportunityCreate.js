@@ -1,4 +1,5 @@
 import styles from './Opportunity.module.css'
+import Select from 'react-select';
 
 import { validator } from '../../services/validator';
 
@@ -10,7 +11,17 @@ import * as productService from '../../services/product_service'
 export const OpportunityCreate = (props) => {
     const [errors, setErrors] = useState({});
     const [opportunity_products, setOpportunityProducts] = useState([]);
+    const [selectedClient, setSelectedClient] = useState({});
+    const [selectedProduct, setSelectedProduct] = useState({});
     const user = JSON.parse(localStorage.getItem('auth'))['id']
+
+    const clacTotalProductsValue = () => {
+        let total = 0;
+        opportunity_products.map(({product,quantity}) => 
+        total = total + ((product.price-(product.price * (selectedClient[0].discount/100))) * quantity))
+
+        return total;
+    }
 
     // const uid = function(){
     //     return `${Date.now()}${user}`
@@ -40,11 +51,54 @@ export const OpportunityCreate = (props) => {
             .then(products => {setProducts(products)})
       },[]);
 
+    const changeSelectHandler = (ev, element) => {
+        // if(ev !== null) {
+        //     setValues(state => ({
+        //         ...state,
+        //         [element]: ev.id
+        //     })) 
+        // }
+        if(element === 'client' && ev != null) {
+            setSelectedClient(clients.filter(x => x.id == ev.id))
+
+            setValues(state => ({
+                ...state,
+                [element]: ev.id
+            }))
+        }
+        else if (element === 'client' && ev == null) {
+            setSelectedClient({})
+            setOpportunityProducts([])
+            setValues(state => ({
+                ...state,
+                [element]: ''
+            }))
+            setNewProduct(null)
+        }
+        else if(element === 'product' && ev != null) {
+            setSelectedProduct(state => ({
+                ...state,
+                [element]: ev.id
+            }))
+        }
+        else if (element === 'product' && ev == null) {
+            setSelectedProduct({})
+        }
+    };
+
     const changeHandler = (ev) => {
-        setValues(state => ({
-            ...state,
-            [ev.target.id]: ev.target.value
-        }))
+        if (ev.target.id === 'quantity'){
+            setSelectedProduct(state => ({
+                ...state,
+                [ev.target.id]: ev.target.value
+            }))
+        }
+        else {
+            setValues(state => ({
+                ...state,
+                [ev.target.id]: ev.target.value
+            }))
+        }
     };
 
     const onSubmitHandler = (ev) => {
@@ -65,11 +119,14 @@ export const OpportunityCreate = (props) => {
           }))
         }
         else {
-          setErrors(state => ({
-            ...state,
-            [ev.target.id]: validated,
-          }))
+          setErrors({})
         }
+        // else {
+        //     setErrors(state => ({
+        //       ...state,
+        //       [ev.target.id]: validated,
+        //     }))
+        //   }
       };
 
     const [newProduct, setNewProduct] = useState(null);
@@ -82,11 +139,15 @@ export const OpportunityCreate = (props) => {
     const onCancleProductClick = (ev) => {
         ev.preventDefault()
         setNewProduct(null)
+        setSelectedProduct({})
     };
       
     const onAddProductClick = ev => {
+        // console.log(ev.target.parentElement.childNodes[0].textContent.split(' - ')[0])
         ev.preventDefault()
-        let productselected = products.filter(item => item.id==ev.target.parentElement.childNodes[0].value)[0]
+        // let productselected = products.filter(item => item.id==ev.target.parentElement.childNodes[0].value)[0]
+        let productselected = products.filter(item => 
+            item.id==ev.target.parentElement.childNodes[0].textContent.split(' - ')[0])[0]
         let quantity = Number(ev.target.parentElement.childNodes[1].value)
         
         let is_existing = false
@@ -105,6 +166,7 @@ export const OpportunityCreate = (props) => {
         }
 
         setNewProduct(null)
+        setSelectedProduct({})
     }
 
     const onRemoveProductClick = (ev, key) => {
@@ -161,6 +223,19 @@ export const OpportunityCreate = (props) => {
                 </div>
                 <div>
                     <label htmlFor="client">Client:</label>
+                    <Select
+                        id='client'
+                        options={clients}
+                        getOptionLabel={(option) => `${option.id} - ${option.name}`}
+                        getOptionValue={(option) => option.id}
+                        isSearchable={true}
+                        onChange={option => changeSelectHandler(option, "client")}
+                        placeholder={'Search Customer Name/ID'}
+                        isClearable
+                    />
+                </div>
+                {/* <div>
+                    <label htmlFor="client">Client:</label>
                     <select id='client' value={values.client} onChange={changeHandler}>
                         <>
                         <option value=""></option>
@@ -171,29 +246,55 @@ export const OpportunityCreate = (props) => {
                         )}
                         </>
                     </select>
-                </div>
+                </div> */}
                 <div>Included Products:
                     {opportunity_products.length !== 0
                     ?
-                    opportunity_products.map(product => 
+                    <>
+                    {opportunity_products.map(product => 
                     <div key={product.product.id}>
                         <span>{product.product.name}</span>
                         <span>{product.quantity}</span>
                         <span>{product.product.price}</span>
+                        <span>{product.product.price * product.quantity}</span>
+                        <span>{selectedClient[0].discount}%</span>
+                        <span>
+                                {(product.product.price - (product.product.price * (selectedClient[0].discount/100)))
+                                 * product.quantity}</span>
                         <button onClick={event => onRemoveProductClick(event, product.product.id)}>remove</button>
                     </div>
-                    )
+                    )}
+                    <div><span>Total before VAT </span><span>{clacTotalProductsValue()}</span></div>
+                        <div><span>VAT</span><span>20%</span></div>
+                        <div><span>Total after VAT </span><span>{clacTotalProductsValue()+clacTotalProductsValue()*(20/100)}</span></div>
+                    </>
                     :
                     <p>No Products included!</p>
                     }
                 </div>
                 
                 <div>
-                    <button onClick={onIncludeProductClick}>Include Product</button>
+                    
+                    <button 
+                        onClick={onIncludeProductClick}
+                        disabled={selectedClient.length>0?false:true}
+                    >
+                        Include Product
+                        </button>
                     {newProduct
                     ?
                     <div>
-                        <select id='product' value={products.id}>
+                        <Select
+                                id='product'
+                                options={products}
+                                getOptionLabel={(option) => `${option.id} - ${option.name}`}
+                                getOptionValue={(option) => option.id}
+                                isSearchable={true}
+                                placeholder={'Search Product Name/ID'}
+                                onChange={option => changeSelectHandler(option, "product")}
+                                isClearable
+                            />
+                        {/* <select id='product' value={products.id}>
                             <>
                             <option value=""></option>
                             {products.map(product => 
@@ -202,17 +303,36 @@ export const OpportunityCreate = (props) => {
                                 </option>
                             )}
                             </>
-                        </select>
-                        <input type="number" min='0'/>
+                        </select> */}
+                        <input 
+                        type="number" 
+                        min='0'
+                        id='quantity'
+                        value={selectedProduct.quantity?selectedProduct.quantity:''} 
+                        onChange={changeHandler}
+                        />
 
-                        <button onClick={onAddProductClick}>Add</button>
+                        <button 
+                            onClick={onAddProductClick}
+                            disabled={selectedProduct.product && selectedProduct.quantity?false:true}
+                        >
+                        Add
+                        </button>
                         <button onClick={onCancleProductClick}>Cancle</button>
                     </div>
                     :
                     <></>
                     }
                     <div>
+                        {/* {Object.keys(errors).length > 0 || values.name === '' || 
+                        values.description === '' || values.close_date === '' ||
+                        values.client === '' */}
+                        {Object.keys(errors).length > 0 || values.client === ''
+                        ?
+                        <></>
+                        :
                         <button type="submit" >Create</button>
+                        }
                         <button onClick={props.onCloseClick}>Close</button>
                     </div>
                 </div>
