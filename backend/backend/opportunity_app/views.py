@@ -191,6 +191,17 @@ class OpportunityCreateView(api_generic_views.ListCreateAPIView):
 
             return queryset
 
+        if self.request.user.profile.role_type.name == 'Operations':
+
+            cities = []
+            manage_cities = self.request.user.profile.managing_city_offices.all()
+            for m in manage_cities:
+                cities.append(m)
+
+            queryset = Opportunity.objects.filter(client__managing_city__in=cities)
+
+            return queryset
+
 
 class OpportunityUpdateandDetailsView(api_generic_views.RetrieveUpdateAPIView):
     queryset = Opportunity.objects.all()

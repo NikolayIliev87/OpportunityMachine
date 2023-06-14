@@ -39,10 +39,17 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         # fix1 issue with password in plain text
-        user = OpportunityMachineUser.objects.create(
-            email=validated_data['email'],
-            password=make_password(validated_data['password']),
-        )
+        if validated_data['profile']['role_type'].name == "Operations":
+            user = OpportunityMachineUser.objects.create(
+                email=validated_data['email'],
+                password=make_password(validated_data['password']),
+                is_staff=True
+            )
+        else:
+            user = OpportunityMachineUser.objects.create(
+                email=validated_data['email'],
+                password=make_password(validated_data['password']),
+            )
 
         profile_data = validated_data.pop('profile')
 

@@ -322,7 +322,8 @@ export const Register = () => {
               value={role_description}
             />
           </div>
-          {is_manager && role_type !== '' && role_type_name !== 'Team Manager'
+          {/* {is_manager && role_type !== '' && role_type_name !== 'Team Manager' */}
+          {role_type !== '' && role_type_name !== 'Team Manager' && role_type_name !== 'Seller'
             ?
             <div>
               <label htmlFor="managing_city_offices">Managing Cities:</label>

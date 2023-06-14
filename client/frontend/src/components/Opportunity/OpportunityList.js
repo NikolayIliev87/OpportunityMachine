@@ -139,6 +139,7 @@ export const OpportunityList = () => {
                 <button 
                     className={styles.CreateNewOpportunity} 
                     onClick={newOpportunityHandler}
+                    hidden={auth.is_staff?true:false}
                 > 
                 ADD NEW OPPORTUNITY
                 </button>
