@@ -59,11 +59,14 @@ export const ProductDetails = (props) => {
           }))
         }
         else {
-          setErrors(state => ({
-            ...state,
-            [ev.target.id]: validated,
-          }))
-        }
+            setErrors({})
+          }
+        // else {
+        //   setErrors(state => ({
+        //     ...state,
+        //     [ev.target.id]: validated,
+        //   }))
+        // }
       }
 
     return (
@@ -131,8 +134,20 @@ export const ProductDetails = (props) => {
                         {errors.price && <p>{errors.price}</p>}
                     </div>
                     <div>
-                        <button hidden={auth.is_superuser?false:true} type="submit" name='update'>Save</button>
-                        <button hidden={auth.is_superuser?false:true} type='submit' name='delete'>Delete</button>
+                        <button 
+                            hidden={!auth.is_superuser || Object.keys(errors).length > 0 ||
+                                values.name === '' || values.description === '' || 
+                                values.price === '' || values.group === ''?true:false}
+                            type="submit" 
+                            name='update'
+                        >Save</button>
+                        <button 
+                            hidden={!auth.is_superuser || Object.keys(errors).length > 0 ||
+                                values.name === '' || values.description === '' || 
+                                values.price === '' || values.group === ''?true:false}
+                            type='submit' 
+                            name='delete'
+                        >Delete</button>
                         <button onClick={props.onCloseClick}>Close</button>
                     </div>
 

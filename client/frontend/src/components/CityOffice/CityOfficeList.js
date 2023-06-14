@@ -100,12 +100,11 @@ export const CityOfficeList = () => {
             </>
             <div className={styles.CityOfficeList}>
                 <h1>City Offices List</h1>
-                {auth.is_superuser
-                ?
-                <button className={styles.CreateNewCityOffice} onClick={newCityOfficeHandler}> ADD NEW CITY OFFICE</button>
-                :
-                <></>
-                }
+                <button 
+                    className={styles.CreateNewCityOffice} 
+                    onClick={newCityOfficeHandler}
+                    hidden={!auth.is_superuser?true:false}
+                > ADD NEW CITY OFFICE</button>
                 <div className={styles.CityOfficesArray}>
                 {cityOffices.length !== 0
                 ?

@@ -100,12 +100,11 @@ export const ProductGroupList = () => {
             </>
             <div className={styles.ProductGroupList}>
                 <h1>Product Groups List</h1>
-                {auth.is_superuser
-                ?
-                <button className={styles.CreateNewProductGroup} onClick={newProductGroupHandler}> ADD NEW PRODUCT GROUP</button>
-                :
-                <></>
-                }
+                <button 
+                    className={styles.CreateNewProductGroup} 
+                    onClick={newProductGroupHandler}
+                    hidden={!auth.is_superuser?true:false}
+                > ADD NEW PRODUCT GROUP</button>
                 <div className={styles.ProductGroupsArray}>
                 {productGroups.length !== 0
                 ?

@@ -50,11 +50,14 @@ export const ClientCreate = (props) => {
           }))
         }
         else {
-          setErrors(state => ({
-            ...state,
-            [ev.target.id]: validated,
-          }))
-        }
+            setErrors({})
+          }
+        // else {
+        //   setErrors(state => ({
+        //     ...state,
+        //     [ev.target.id]: validated,
+        //   }))
+        // }
       };
 
     return (
@@ -141,7 +144,13 @@ export const ClientCreate = (props) => {
                     {errors.phone && <p>{errors.phone}</p>}
                 </div> 
                 <div>
-                    <button type="submit" >Create</button>
+                    <button 
+                        type="submit"
+                        hidden={Object.keys(errors).length > 0 || values.name === '' ||
+                        values.city === '' || values.managing_city === '' || values.address === '' ||
+                        values.contact === '' || values.discount === '' || values.phone === ''
+                        ?true:false} 
+                    >Create</button>
                     <button onClick={props.onCloseClick}>Close</button>
                 </div>
             </section>

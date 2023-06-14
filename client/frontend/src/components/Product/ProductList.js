@@ -125,12 +125,11 @@ export const ProductList = () => {
             </>
             <div className={styles.ProductList}>
                 <h1>Products List</h1>
-                {auth.is_superuser
-                ?
-                <button className={styles.CreateNewProduct} onClick={newProductHandler}> ADD NEW PRODUCT</button>
-                :
-                <></>
-                }
+                <button 
+                    className={styles.CreateNewProduct} 
+                    onClick={newProductHandler}
+                    hidden={!auth.is_superuser?true:false}
+                > ADD NEW PRODUCT</button>
                 <div className={styles.ProductsArray}>
                 {products.length !== 0
                 ?

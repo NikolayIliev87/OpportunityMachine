@@ -51,11 +51,14 @@ export const Login = () => {
         }))
       }
       else {
-        setErrors(state => ({
-          ...state,
-          [ev.target.id]: validated,
-        }))
+        setErrors({})
       }
+      // else {
+      //   setErrors(state => ({
+      //     ...state,
+      //     [ev.target.id]: validated,
+      //   }))
+      // }
     } 
 
     return (
@@ -82,12 +85,10 @@ export const Login = () => {
               value={password}
             />
           </div>
-          {errors.length > 0 || username === '' || password === ''
-          ?
-            <></>
-          :
-            <button type="submit" >Login</button>
-          }
+          <button 
+            type="submit"
+            hidden={Object.keys(errors).length > 0 || username === '' || password === ''?true:false} 
+          >Login</button>
         </form>
         <p>If you don't have account yet please <Link to="/register">Register!</Link></p>
       </section>

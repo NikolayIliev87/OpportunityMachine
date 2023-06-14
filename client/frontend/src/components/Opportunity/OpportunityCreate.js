@@ -324,15 +324,13 @@ export const OpportunityCreate = (props) => {
                     <></>
                     }
                     <div>
-                        {/* {Object.keys(errors).length > 0 || values.name === '' || 
-                        values.description === '' || values.close_date === '' ||
-                        values.client === '' */}
-                        {Object.keys(errors).length > 0 || values.client === ''
-                        ?
-                        <></>
-                        :
-                        <button type="submit" >Create</button>
-                        }
+                        <button 
+                            type="submit"
+                            hidden={Object.keys(errors).length > 0 || values.name === '' ||
+                            values.description === '' || values.close_date === '' ||
+                            values.client === ''
+                            ?true:false} 
+                        >Create</button>
                         <button onClick={props.onCloseClick}>Close</button>
                     </div>
                 </div>

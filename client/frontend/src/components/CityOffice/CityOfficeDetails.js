@@ -48,11 +48,14 @@ export const CityOfficeDetails = (props) => {
           }))
         }
         else {
-          setErrors(state => ({
-            ...state,
-            [ev.target.id]: validated,
-          }))
-        }
+            setErrors({})
+          }
+        // else {
+        //   setErrors(state => ({
+        //     ...state,
+        //     [ev.target.id]: validated,
+        //   }))
+        // }
       }
 
     return (
@@ -81,8 +84,20 @@ export const CityOfficeDetails = (props) => {
                         />
                     </div>
                     <div>
-                        <button hidden={auth.is_superuser?false:true} type="submit" name='update'>Save</button>
-                        <button hidden={auth.is_superuser?false:true} type='submit' name='delete'>Delete</button>
+                        <button 
+                            hidden={!auth.is_superuser || 
+                                    Object.keys(errors).length > 0 ||
+                                    values.name === ''?true:false} 
+                            type="submit" 
+                            name='update'
+                        >Save</button>
+                        <button 
+                            hidden={!auth.is_superuser || 
+                                Object.keys(errors).length > 0 ||
+                                values.name === ''?true:false}  
+                            type='submit' 
+                            name='delete'
+                        >Delete</button>
                         <button onClick={props.onCloseClick}>Close</button>
                     </div>
                 </section>

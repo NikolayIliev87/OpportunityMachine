@@ -37,11 +37,14 @@ export const ProductGroupCreate = (props) => {
           }))
         }
         else {
-          setErrors(state => ({
-            ...state,
-            [ev.target.id]: validated,
-          }))
-        }
+            setErrors({})
+          }
+        // else {
+        //   setErrors(state => ({
+        //     ...state,
+        //     [ev.target.id]: validated,
+        //   }))
+        // }
       };
 
     return (
@@ -60,7 +63,10 @@ export const ProductGroupCreate = (props) => {
                     {errors.name && <p>{errors.name}</p>}
                 </div>
                 <div>
-                    <button type="submit" >Create</button>
+                    <button 
+                        type="submit"
+                        hidden={Object.keys(errors).length > 0 || values.name === ''?true:false}
+                    >Create</button>
                     <button onClick={props.onCloseClick}>Close</button>
                 </div>
             </section>

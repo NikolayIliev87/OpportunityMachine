@@ -354,19 +354,13 @@ export const OpportunityDetails = (props) => {
                             } 
                         </div>
                         <div>
-                            {/* {Object.keys(errors).length > 0 || values.name === '' || 
-                            values.description === '' || values.close_date === '' */}
-                            {Object.keys(errors).length > 0
-                            ?
-                            <></>
-                            :
                             <button 
-                            hidden={auth.is_superuser || auth.email == props.username?false:true}  
-                            type="submit" name='update'
-                            >
-                            Save
-                            </button>
-                            }
+                                hidden={!auth.is_superuser || auth.email !== props.username ||
+                                    values.name === '' || values.description === '' || 
+                                    values.close_date === ''?true:false}  
+                                type="submit" 
+                                name='update'
+                            >Save</button>
                             {/* <button 
                             hidden={auth.is_superuser || auth.email == props.username?false:true}  
                             type="submit" name='update'

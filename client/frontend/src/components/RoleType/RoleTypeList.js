@@ -100,12 +100,11 @@ export const RoleTypeList = () => {
             </>
             <div className={styles.RoleTypeList}>
                 <h1>Role Types List</h1>
-                {auth.is_superuser
-                ?
-                <button className={styles.CreateNewRoleType} onClick={newRoleTypeHandler}> ADD NEW ROLE TYPE</button>
-                :
-                <></>
-                }
+                <button 
+                    className={styles.CreateNewRoleType} 
+                    onClick={newRoleTypeHandler}
+                    hidden={!auth.is_superuser?true:false}
+                > ADD NEW ROLE TYPE</button>
                 <div className={styles.RoleTypesArray}>
                 {roleTypes.length !== 0
                 ?

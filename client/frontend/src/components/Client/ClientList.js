@@ -124,12 +124,11 @@ export const ClientList = () => {
             </>
             <div className={styles.ClientList}>
                 <h1>Clients List</h1>
-                {auth.is_superuser
-                ?
-                <button className={styles.CreateNewClient} onClick={newClientHandler}> ADD NEW CLIENT</button>
-                :
-                <></>
-                }
+                <button 
+                    className={styles.CreateNewClient} 
+                    onClick={newClientHandler}
+                    hidden={!auth.is_superuser?true:false}
+                > ADD NEW CLIENT</button>
                 <div className={styles.ClientsArray}>
                 {clients.length !== 0
                 ?

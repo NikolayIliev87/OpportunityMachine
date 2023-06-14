@@ -1,7 +1,10 @@
 from django.core import exceptions
 
 from rest_framework import generics as api_generic_views, permissions
+
+from backend.auth_app.models import Profile
 from backend.common.permissions import UserAllStaffAllButEditOrReadOnly
+from django.db.models import Q
 
 from backend.opportunity_app.models import ProductGroup, Product, Client, Opportunity
 from backend.opportunity_app.serializers import ProductGroupSerializer, ProductSerializer, ClientSerializer, \
@@ -9,7 +12,7 @@ from backend.opportunity_app.serializers import ProductGroupSerializer, ProductS
 
 
 class ClientListandCreateView(api_generic_views.ListCreateAPIView):
-    queryset = Client.objects.all()
+    # queryset = Client.objects.all()
     permission_classes = [permissions.IsAdminUser]
 
     details_serializer_class = ClientSerializerDetails
@@ -26,9 +29,9 @@ class ClientListandCreateView(api_generic_views.ListCreateAPIView):
         return [permissions.IsAuthenticated()]
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        # queryset = super().get_queryset()
 
-        queryset = queryset.filter(is_deleted=False)
+        queryset = Client.objects.filter(is_deleted=False)
 
         cities = []
         user_city = cities.append(self.request.user.profile.city_office)
@@ -98,7 +101,7 @@ class ProductGroupUpdateandDetailsView(api_generic_views.RetrieveUpdateAPIView):
 
 
 class ProductListandCreateView(api_generic_views.ListCreateAPIView):
-    queryset = Product.objects.all()
+    # queryset = Product.objects.all()
     permission_classes = [permissions.IsAdminUser]
 
     details_serializer_class = ProductSerializerDetails
@@ -115,9 +118,9 @@ class ProductListandCreateView(api_generic_views.ListCreateAPIView):
         return [permissions.IsAuthenticated()]
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        # queryset = super().get_queryset()
 
-        queryset = queryset.filter(is_deleted=False)
+        queryset = Product.objects.filter(is_deleted=False)
 
         return queryset
 
@@ -141,7 +144,7 @@ class ProductUpdateandDetailsView(api_generic_views.RetrieveUpdateAPIView):
 
 
 class OpportunityCreateView(api_generic_views.ListCreateAPIView):
-    queryset = Opportunity.objects.all()
+    # queryset = Opportunity.objects.all()
     permission_classes = (
         permissions.IsAuthenticated,
     )
@@ -153,6 +156,40 @@ class OpportunityCreateView(api_generic_views.ListCreateAPIView):
         if self.request.method.lower() == 'post':
             return self.create_serializer_class
         return self.list_serializer_class
+
+    # limit queryset to respective user
+    # if user is team manager - take opportunities related to him and his team
+
+    def get_queryset(self):
+        # queryset = super().get_queryset()
+
+        if self.request.user.profile.role_type.name == 'Country Manager':
+
+            return Opportunity.objects.all()
+
+        if self.request.user.profile.role_type.name == 'City Manager':
+
+            cities = []
+            manage_cities = self.request.user.profile.managing_city_offices.all()
+            for m in manage_cities:
+                cities.append(m)
+
+            queryset = Opportunity.objects.filter(client__managing_city__in=cities)
+
+            return queryset
+
+        if self.request.user.profile.role_type.name == 'Team Manager':
+            team = Profile.objects.filter(manager=self.request.user.email)
+            print(team)
+
+            queryset = Opportunity.objects.filter(Q(user=self.request.user) | Q(user__profile__in=team))
+
+            return queryset
+
+        if self.request.user.profile.role_type.name == 'Seller':
+            queryset = Opportunity.objects.filter(user=self.request.user)
+
+            return queryset
 
 
 class OpportunityUpdateandDetailsView(api_generic_views.RetrieveUpdateAPIView):

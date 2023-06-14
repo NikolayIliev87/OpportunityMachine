@@ -47,11 +47,14 @@ export const ProductCreate = (props) => {
           }))
         }
         else {
-          setErrors(state => ({
-            ...state,
-            [ev.target.id]: validated,
-          }))
-        }
+            setErrors({})
+          }
+        // else {
+        //   setErrors(state => ({
+        //     ...state,
+        //     [ev.target.id]: validated,
+        //   }))
+        // }
       };
 
     return (
@@ -105,7 +108,12 @@ export const ProductCreate = (props) => {
                     {errors.price && <p>{errors.price}</p>}
                 </div>
                 <div>
-                    <button type="submit" >Create</button>
+                    <button 
+                        type="submit"
+                        hidden={Object.keys(errors).length > 0 || values.name === '' ||
+                        values.description === '' || values.price === '' || values.group === ''
+                        ?true:false}
+                    >Create</button>
                     <button onClick={props.onCloseClick}>Close</button>
                 </div>
             </section>

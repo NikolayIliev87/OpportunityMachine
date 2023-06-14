@@ -186,11 +186,14 @@ export const Register = () => {
         }))
       }
       else {
-        setErrors(state => ({
-          ...state,
-          [ev.target.id]: validated,
-        }))
+        setErrors({})
       }
+      // else {
+      //   setErrors(state => ({
+      //     ...state,
+      //     [ev.target.id]: validated,
+      //   }))
+      // }
     } 
 
     return (
@@ -338,13 +341,12 @@ export const Register = () => {
             :
             <></>
           }
-          {errors.length > 0 || username === '' || password === '' || firstname === '' ||
-           lastname === '' || phone === '' || city_office === '' || role_type === ''
-          ?
-            <></>
-          :
-            <button type="submit" >Register</button>
-          }
+          <button 
+            type="submit"
+            hidden={Object.keys(errors).length > 0 || username === '' || password === '' || 
+            firstname === '' || lastname === '' || phone === '' || city_office === '' || 
+            role_type === ''}
+          >Register</button>
 
         </form>
       </section>
