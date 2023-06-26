@@ -1,0 +1,25 @@
+.Footer {
+    background-color: #525252;
+    width: 100vw;
+    height: 5vh;
+}
+
+.Footer p {
+    color: #BFBEBE;
+    text-align: right;
+    font-weight: 600;
+    align-items: center;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-right: 40px;
+    font-size: 18px;
+    font-family: Inter;
+}
+
+/* Media for responsive css */
+
+@media (max-width: 600px) {
+    .Footer {
+        font-size: 10px;
+    }
+}

@@ -10,7 +10,7 @@ export const Navigation = () => {
     return (
         <nav className={styles.Navigation}>
                 <ul>
-                    <li><i className="fas fa-home"></i><Link to="/">Home</Link></li>
+                    <li><Link to="/">LOGO/HOME</Link></li>
                 </ul>
                 {auth.id
                     ?
@@ -25,10 +25,11 @@ export const Navigation = () => {
 
                     :
                     <ul>
-                        <li><i className="fas fa-address-card"></i><Link to="/register">Register</Link></li>
-                        <li><i className="fas fa-sign-in-alt"></i><Link to="/login">Login</Link></li>
+                        <li><Link to="/register">Register</Link></li>
+                        <li><Link to="/login">Login</Link></li>
                     </ul>
                 }
+                <Link to="#" className={styles.Settings}><i class="fas fa-cog"></i></Link>
         </nav>
     )
 }
