@@ -76,7 +76,7 @@ export const ProductDetails = (props) => {
                     <div>
                         <label htmlFor="name"  value={values.name} >Product Name:</label>
                         <input
-                            readOnly={auth.is_superuser?false:true} 
+                            readOnly={auth.is_superuser||auth.is_staff?false:true}  
                             id='name' 
                             type="text"  
                             onChange={changeHandler} 
@@ -86,7 +86,7 @@ export const ProductDetails = (props) => {
                         {errors.name && <p>{errors.name}</p>}
                     </div>
                     <div>
-                        <label htmlFor="id"  value={values.id} >Customer ID:</label>
+                        <label htmlFor="id"  value={values.id} >Product ID:</label>
                         <input
                             disabled={true} 
                             id='id' 
@@ -97,7 +97,7 @@ export const ProductDetails = (props) => {
                     <div>
                         <label htmlFor="description"  value={values.description} >Product Description:</label>
                         <input
-                            readOnly={auth.is_superuser?false:true} 
+                            readOnly={auth.is_superuser||auth.is_staff?false:true} 
                             id='description' 
                             type="text"  
                             onChange={changeHandler} 
@@ -109,7 +109,7 @@ export const ProductDetails = (props) => {
                     <div>
                         <label htmlFor="group">Product Group:</label>
                         <select 
-                            disabled={auth.is_superuser?false:true} 
+                            disabled={auth.is_superuser || auth.is_staff?false:true} 
                             id='group' 
                             value={values.group.id} 
                             onChange={changeHandler}
@@ -124,7 +124,7 @@ export const ProductDetails = (props) => {
                     <div>
                         <label htmlFor="price"  value={values.price} >Customer Address:</label>
                         <input
-                            readOnly={auth.is_superuser?false:true} 
+                            readOnly={auth.is_superuser || auth.is_staff?false:true} 
                             id='price' 
                             type="text"  
                             onChange={changeHandler} 
@@ -135,7 +135,7 @@ export const ProductDetails = (props) => {
                     </div>
                     <div>
                         <button 
-                            hidden={!auth.is_superuser || Object.keys(errors).length > 0 ||
+                            hidden={(!auth.is_superuser && !auth.is_staff) || Object.keys(errors).length > 0 ||
                                 values.name === '' || values.description === '' || 
                                 values.price === '' || values.group === ''?true:false}
                             type="submit" 

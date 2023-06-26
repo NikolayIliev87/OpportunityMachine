@@ -20,7 +20,7 @@ export const Profile = (props) => {
             ?
             <button onClick={() => props.onDeleteActivateClick(props)}>Activate</button>
             :
-            <button onClick={() => props.onDeleteActivateClick(props)}>Delete</button>
+            <button onClick={() => props.onDeleteActivateClick(props)}>Deactivate</button>
             }
         </>
     );

@@ -7,6 +7,8 @@ import { Pagination } from './Pagination';
 import { ProductDetails } from "./ProductDetails";
 import { ProductCreate } from "./ProductCreate";
 
+import { arraySearchProduct } from "../../utils/search"
+
 import * as productService from '../../services/product_service'
 import * as productGroupService from '../../services/productgroup_service'
 import * as authService from '../../services/auth_service'
@@ -24,12 +26,18 @@ export const ProductList = () => {
         productGroupService.getAllProductGroups()
           .then(productGroups => {setProductGroups(productGroups)})
     },[]);
-
+    
     const [products, setProducts] = useState([]);
     useEffect(() => {
         productService.getAllProducts()
             .then(products => {setProducts(products)})
       },[]);
+
+    const [searchedproducts, setSearchedProducts] = useState([])
+    useEffect(() => {
+        setSearchedProducts(products)
+      },[products]);
+    // const [count, setCount] = useState(searchedproducts.length)
 
     // pagination client side
     const [currentPage, setCurrentPage] = useState(1);
@@ -38,11 +46,11 @@ export const ProductList = () => {
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
     const currentProducts = () => {
-        if (products) {
-            return products.slice(indexOfFirstProduct, indexOfLastProduct);
+        if (searchedproducts) {
+            return searchedproducts.slice(indexOfFirstProduct, indexOfLastProduct);
         }
         else {
-            return products
+            return searchedproducts
         }
     } 
 
@@ -93,6 +101,33 @@ export const ProductList = () => {
                 onCloseDetailsHandler()
             )
     };
+    const onSearchHandler = async (e) => {
+        let value = e.target.value;
+        if (value.length >= 1) {
+          let search = await arraySearchProduct(searchedproducts, value);
+          setSearchedProducts(search)
+        //   setCount(search.length)
+        } else {
+          setSearchedProducts(products)
+        //   setCount(products.length)
+        }
+      }
+    
+    const onGroupFilterHandler = (ev) => {
+        ev.preventDefault()
+        if (ev.target.value === "All") {
+            productService.getAllProducts()
+            .then(products => {setProducts(products)})
+        }
+        else{
+            setSearchedProducts(products.filter(x => x.group.name === ev.target.value))
+        }
+        // else{
+        //     productService.getAllProducts()
+        //     .then(products => {setProducts(products.filter(x => x.group.name === ev.target.value))})
+        //     // setProducts(filteredProducts)
+        // }
+    }
 
     // const onFilterHandler = (filterID) => {
     //     if (filterID!=='All') {
@@ -128,8 +163,30 @@ export const ProductList = () => {
                 <button 
                     className={styles.CreateNewProduct} 
                     onClick={newProductHandler}
-                    hidden={!auth.is_superuser?true:false}
+                    hidden={!auth.is_superuser && !auth.is_staff?true:false}
                 > ADD NEW PRODUCT</button>
+                <div>
+                    <div>
+                        {/* Count:{count} */}
+                        <label htmlFor="search">Search by</label>
+                        <input 
+                            type="text" 
+                            id="search" 
+                            placeholder="id/name/description..." 
+                            onChange={onSearchHandler}/>
+                    </div>
+                    <div>
+                        <span>Categories Filter:</span>
+                        <button onClick={onGroupFilterHandler} value={"All"}>All</button>
+                        {productGroups.map(group =>
+                            <button 
+                                key={group.id} 
+                                value={group.name}
+                                onClick={onGroupFilterHandler}
+                                >{group.name}</button>
+                            )}
+                    </div>
+                </div>
                 <div className={styles.ProductsArray}>
                 {products.length !== 0
                 ?

@@ -79,7 +79,7 @@ export const ClientDetails = (props) => {
                     <div>
                         <label htmlFor="name"  value={values.name} >Customer Name:</label>
                         <input
-                            readOnly={auth.is_superuser?false:true} 
+                            readOnly={auth.is_superuser || auth.is_staff?false:true} 
                             id='name' 
                             type="text"  
                             onChange={changeHandler} 
@@ -100,7 +100,7 @@ export const ClientDetails = (props) => {
                     <div>
                         <label htmlFor="city"  value={values.city} >Customer City:</label>
                         <input
-                            readOnly={auth.is_superuser?false:true} 
+                            readOnly={auth.is_superuser || auth.is_staff?false:true} 
                             id='city' 
                             type="text"  
                             onChange={changeHandler} 
@@ -112,7 +112,7 @@ export const ClientDetails = (props) => {
                     <div>
                         <label htmlFor="managing_city">Managing City Office:</label>
                         <select 
-                            disabled={auth.is_superuser?false:true} 
+                            disabled={auth.is_superuser || auth.is_staff?false:true}
                             id='managing_city' 
                             value={values.managing_city} 
                             onChange={changeHandler}
@@ -127,7 +127,7 @@ export const ClientDetails = (props) => {
                     <div>
                         <label htmlFor="address"  value={values.address} >Customer Address:</label>
                         <input
-                            readOnly={auth.is_superuser?false:true} 
+                            readOnly={auth.is_superuser || auth.is_staff?false:true} 
                             id='address' 
                             type="text"  
                             onChange={changeHandler} 
@@ -139,7 +139,7 @@ export const ClientDetails = (props) => {
                     <div>
                         <label htmlFor="contact"  value={values.contact} >Customer Email:</label>
                         <input
-                            readOnly={auth.is_superuser?false:true} 
+                            readOnly={auth.is_superuser || auth.is_staff?false:true} 
                             id='contact' 
                             type="text"  
                             onChange={changeHandler} 
@@ -151,7 +151,7 @@ export const ClientDetails = (props) => {
                     <div>
                         <label htmlFor="discount"  value={values.discount} >Customer Discount %:</label>
                         <input
-                            readOnly={auth.is_superuser?false:true} 
+                            readOnly={auth.is_superuser || auth.is_staff?false:true} 
                             id='discount' 
                             type="text"  
                             onChange={changeHandler} 
@@ -163,7 +163,7 @@ export const ClientDetails = (props) => {
                     <div>
                         <label htmlFor="phone"  value={values.phone} >Customer Phone:</label>
                         <input
-                            readOnly={auth.is_superuser?false:true} 
+                            readOnly={auth.is_superuser || auth.is_staff?false:true} 
                             id='phone' 
                             type="text"  
                             onChange={changeHandler} 
@@ -175,7 +175,7 @@ export const ClientDetails = (props) => {
                     
                     <div>
                         <button 
-                            hidden={!auth.is_superuser || Object.keys(errors).length > 0 ||
+                            hidden={(!auth.is_superuser && !auth.is_staff) || Object.keys(errors).length > 0 ||
                                 values.name === '' || values.city === '' || 
                                 values.managing_city === '' || values.address === '' ||
                                 values.contact === '' || values.discount === '' ||

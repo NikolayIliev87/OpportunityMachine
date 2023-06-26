@@ -7,6 +7,9 @@ import { Pagination } from './Pagination';
 import { OpportunityDetails } from "./OpportunityDetails";
 import { OpportunityCreate } from "./OpportunityCreate";
 
+import { arraySearchOpportunitiesGeneral, arraySearchOpportunitiesProduct,
+    arraySearchOpportunitiesClient, arraySearchOpportunitiesDate } from "../../utils/search"
+
 import * as clientService from '../../services/client_service'
 import * as opportunityService from '../../services/opportunity_service'
 import * as authService from '../../services/auth_service'
@@ -30,6 +33,13 @@ export const OpportunityList = () => {
         opportunityService.getAllOpportunities()
             .then(opportunity => {setOpportunities(opportunity)})
       },[]);
+    
+    const [searchedOpportunities, setSearchedOpportunities] = useState([])
+    useEffect(() => {
+        setSearchedOpportunities(opportunities)
+      },[opportunities]);
+    
+    const [searchOption, setSearchOption] = useState('General');
 
     // pagination client side
     const [currentPage, setCurrentPage] = useState(1);
@@ -38,11 +48,11 @@ export const OpportunityList = () => {
     const indexOfLastOpportunity = currentPage * opportunitiesPerPage;
     const indexOfFirstOpportunity = indexOfLastOpportunity - opportunitiesPerPage;
     const currentOpportunities = () => {
-        if (opportunities) {
-            return opportunities.slice(indexOfFirstOpportunity, indexOfLastOpportunity);
+        if (searchedOpportunities) {
+            return searchedOpportunities.slice(indexOfFirstOpportunity, indexOfLastOpportunity);
         }
         else {
-            return opportunities
+            return searchedOpportunities
         }
     } 
 
@@ -94,6 +104,77 @@ export const OpportunityList = () => {
             )
     };
 
+    const onSearchTypeChangeHandler = (ev) => {
+        setSearchOption(ev.target.value)
+        setSearchedOpportunities(opportunities)
+    }
+
+    const onSearchHandler = async (e) => {
+        let value = e.target.value;
+
+        if (searchOption === "General") {
+            if (value.length >= 1) {
+            let search = await arraySearchOpportunitiesGeneral(searchedOpportunities, value);
+            setSearchedOpportunities(search)
+            } else {
+                setSearchedOpportunities(opportunities)
+            }
+        }
+        else if (searchOption === "Product") {
+            if (value.length >= 1) {
+                let search = await arraySearchOpportunitiesProduct(searchedOpportunities, value);
+                setSearchedOpportunities(search)
+                } else {
+                    setSearchedOpportunities(opportunities)
+                }
+        }
+        else if (searchOption === "Client") {
+            if (value.length >= 1) {
+                let search = await arraySearchOpportunitiesClient(searchedOpportunities, value);
+                setSearchedOpportunities(search)
+                } else {
+                    setSearchedOpportunities(opportunities)
+                }
+        }
+        else if (searchOption === "Date") {
+            let start_date = 'all'
+            let end_date = 'all'
+
+            if (e.target.value === '' && e.target.id === "start_date") {
+                start_date = 'all'
+            }
+
+            else if (e.target.value === '' && e.target.id === "end_date") {
+                end_date = 'all'
+            }
+
+            else if (e.target.value !== '' && e.target.id === "start_date") {
+                start_date = new Date(e.target.value).getTime()
+            }
+            else if (e.target.value !== '' && e.target.id === "end_date") {
+                end_date = new Date(e.target.value).getTime()
+            }
+
+            if (start_date !== 'all' || end_date !== 'all') {
+                let search = await arraySearchOpportunitiesDate(searchedOpportunities, start_date, end_date);
+                setSearchedOpportunities(search)
+                } else {
+                    setSearchedOpportunities(opportunities)
+                }
+        }
+      }
+
+      const onOpportunityStatusHandler = (ev) => {
+            ev.preventDefault()
+            if (ev.target.value === "All") {
+                opportunityService.getAllOpportunities()
+                .then(opportunities => {setOpportunities(opportunities)})
+            }
+            else{
+                setSearchedOpportunities(opportunities.filter(x => x.status === ev.target.value))
+            }
+        }
+
     // const onFilterHandler = (filterID) => {
     //     if (filterID!=='All') {
     //         ticketService.getAllTicketsFiltered(filterID)
@@ -143,6 +224,57 @@ export const OpportunityList = () => {
                 > 
                 ADD NEW OPPORTUNITY
                 </button>
+                <div>
+                    <div>
+                        <label htmlFor="searchoption">Search by</label>
+                        <select id="searchoption" value={searchOption} onChange={onSearchTypeChangeHandler}>
+                            <option value="General">General</option>
+                            <option value="Product">Product</option>
+                            <option value="Client">Client</option>
+                            <option value="Date">Close Date</option>
+                        </select>
+                    </div>
+                    {searchOption==="Date"
+                    ?
+                    <div>
+                        {/* Count:{count} */}
+                        <span>between</span>
+                        <input 
+                            id='start_date' 
+                            type="date"
+                            onChange={onSearchHandler} 
+                        />
+                        <span>and</span>
+                        <input 
+                            id='end_date' 
+                            type="date"
+                            onChange={onSearchHandler} 
+                        />
+                    </div>
+                    :
+                    <div>
+                        {/* Count:{count} */}
+                        <input 
+                            type="text" 
+                            id="search"
+                            placeholder={searchOption==="General"
+                                        ?
+                                        "by opp id/name/owner"
+                                        :
+                                        "by id/name"
+                                        }
+                            onChange={onSearchHandler}/>
+                    </div>
+                    }
+                    <div>
+                        <span>Status Filter:</span>
+                        <button onClick={onOpportunityStatusHandler} value={"All"}>All</button>
+                        <button onClick={onOpportunityStatusHandler} value={"Ongoing"}>Ongoing</button>
+                        <button onClick={onOpportunityStatusHandler} value={"Lost"}>Lost</button>
+                        <button onClick={onOpportunityStatusHandler} value={"Won"}>Won</button>
+                        
+                    </div>
+                </div>
                 <div className={styles.OpportunitiesArray}>
                 {opportunities.length !== 0
                 ?

@@ -7,6 +7,8 @@ import { Pagination } from './Pagination';
 import { ClientDetails } from "./ClientDetails";
 import { ClientCreate } from "./ClientCreate";
 
+import { arraySearchClient } from "../../utils/search"
+
 import * as clientService from '../../services/client_service'
 import * as authService from '../../services/auth_service'
 
@@ -30,6 +32,11 @@ export const ClientList = () => {
             .then(clients => {setClients(clients)})
       },[]);
 
+    const [searchedclients, setSearchedClients] = useState([])
+    useEffect(() => {
+        setSearchedClients(clients)
+      },[clients]);
+
     // pagination client side
     const [currentPage, setCurrentPage] = useState(1);
     const [clientsPerPage] = useState(10);
@@ -37,11 +44,11 @@ export const ClientList = () => {
     const indexOfLastClient = currentPage * clientsPerPage;
     const indexOfFirstClient = indexOfLastClient - clientsPerPage;
     const currentClients = () => {
-        if (clients) {
-            return clients.slice(indexOfFirstClient, indexOfLastClient);
+        if (searchedclients) {
+            return searchedclients.slice(indexOfFirstClient, indexOfLastClient);
         }
         else {
-            return clients
+            return searchedclients
         }
     } 
 
@@ -93,6 +100,34 @@ export const ClientList = () => {
             )
     };
 
+    const onSearchHandler = async (e) => {
+        let value = e.target.value;
+        if (value.length >= 1) {
+          let search = await arraySearchClient(searchedclients, value);
+          setSearchedClients(search)
+        //   setCount(search.length)
+        } else {
+            setSearchedClients(clients)
+        //   setCount(products.length)
+        }
+      }
+    
+    const onCityFilterHandler = (ev) => {
+        ev.preventDefault()
+        if (ev.target.value === "All") {
+            clientService.getAllClients()
+            .then(clients => {setClients(clients)})
+        }
+        else{
+            setSearchedClients(clients.filter(x => x.managing_city.name === ev.target.value))
+        }
+        // else{
+        //     clientService.getAllClients()
+        //     .then(clients => {setClients(clients.filter(x => x.managing_city.name === ev.target.value))})
+        //     // setProducts(filteredProducts)
+        // }
+    }
+
     // const onFilterHandler = (filterID) => {
     //     if (filterID!=='All') {
     //         ticketService.getAllTicketsFiltered(filterID)
@@ -127,8 +162,30 @@ export const ClientList = () => {
                 <button 
                     className={styles.CreateNewClient} 
                     onClick={newClientHandler}
-                    hidden={!auth.is_superuser?true:false}
+                    hidden={!auth.is_superuser && !auth.is_staff?true:false}
                 > ADD NEW CLIENT</button>
+                <div>
+                    <div>
+                        {/* Count:{count} */}
+                        <label htmlFor="search">Search by</label>
+                        <input 
+                            type="text" 
+                            id="search" 
+                            placeholder="id/name/city/address/email..." 
+                            onChange={onSearchHandler}/>
+                    </div>
+                    <div>
+                        <span>Managing Countries Filter:</span>
+                        <button onClick={onCityFilterHandler} value={"All"}>All</button>
+                        {cityOffices.map(city =>
+                            <button 
+                                key={city.id} 
+                                value={city.name}
+                                onClick={onCityFilterHandler}
+                                >{city.name}</button>
+                            )}
+                    </div>
+                </div>
                 <div className={styles.ClientsArray}>
                 {clients.length !== 0
                 ?
