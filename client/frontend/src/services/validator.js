@@ -35,13 +35,13 @@ export const validator = (ev) => {
     }
     else if (ev.target.id==='first_name') {
         if (ev.target.value.length < 1) {
-            return "Field should be populated."
+            return "First Name should be populated."
         }
         else if(ev.target.value.length > 20) {
-            return "Field should be max 20 chars long."
+            return "First Name should be max 20 chars long."
         }
         else if(hasNumber.test(ev.target.value)) {
-            return "Field should contain only letters."
+            return "First Name should contain only letters."
         }
         else {
             return false
@@ -49,13 +49,13 @@ export const validator = (ev) => {
     }
     else if (ev.target.id==='last_name') {
         if (ev.target.value.length < 1) {
-            return "Field should be populated."
+            return "Last Name should be populated."
         }
         else if(ev.target.value.length > 25) {
-            return "Field should be max 25 chars long."
+            return "Last Name should be max 25 chars long."
         }
         else if(hasNumber.test(ev.target.value)) {
-            return "Field should contain only letters."
+            return "Last Name should contain only letters."
         }
         else {
             return false

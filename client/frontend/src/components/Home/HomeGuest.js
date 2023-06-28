@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 export const HomeGuest = () => {
 
     return (
-        <div className={styles.Home}>
+        <div className={styles.HomeGuest}>
             <div>
                 <h1>Welcome to Our APP</h1>
                 <h2>LOGO</h2>

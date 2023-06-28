@@ -148,9 +148,15 @@ export const Register = () => {
         setIsManager(state => !state)
         if (is_manager!==true) {
           setFilteredRoletypes(roletypes.filter(m => m.name.toLowerCase().includes('manager')===true))
+          setRoleType("")
+          setRoleTypeName("")
+          setManagingCityOffices([])
         }
         else {
           setFilteredRoletypes(roletypes.filter(m => m.name.toLowerCase().includes('manager')!==true))
+          setRoleType("")
+          setRoleTypeName("")
+          setManagingCityOffices([])
         }
     };
 
@@ -158,8 +164,14 @@ export const Register = () => {
         setRoleType(ev.target.value)
         if (ev.target.value !== '') {
           const role_name = roletypes.filter(x => x.id == Number(ev.target.value))
-
           setRoleTypeName(role_name[0].name)
+          if (role_name[0].name == "Team Manager" || role_name[0].name == "Seller") {
+            setManagingCityOffices([])
+          }
+        }
+        else if (ev.target.value === '') {
+          setRoleTypeName("")
+          setManagingCityOffices([])
         }
     };
 
@@ -223,26 +235,36 @@ export const Register = () => {
             {errors.password && <p>{errors.password}</p>}
           </div>
           <div>
-            <label htmlFor="first_name">First Name:</label>
-            <input 
-              id='first_name' 
-              type="text" 
-              onChange={firstNameChangeHandler} 
-              value={firstname}
-              onBlur={validateInputs} 
-            />
-            {errors.first_name && <p>{errors.first_name}</p>}
-          </div>
-          <div>
-            <label htmlFor="last_name">Last Name:</label>
-            <input 
-              id='last_name' 
-              type="text" 
-              onChange={lastNameChangeHandler} 
-              value={lastname}
-              onBlur={validateInputs}  
-            />
-            {errors.last_name && <p>{errors.last_name}</p>}
+            <label htmlFor="first_name">Name:</label>
+              {/* <label htmlFor="first_name">Name:</label> */}
+              <input 
+                id='first_name' 
+                type="text" 
+                onChange={firstNameChangeHandler} 
+                value={firstname}
+                onBlur={validateInputs} 
+              />
+              {/* {errors.first_name && <p>{errors.first_name}</p>} */}
+              <input 
+                id='last_name' 
+                type="text" 
+                onChange={lastNameChangeHandler} 
+                value={lastname}
+                onBlur={validateInputs}  
+              />
+              {errors.first_name && <p>{errors.first_name}</p>}
+              {errors.last_name && <p>{errors.last_name}</p>}
+            {/* <div>
+              <label htmlFor="last_name">Last Name:</label>
+              <input 
+                id='last_name' 
+                type="text" 
+                onChange={lastNameChangeHandler} 
+                value={lastname}
+                onBlur={validateInputs}  
+              />
+              {errors.last_name && <p>{errors.last_name}</p>}
+            </div> */}
           </div>
           <div>
             <label htmlFor="phone">Phone:</label>
@@ -327,17 +349,17 @@ export const Register = () => {
             ?
             <div>
               <label htmlFor="managing_city_offices">Managing Cities:</label>
-              <div>
+              <ul>
                 {cityOffices.map(office => 
-                        <div key={office.id}>
+                        <li key={office.id}>
                           <label>{office.name}</label>
                           <input key={office.id} value={office.id} name={office.name}
                             type="checkbox" 
                             onChange={managingCityOfficesChangeHandler}
                           />
-                        </div>
+                        </li>
                       )}
-              </div>
+              </ul>
             </div>
             :
             <></>

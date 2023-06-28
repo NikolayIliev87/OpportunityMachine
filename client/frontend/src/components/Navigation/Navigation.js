@@ -19,8 +19,8 @@ export const Navigation = () => {
                         <li><i className="fas fa-users"></i><Link to="/profileslist">Profiles List</Link></li>
                         : ""
                         } */}
-                        <li><i className="fas fa-user-circle"></i><Link to="/profile">Profile</Link></li>
-                        <li><i className="fas fa-sign-out-alt"></i><Link to="/logout">Logout</Link></li>
+                        {/* <li><i className="fas fa-user-circle"></i><Link to="/profile">Profile</Link></li> */}
+                        <li><Link to="/logout">Logout</Link></li>
                     </ul>
 
                     :
@@ -29,7 +29,18 @@ export const Navigation = () => {
                         <li><Link to="/login">Login</Link></li>
                     </ul>
                 }
-                <Link to="#" className={styles.Settings}><i class="fas fa-cog"></i></Link>
+                <div className={styles.Settings}>
+                    {auth.id
+                    ?
+                    <>
+                    <Link to="/profile"><i class="fas fa-user-circle"></i></Link>
+                    <Link to="#"><i class="far fa-bell"></i></Link>
+                    </>
+                    :
+                    <></>
+                    }
+                    <Link to="#"><i class="fas fa-cog"></i></Link>
+                </div>
         </nav>
     )
 }

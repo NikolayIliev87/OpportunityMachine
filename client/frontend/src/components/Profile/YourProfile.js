@@ -248,36 +248,41 @@ export const YourProfile = () => {
                 <div className={styles.YourProfileView}>
                     <h1>Your Profile</h1>
                     <article>
-                        <div>
-                            <img src={
-                                yourprofile.photo_url===null || yourprofile.photo_url===""
-                                ?
-                                anonymusProfilePicture
-                                :
-                                yourprofile.photo_url} 
-                                alt='profilePicture'/>
-                            <p></p>
-                        </div>
-                        <div>
-                            <h2><p>First Name:</p><span>{yourprofile.first_name}</span></h2>
-                            <h2><p>Last Name:</p><span>{yourprofile.last_name}</span></h2>
-                            <h2><p>Phone:</p><span>{yourprofile.phone}</span></h2>
-                            <h2><p>Username:</p><span>{yourprofile.user_email}</span></h2>
-                            <h2><p>Office City:</p><span>{yourprofile.city_office?yourprofile.city_office.name:''}</span></h2>
-                            <h2><p>Manager:</p><span>{yourprofile.manager===null?'':yourprofile.manager}</span></h2>
-                            <h2><p>Are you manager?:</p><span>{yourprofile.is_manager}</span></h2>
-                            <h2><p>Role Type:</p><span>{yourprofile.role_type?yourprofile.role_type.name:''}</span></h2>
-                            <h2><p>Role Description:</p><span>{yourprofile.role_description}</span></h2>
-                            <h2><p>Managing office cities:
-                                {yourprofile.managing_city_offices
-                                    ?
-                                    yourprofile.managing_city_offices.map(office => 
-                                    <span key={office.id}>{office.name}</span>)
-                                    :''
-                                }
-                                </p>
-                            </h2>
-                            <button onClick={onEditHandler}>Edit</button>
+                        <img src={
+                            yourprofile.photo_url===null || yourprofile.photo_url===""
+                            ?
+                            anonymusProfilePicture
+                            :
+                            yourprofile.photo_url} 
+                            alt='profilePicture'/>
+                        <div className={styles.YourProfileData}>
+                            <div className={styles.YourProfileDataName}>
+                                {/* <h2><p>Are you manager icon?:</p><span>{yourprofile.is_manager}</span></h2> */}
+                                <span>{yourprofile.first_name}</span><span>{yourprofile.last_name}</span>
+                            </div>
+                            <div className={styles.YourProfileDataDetails}>
+                                <ul>
+                                    <li><label>Phone:</label><span>{yourprofile.phone}</span></li>
+                                    <li><label>Username:</label><span>{yourprofile.user_email}</span></li>
+                                    <li><label>Office City:</label><span>{yourprofile.city_office?yourprofile.city_office.name:''}</span></li>
+                                    <li><label>Manager:</label><span>{yourprofile.manager===null?'':yourprofile.manager}</span></li>
+                                </ul>
+                                <ul>
+                                    <li><label>Role Type:</label><span>{yourprofile.role_type?yourprofile.role_type.name:''}</span></li>
+                                    <li><label>Role Description:</label><span>{yourprofile.role_description}</span></li>
+                                    <li><label>Managing offices:</label>
+                                        <li>
+                                            {yourprofile.managing_city_offices
+                                                ?
+                                                yourprofile.managing_city_offices.map(office => 
+                                                <span key={office.id}>{office.name},</span>)
+                                                :''
+                                            }
+                                        </li>
+                                        </li>
+                                    <button onClick={onEditHandler}>Edit</button>
+                                </ul>
+                            </div>
                         </div>
                     </article>
                 </div>
@@ -365,8 +370,8 @@ export const YourProfile = () => {
                             </select>
                         </div>
                         <div>
-                            <label htmlFor="is_manager">Are you Manager?:</label>
-                            <input 
+                            <label htmlFor="is_manager">Are you Manager?</label>
+                            <input
                             id='is_manager'
                             checked={values.is_manager?true:false}
                             type="checkbox" 
@@ -403,9 +408,9 @@ export const YourProfile = () => {
                             ?
                             <div>
                             <label htmlFor="managing_city_offices">Managing Cities:</label>
-                            <div>
+                            <ul>
                                 {cityOffices.map(office => 
-                                        <div key={office.id}>
+                                        <li  key={office.id}>
                                         <label>{office.name}</label>
                                         <input key={office.id} value={office.id} name={office.name}
                                             id='managing_city_offices' 
@@ -413,9 +418,9 @@ export const YourProfile = () => {
                                             checked={values.managing_city_offices.includes(office.id)}
                                             onChange={changeHandler}
                                         />
-                                        </div>
+                                        </li>
                                     )}
-                            </div>
+                            </ul>
                             </div>
                             :
                             <></>

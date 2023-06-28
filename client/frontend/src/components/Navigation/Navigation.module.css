@@ -33,7 +33,7 @@
     flex-direction:row;
     column-gap: 50px;
     align-items: center;
-    padding-right: 40px;
+    padding-right: 20px;
 }
 
 .Navigation li {
@@ -66,5 +66,4 @@
     background-color: #525252;
     color: #BFBEBE;
     font-size: 25px;
-    
 }

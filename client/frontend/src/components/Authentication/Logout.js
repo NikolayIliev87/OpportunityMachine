@@ -24,8 +24,10 @@ export const Logout = (props) => {
     }
 
     return (
-        <form className={styles.Authentication} onSubmit={logoutHandler}>
-          <h3>Are you sure you want to </h3><button type="submit" >Logout</button>
-      </form>
+      <section className={styles.Logout}>
+          <form onSubmit={logoutHandler}>
+            <h3>Are you sure you want to </h3><button type="submit" >Logout</button>
+        </form>
+      </section>
     )
 }

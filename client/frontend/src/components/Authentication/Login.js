@@ -90,7 +90,7 @@ export const Login = () => {
             hidden={Object.keys(errors).length > 0 || username === '' || password === ''?true:false} 
           >Login</button>
         </form>
-        <p>If you don't have account yet please <Link to="/register">Register!</Link></p>
+        <p>If you don't have account yet, please <Link to="/register">Register</Link></p>
       </section>
     )
 }

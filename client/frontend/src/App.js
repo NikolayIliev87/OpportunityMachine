@@ -53,31 +53,31 @@ function App() {
           <Header />
 
           <Routes>
-            <Route path="/" element={<Home />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/register" element={<Register />}></Route>
-            <Route path="/logout" element={<Logout />}></Route>
             <Route path="/profile" element={<YourProfile />}></Route>
-            
-            <Route path="/profileslist" element={<ProfilesList />}></Route>
+            <Route path="/" element={<Home />}>
+              <Route path="/logout" element={<Logout />}></Route>
+              <Route path="/profileslist" element={<ProfilesList />}></Route>
 
-            <Route path="/clientlist" element={<ClientList />}></Route>
-            <Route path="/clientlist/:clientId" element={<ClientDetails />}></Route>
+              <Route path="/clientlist" element={<ClientList />}></Route>
+              <Route path="/clientlist/:clientId" element={<ClientDetails />}></Route>
 
-            <Route path="/productgrouplist" element={<ProductGroupList />}></Route>
-            <Route path="/productgrouplist/:productGroupId" element={<ProductGroupDetails />}></Route>
+              <Route path="/productgrouplist" element={<ProductGroupList />}></Route>
+              <Route path="/productgrouplist/:productGroupId" element={<ProductGroupDetails />}></Route>
 
-            <Route path="/productlist" element={<ProductList />}></Route>
-            <Route path="/productlist/:productId" element={<ProductDetails />}></Route>
+              <Route path="/productlist" element={<ProductList />}></Route>
+              <Route path="/productlist/:productId" element={<ProductDetails />}></Route>
 
-            <Route path="/cityofficelist" element={<CityOfficeList />}></Route>
-            <Route path="/cityofficelist/:cityofficeId" element={<CityOfficeDetails />}></Route>
+              <Route path="/cityofficelist" element={<CityOfficeList />}></Route>
+              <Route path="/cityofficelist/:cityofficeId" element={<CityOfficeDetails />}></Route>
 
-            <Route path="/roletypelist" element={<RoleTypeList />}></Route>
-            <Route path="/roletypelist/:roletypeId" element={<RoleTypeDetails />}></Route>
+              <Route path="/roletypelist" element={<RoleTypeList />}></Route>
+              <Route path="/roletypelist/:roletypeId" element={<RoleTypeDetails />}></Route>
 
-            <Route path="/opportunitylist" element={<OpportunityList />}></Route>
-            <Route path="/opportunitylist/:opportunityId" element={<OpportunityDetails />}></Route>
+              <Route path="/opportunitylist" element={<OpportunityList />}></Route>
+              <Route path="/opportunitylist/:opportunityId" element={<OpportunityDetails />}></Route>
+            </Route>
           </Routes>
 
           <Footer />
