@@ -191,7 +191,7 @@ export const OpportunityList = () => {
     // }
 
     return (
-        <div>
+        <div className={styles.Opportunities}>
             <>
                 {selectedOpportunity && <OpportunityDetails {...selectedOpportunity} 
                                                     onUpdateClick={onUpdateHandler} 
@@ -205,7 +205,7 @@ export const OpportunityList = () => {
                 />}
             </>
             <div className={styles.OpportunityList}>
-                <h1>Opportunities List</h1>
+                {/* <h1>Opportunities List</h1> */}
                 {/* {auth.is_superuser
                 ?
                 <button 
@@ -217,76 +217,78 @@ export const OpportunityList = () => {
                 :
                 <></>
                 } */}
-                <button 
-                    className={styles.CreateNewOpportunity} 
-                    onClick={newOpportunityHandler}
-                    hidden={auth.is_staff?true:false}
-                > 
-                ADD NEW OPPORTUNITY
-                </button>
-                <div>
-                    <div>
-                        <label htmlFor="searchoption">Search by</label>
-                        <select id="searchoption" value={searchOption} onChange={onSearchTypeChangeHandler}>
-                            <option value="General">General</option>
-                            <option value="Product">Product</option>
-                            <option value="Client">Client</option>
-                            <option value="Date">Close Date</option>
-                        </select>
+                <div className={styles.OpportunityListRibbon}>
+                    <button 
+                        className={styles.CreateNewOpportunity} 
+                        onClick={newOpportunityHandler}
+                        // hidden={auth.is_staff?true:false}
+                    > 
+                    ADD NEW OPPORTUNITY
+                    </button>
+                    <div className={styles.OpportunityListSearch}>
+                        <div>
+                            <label htmlFor="searchoption">Search by</label>
+                            <select id="searchoption" value={searchOption} onChange={onSearchTypeChangeHandler}>
+                                <option value="General">General</option>
+                                <option value="Product">Product</option>
+                                <option value="Client">Client</option>
+                                <option value="Date">Close Date</option>
+                            </select>
+                        </div>
+                        {searchOption==="Date"
+                        ?
+                        <div className={styles.OpportunityListSearchDate}>
+                            {/* Count:{count} */}
+                            <span>between</span>
+                            <input 
+                                id='start_date' 
+                                type="date"
+                                onChange={onSearchHandler} 
+                            />
+                            <span>and</span>
+                            <input 
+                                id='end_date' 
+                                type="date"
+                                onChange={onSearchHandler} 
+                            />
+                        </div>
+                        :
+                        <div>
+                            {/* Count:{count} */}
+                            <input 
+                                type="text" 
+                                id="search"
+                                placeholder={searchOption==="General"
+                                            ?
+                                            "by opp id/name/owner"
+                                            :
+                                            "by id/name"
+                                            }
+                                onChange={onSearchHandler}/>
+                        </div>
+                        }
                     </div>
-                    {searchOption==="Date"
-                    ?
-                    <div>
-                        {/* Count:{count} */}
-                        <span>between</span>
-                        <input 
-                            id='start_date' 
-                            type="date"
-                            onChange={onSearchHandler} 
-                        />
-                        <span>and</span>
-                        <input 
-                            id='end_date' 
-                            type="date"
-                            onChange={onSearchHandler} 
-                        />
-                    </div>
-                    :
-                    <div>
-                        {/* Count:{count} */}
-                        <input 
-                            type="text" 
-                            id="search"
-                            placeholder={searchOption==="General"
-                                        ?
-                                        "by opp id/name/owner"
-                                        :
-                                        "by id/name"
-                                        }
-                            onChange={onSearchHandler}/>
-                    </div>
-                    }
-                    <div>
-                        <span>Status Filter:</span>
+                    <div className={styles.OpportunityFilter}>
+                        <label>Status Filter:</label>
                         <button onClick={onOpportunityStatusHandler} value={"All"}>All</button>
                         <button onClick={onOpportunityStatusHandler} value={"Ongoing"}>Ongoing</button>
                         <button onClick={onOpportunityStatusHandler} value={"Lost"}>Lost</button>
                         <button onClick={onOpportunityStatusHandler} value={"Won"}>Won</button>
-                        
+                            
                     </div>
                 </div>
-                <div className={styles.OpportunitiesArray}>
+                <ul>
                 {opportunities.length !== 0
                 ?
                 currentOpportunities().map(opportunity => 
-                    <article key={opportunity.id}>
+                    <article className={styles.OpportunityArticle} key={opportunity.id}>
                         <Opportunity {...opportunity} onDetailsClick={onOpportunityDetailsHandler} />
                     </article>
                 )
                 :
                 <p>No Opportunities to show!</p>
                 }
-                </div>
+                </ul>
                 <Pagination 
                     opportunitiesPerPage={opportunitiesPerPage} 
                     totalOpportunities={opportunities?opportunities.length:1}

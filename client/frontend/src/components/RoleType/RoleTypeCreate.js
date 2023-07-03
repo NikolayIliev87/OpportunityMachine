@@ -48,28 +48,30 @@ export const RoleTypeCreate = (props) => {
       };
 
     return (
-        <form className={styles.RoleTypeNew} onSubmit={onSubmitHandler}>
-            <h1>Add New Role Type</h1>
-            <section>
-                <div>
-                    <label htmlFor="name">Role Type Name:</label>
-                    <input 
-                        id='name' 
-                        type="text"  
-                        onChange={changeHandler} 
-                        value={values.name}
-                        onBlur={validateInputs} 
-                    />
-                    {errors.name && <p>{errors.name}</p>}
-                </div>
-                <div>
-                    <button 
-                        type="submit"
-                        hidden={Object.keys(errors).length > 0 || values.name === ''?true:false}
-                    >Create</button>
-                    <button onClick={props.onCloseClick}>Close</button>
-                </div>
-            </section>
-        </form>
+        <div className={styles.RoleTypeNew}>
+            <form onSubmit={onSubmitHandler}>
+                <h2>Add New Role Type</h2>
+                <section>
+                    <div>
+                        <label htmlFor="name">Role Type Name:</label>
+                        <input 
+                            id='name' 
+                            type="text"  
+                            onChange={changeHandler} 
+                            value={values.name}
+                            onBlur={validateInputs} 
+                        />
+                        {errors.name && <p>{errors.name}</p>}
+                    </div>
+                    <div>
+                        <button 
+                            type="submit"
+                            hidden={Object.keys(errors).length > 0 || values.name === ''?true:false}
+                        >Create</button>
+                        <button onClick={props.onCloseClick}>Close</button>
+                    </div>
+                </section>
+            </form>
+        </div>
     );
 }

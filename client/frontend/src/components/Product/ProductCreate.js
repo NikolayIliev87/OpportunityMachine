@@ -58,65 +58,67 @@ export const ProductCreate = (props) => {
       };
 
     return (
-        <form className={styles.ProductNew} onSubmit={onSubmitHandler}>
-            <h1>Add New Product</h1>
-            <section>
-                <div>
-                    <label htmlFor="name">Product Name:</label>
-                    <input 
-                        id='name' 
-                        type="text"  
-                        onChange={changeHandler} 
-                        value={values.name}
-                        onBlur={validateInputs} 
-                    />
-                    {errors.name && <p>{errors.name}</p>}
-                </div>
-                <div>
-                    <label htmlFor="description">Product Description:</label>
-                    <input 
-                        id='description' 
-                        type="text"  
-                        onChange={changeHandler} 
-                        value={values.description}
-                        onBlur={validateInputs} 
-                    />
-                    {errors.description && <p>{errors.description}</p>}
-                </div>
-                <div>
-                    <label htmlFor="group">Product Group:</label>
-                    <select id='group' value={values.group} onChange={onGroupsChangeHandler}>
-                        <>
-                        <option value=""></option>
-                        {props.allProductGroups.map(group => 
-                            <option value={group.id} key={group.id}>
-                                {group.name}
-                            </option>
-                        )}
-                        </>
-                    </select>
-                </div> 
-                <div>
-                    <label htmlFor="price">Product List Price:</label>
-                    <input 
-                        id='price' 
-                        type="text" 
-                        onChange={changeHandler} 
-                        value={values.price}
-                        onBlur={validateInputs} 
-                    />
-                    {errors.price && <p>{errors.price}</p>}
-                </div>
-                <div>
-                    <button 
-                        type="submit"
-                        hidden={Object.keys(errors).length > 0 || values.name === '' ||
-                        values.description === '' || values.price === '' || values.group === ''
-                        ?true:false}
-                    >Create</button>
-                    <button onClick={props.onCloseClick}>Close</button>
-                </div>
-            </section>
-        </form>
+        <div className={styles.ProductNew}>
+            <form onSubmit={onSubmitHandler}>
+                <h2>Add New Product</h2>
+                <section>
+                    <div>
+                        <label htmlFor="name">Product Name:</label>
+                        <input 
+                            id='name' 
+                            type="text"  
+                            onChange={changeHandler} 
+                            value={values.name}
+                            onBlur={validateInputs} 
+                        />
+                        {errors.name && <p>{errors.name}</p>}
+                    </div>
+                    <div>
+                        <label htmlFor="description">Product Description:</label>
+                        <input 
+                            id='description' 
+                            type="text"  
+                            onChange={changeHandler} 
+                            value={values.description}
+                            onBlur={validateInputs} 
+                        />
+                        {errors.description && <p>{errors.description}</p>}
+                    </div>
+                    <div>
+                        <label htmlFor="group">Product Group:</label>
+                        <select id='group' value={values.group} onChange={onGroupsChangeHandler}>
+                            <>
+                            <option value=""></option>
+                            {props.allProductGroups.map(group => 
+                                <option value={group.id} key={group.id}>
+                                    {group.name}
+                                </option>
+                            )}
+                            </>
+                        </select>
+                    </div> 
+                    <div>
+                        <label htmlFor="price">Product List Price:</label>
+                        <input 
+                            id='price' 
+                            type="text" 
+                            onChange={changeHandler} 
+                            value={values.price}
+                            onBlur={validateInputs} 
+                        />
+                        {errors.price && <p>{errors.price}</p>}
+                    </div>
+                    <div>
+                        <button 
+                            type="submit"
+                            hidden={Object.keys(errors).length > 0 || values.name === '' ||
+                            values.description === '' || values.price === '' || values.group === ''
+                            ?true:false}
+                        >Create</button>
+                        <button onClick={props.onCloseClick}>Close</button>
+                    </div>
+                </section>
+            </form>
+        </div>
     );
 }

@@ -41,7 +41,7 @@ export const ProductList = () => {
 
     // pagination client side
     const [currentPage, setCurrentPage] = useState(1);
-    const [productsPerPage] = useState(10);
+    const [productsPerPage] = useState(6);
     
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -145,7 +145,7 @@ export const ProductList = () => {
     // }
 
     return (
-        <div>
+        <div className={styles.Products}>
             <>
                 {selectedProduct && <ProductDetails {...selectedProduct} 
                                                     onUpdateClick={onUpdateHandler} 
@@ -159,14 +159,14 @@ export const ProductList = () => {
                 />}
             </>
             <div className={styles.ProductList}>
-                <h1>Products List</h1>
-                <button 
-                    className={styles.CreateNewProduct} 
-                    onClick={newProductHandler}
-                    hidden={!auth.is_superuser && !auth.is_staff?true:false}
-                > ADD NEW PRODUCT</button>
-                <div>
-                    <div>
+                {/* <h1>Products List</h1> */}
+                <div className={styles.ProductRibbon}>
+                    <button 
+                        className={styles.CreateNewProduct} 
+                        onClick={newProductHandler}
+                        hidden={!auth.is_superuser && !auth.is_staff?true:false}
+                    > ADD NEW PRODUCT</button>
+                    <div className={styles.ProductListSearch}>
                         {/* Count:{count} */}
                         <label htmlFor="search">Search by</label>
                         <input 
@@ -175,7 +175,7 @@ export const ProductList = () => {
                             placeholder="id/name/description..." 
                             onChange={onSearchHandler}/>
                     </div>
-                    <div>
+                    <div className={styles.ProductFilter}>
                         <span>Categories Filter:</span>
                         <button onClick={onGroupFilterHandler} value={"All"}>All</button>
                         {productGroups.map(group =>
@@ -187,18 +187,18 @@ export const ProductList = () => {
                             )}
                     </div>
                 </div>
-                <div className={styles.ProductsArray}>
+                <ul>
                 {products.length !== 0
                 ?
                 currentProducts().map(product => 
-                    <article key={product.id}>
+                    <article className={styles.ProductArticle} key={product.id}>
                         <Product {...product} onDetailsClick={onClientDetailsHandler} />
                     </article>
                 )
                 :
                 <p>No Products to show!</p>
                 }
-                </div>
+                </ul>
                 <Pagination 
                     productsPerPage={productsPerPage} 
                     totalProducts={products?products.length:1}

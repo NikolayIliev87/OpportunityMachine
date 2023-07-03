@@ -87,7 +87,7 @@ export const CityOfficeList = () => {
     };
 
     return (
-        <div>
+        <div className={styles.CitiOffices}>
             <>
                 {selectedCityOffice && <CityOfficeDetails {...selectedCityOffice} 
                                                     onUpdateClick={onUpdateHandler} 
@@ -99,24 +99,26 @@ export const CityOfficeList = () => {
                 />}
             </>
             <div className={styles.CityOfficeList}>
-                <h1>City Offices List</h1>
-                <button 
-                    className={styles.CreateNewCityOffice} 
-                    onClick={newCityOfficeHandler}
-                    hidden={!auth.is_superuser?true:false}
-                > ADD NEW CITY OFFICE</button>
-                <div className={styles.CityOfficesArray}>
+                {/* <h1>City Offices List</h1> */}
+                <div className={styles.CitiOfficeRibbon}>
+                    <button 
+                        className={styles.CreateNewCityOffice} 
+                        onClick={newCityOfficeHandler}
+                        hidden={!auth.is_superuser?true:false}
+                    > ADD NEW CITY OFFICE</button>
+                </div>
+                <ul>
                 {cityOffices.length !== 0
                 ?
                 currentCityOffices().map(cityOffice => 
-                    <article key={cityOffice.id}>
+                    <article className={styles.CityOfficeArticle} key={cityOffice.id}>
                         <CityOffice {...cityOffice} onDetailsClick={onCityOfficeDetailsHandler} />
                     </article>
                 )
                 :
                 <p>No City Offices to show!</p>
                 }
-                </div>
+                </ul>
                 <Pagination 
                     officesPerPage={cityOfficesPerPage} 
                     totalOffices={cityOffices?cityOffices.length:1}

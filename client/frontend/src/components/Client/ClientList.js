@@ -39,7 +39,7 @@ export const ClientList = () => {
 
     // pagination client side
     const [currentPage, setCurrentPage] = useState(1);
-    const [clientsPerPage] = useState(10);
+    const [clientsPerPage] = useState(6);
     
     const indexOfLastClient = currentPage * clientsPerPage;
     const indexOfFirstClient = indexOfLastClient - clientsPerPage;
@@ -144,7 +144,7 @@ export const ClientList = () => {
     // }
 
     return (
-        <div>
+        <div className={styles.Clients}>
             <>
                 {selectedClient && <ClientDetails {...selectedClient} 
                                                     onUpdateClick={onUpdateHandler} 
@@ -158,14 +158,15 @@ export const ClientList = () => {
                 />}
             </>
             <div className={styles.ClientList}>
-                <h1>Clients List</h1>
-                <button 
-                    className={styles.CreateNewClient} 
-                    onClick={newClientHandler}
-                    hidden={!auth.is_superuser && !auth.is_staff?true:false}
-                > ADD NEW CLIENT</button>
-                <div>
-                    <div>
+                {/* <h1>Clients List</h1> */}
+                <div className={styles.ClientListRibbon}>
+                    <button 
+                        className={styles.CreateNewClient} 
+                        onClick={newClientHandler}
+                        hidden={!auth.is_superuser && !auth.is_staff?true:false}
+                    > ADD NEW CLIENT
+                    </button>
+                    <div className={styles.ClientListSearch}>
                         {/* Count:{count} */}
                         <label htmlFor="search">Search by</label>
                         <input 
@@ -174,8 +175,8 @@ export const ClientList = () => {
                             placeholder="id/name/city/address/email..." 
                             onChange={onSearchHandler}/>
                     </div>
-                    <div>
-                        <span>Managing Countries Filter:</span>
+                    <div className={styles.ClientFilter}>
+                        <label>Managing City:</label>
                         <button onClick={onCityFilterHandler} value={"All"}>All</button>
                         {cityOffices.map(city =>
                             <button 
@@ -186,18 +187,18 @@ export const ClientList = () => {
                             )}
                     </div>
                 </div>
-                <div className={styles.ClientsArray}>
+                <ul>
                 {clients.length !== 0
                 ?
                 currentClients().map(client => 
-                    <article key={client.id}>
+                    <article className={styles.ClientArticle} key={client.id}>
                         <Client {...client} onDetailsClick={onClientDetailsHandler} />
                     </article>
                 )
                 :
                 <p>No Clients to show!</p>
                 }
-                </div>
+                </ul>
                 <Pagination 
                     clientsPerPage={clientsPerPage} 
                     totalClients={clients?clients.length:1}

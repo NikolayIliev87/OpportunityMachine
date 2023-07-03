@@ -15,9 +15,9 @@ export const HomeUser = () => {
 
     return (
         <div className={styles.HomeUser}>
-            <h1>{auth.email} workspace</h1>
+            <h1 className={styles.HomeUserTitle}>{auth.email} workspace</h1>
             {/* <h2>You have {tickets.length} tickets issued out of which {incomplete.length} still not closed</h2> */}
-            <div>
+            <div className={styles.HomeUserOptions}>
                 <ul>
                     <li><Link to="/clientlist">Clients</Link></li>
                     <li><Link to="/productgrouplist">Product Groups</Link></li>
@@ -32,8 +32,10 @@ export const HomeUser = () => {
                     <></>
                     }
                 </ul>
+                <section className={styles.HomeUserWorkspace}>
                 <Outlet/>
-                <p></p>
+                </section>
+                <p className={styles.HomeUserColumnt}></p>
             </div>
         </div>
     )

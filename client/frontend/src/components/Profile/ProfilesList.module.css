@@ -1,0 +1,254 @@
+.Profiles {
+    height: 100%;
+    width: 100%;
+}
+
+.ProfileList {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.ProfileListRibbon {
+    height: 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1%;
+}
+
+.ProfileListSearch {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 5px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.ProfileListSearch label {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: Inter;
+    color: #6D6D6D;
+}
+
+.ProfileListSearch input {
+    font-family: Inter;
+    width: 404px;
+}
+
+.ProfileFilter {
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+    align-items: center;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.ProfileFilter label {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: Inter;
+    color: #6D6D6D;
+    padding-top: 2px;
+}
+
+.ProfileFilter button {
+    font-size: 18px;
+    font-weight: 400;
+    font-family: Inter;
+    color: #BFBEBE;
+    background-color: #6D6D6D;
+    border-radius: 6px;
+    margin-top: 5px;
+}
+
+.ProfileFilter button:hover {
+    cursor: pointer;
+    background-color: #BFBEBE;
+    color: #6D6D6D;
+}
+
+.ProfileList ul {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1%;
+    background-color: #A99E99;
+}
+
+.ProfileArticle {
+    width: 90%;
+    margin-left: 5%;
+    background-color: #5A656D;
+    border: 1px;
+    border-style: solid;
+    border-color: #000000;
+    border-radius: 6px;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.ProfileDetails {
+    display: flex;
+    flex-direction: row;
+    column-gap: 3%;
+    align-items: end;
+    height: 100%;
+}
+
+.ProfileDetailsStatusActive {
+    width: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    text-align: center;
+    background-color: #96DAAD;
+    border-color: #000000;
+    border-style: solid;
+    border: 1px;
+    border-radius: 6px 0px 0px 6px;
+}
+
+.ProfileDetailsStatusActive div {
+    transform: rotate(-90deg);
+    font-size: 18px;
+    font-weight: 400;
+    font-family: Inter;
+    color: #000000;
+}
+
+.ProfileDetailsStatusInactive {
+    width: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    text-align: center;
+    background-color: #E79494;
+    border-color: #000000;
+    border-style: solid;
+    border: 1px;
+    border-radius: 6px 0px 0px 6px;
+}
+
+.ProfileDetailsStatusInactive div {
+    transform: rotate(-90deg);
+    font-size: 18px;
+    font-weight: 400;
+    font-family: Inter;
+    color: #000000;
+}
+
+.ProfileDetailsMainGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 80%;
+}
+
+.ProfileDetailsMainGroup h2 {
+    width: 70%;
+    text-align: left;
+    font-size: 24px;
+    font-weight: 600;
+    font-family: Inter;
+    color: #BFBEBE;
+    border-bottom: 1px;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-color: #BFBEBE;
+    border-style: solid;
+    margin-bottom: 5px;
+}
+
+.ProfileDetailsInnerGroup {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    column-gap: 10%;
+    margin-bottom: 5px;
+}
+
+.ProfileDetailsInnerGroup div {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 0px;
+    border-left: 1px;
+    border-right: 0px;
+    border-bottom: 0px;
+    border-style: solid;
+    border-color: #BFBEBE;
+}
+
+.ProfileDetailsInnerGroup h3 {
+    width: 100%;
+    font-size: 16px;
+    font-family: Inter;
+    font-weight: 400;
+    color: #BFBEBE;
+    margin-left: 10px;
+    text-align: left;
+}
+
+.ProfileDetailsInnerGroup span {
+    margin-right: 10px;
+}
+
+.ProfileDetailsInnerGroup i {
+    margin-right: 10px;
+}
+
+.ProfileDetails button {
+    font-size: 18px;
+    font-weight: 400;
+    font-family: Inter;
+    color: #BFBEBE;
+    background-color: #5A656D;
+    border: 1px;
+    border-color: #BFBEBE;
+    border-style: solid;
+    border-radius: 6px;
+    padding: 2px 24px 30px 24px;
+    height: 26px;
+    width: 10%;
+    margin-bottom: 5px;
+    margin-right: 30px;
+}
+
+.ProfileDetails button:hover {
+    cursor: pointer;
+    background-color: #BFBEBE;
+    color: #5A656D;
+}
+
+.ProfilesPagination ul li {
+    background-color: #A99E99;
+}
+
+.ProfilesPagination ul li button {
+    padding: 2px 10px 2px 10px;
+    background-color: #6D6D6D;
+    color: #BFBEBE;
+    font-weight: 600;
+    border-radius: 1px;
+    border-style: solid;
+    border-color: #6D6D6D;
+    border-radius: 100%;
+    font-size: 18px;
+    font-family: Inter;
+}
+
+.ProfilesPagination ul li button:hover {
+    cursor: pointer;
+    background-color: #BFBEBE;
+    color: #6D6D6D;
+}

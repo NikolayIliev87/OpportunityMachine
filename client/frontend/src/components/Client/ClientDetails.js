@@ -73,8 +73,9 @@ export const ClientDetails = (props) => {
       }
 
     return (
-            <form className={styles.ClientDetails} onSubmit={onSubmitHandler}>
-                <h1>Client Details</h1>
+        <div className={styles.ClientData} >
+            <form onSubmit={onSubmitHandler}>
+                <h2>Client Details</h2>
                 <section>
                     <div>
                         <label htmlFor="name"  value={values.name} >Customer Name:</label>
@@ -110,7 +111,7 @@ export const ClientDetails = (props) => {
                         {errors.city && <p>{errors.city}</p>}
                     </div>
                     <div>
-                        <label htmlFor="managing_city">Managing City Office:</label>
+                        <label htmlFor="managing_city">Managing Office:</label>
                         <select 
                             disabled={auth.is_superuser || auth.is_staff?false:true}
                             id='managing_city' 
@@ -149,7 +150,7 @@ export const ClientDetails = (props) => {
                         {errors.contact && <p>{errors.contact}</p>}
                     </div>
                     <div>
-                        <label htmlFor="discount"  value={values.discount} >Customer Discount %:</label>
+                        <label htmlFor="discount"  value={values.discount} >Discount %:</label>
                         <input
                             readOnly={auth.is_superuser || auth.is_staff?false:true} 
                             id='discount' 
@@ -194,8 +195,8 @@ export const ClientDetails = (props) => {
                         >Delete</button>
                         <button onClick={props.onCloseClick}>Close</button>
                     </div>
-
                 </section>
             </form>
+        </div>
     );
 }

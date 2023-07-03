@@ -152,8 +152,9 @@ export const OpportunityDetails = (props) => {
       }
 
     return (
-            <form className={styles.OpportunityDetails} onSubmit={onSubmitHandler}>
-                <h1>Opportunity Details</h1>
+        <div className={styles.OpportunityData} >
+            <form onSubmit={onSubmitHandler}>
+                <h2>Opportunity Details</h2>
                 <section>
                     <div>
                         <label htmlFor="name"  value={values.name} >Opportunity Name:</label>
@@ -373,5 +374,6 @@ export const OpportunityDetails = (props) => {
 
                 </section>
             </form>
+        </div>
     );
 }

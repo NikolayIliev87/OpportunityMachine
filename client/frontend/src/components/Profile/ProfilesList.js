@@ -46,7 +46,7 @@ export const ProfilesList = () => {
 
     // pagination client side
     const [currentPage, setCurrentPage] = useState(1);
-    const [profilesPerPage] = useState(5);
+    const [profilesPerPage] = useState(6);
     
     const indexOfLastProfile = currentPage * profilesPerPage;
     const indexOfFirstProfile = indexOfLastProfile - profilesPerPage;
@@ -93,41 +93,44 @@ export const ProfilesList = () => {
     }
 
     return (
-            <div className={styles.ProfileList}>
-                <h1>Active profiles without your own</h1>
-                <div>
-                    <div>
+            <div className={styles.Profiles}>
+                <div className={styles.ProfileList}>
+                    <div className={styles.ProfileListRibbon}>
                             {/* Count:{count} */}
+                        <div className={styles.ProfileListSearch}>
                             <label htmlFor="search">Search by</label>
                             <input 
                                 type="text" 
                                 id="search" 
                                 placeholder="id/username..." 
                                 onChange={onSearchHandler}/>
+                        </div>
+                        <div className={styles.ProfileFilter}>
+                            <label>Status Filter:</label>
+                            <button onClick={onProfileStatusHandler} value={"All"}>All</button>
+                            <button onClick={onProfileStatusHandler} value={"false"}>Active</button>
+                            <button onClick={onProfileStatusHandler} value={"true"}>Blocked</button>
+                            
+                        </div>
                     </div>
-                    <div>
-                        <span>Status Filter:</span>
-                        <button onClick={onProfileStatusHandler} value={"All"}>All</button>
-                        <button onClick={onProfileStatusHandler} value={"false"}>Active</button>
-                        <button onClick={onProfileStatusHandler} value={"true"}>Inactive</button>
-                        
-                    </div>
+                    <ul>
+                        {profiles.length !== 0
+                        ?
+                        currentProfiles().map(profile => 
+                            <article className={styles.ProfileArticle} key={profile.user}>
+                                <Profile {...profile} onDeleteActivateClick={onProfileDeleteActivateHandler} />
+                            </article>
+                        )
+                        :
+                        <p>No Profiles to show!</p>
+                        }
+                    </ul>
+                    <PaginationProfiles 
+                        profilesPerPage={profilesPerPage} 
+                        totalProfiles={profiles.length}
+                        paginate={paginateHandler}
+                    />
                 </div>
-                {profiles.length !== 0
-                ?
-                currentProfiles().map(profile => 
-                    <article key={profile.user}>
-                        <Profile {...profile} onDeleteActivateClick={onProfileDeleteActivateHandler} />
-                    </article>
-                )
-                :
-                <p>No Profiles to show!</p>
-                }
-            <PaginationProfiles 
-                profilesPerPage={profilesPerPage} 
-                totalProfiles={profiles.length}
-                paginate={paginateHandler}
-            />
             </div>
     );
 }

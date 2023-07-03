@@ -1,0 +1,430 @@
+.Products {
+    height: 100%;
+    width: 100%;
+}
+
+.ProductList {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center;
+    align-items: center; */
+}
+
+.ProductRibbon {
+    height: 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1%;
+}
+
+.CreateNewProduct{
+    font-size: 18px;
+    font-weight: 400;
+    font-family: Inter;
+    color: #BFBEBE;
+    background-color: #6D6D6D;
+    border-radius: 6px;
+    padding: 2px 12px 30px 12px;
+    height: 26px;
+    width: 210px;
+    margin-top:10px;
+    margin-left: 5px;
+}
+
+.CreateNewProduct:hover {
+    cursor: pointer;
+    background-color: #BFBEBE;
+    color: #6D6D6D;
+}
+
+.ProductListSearch {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 5px;
+    margin-top: 5px;
+}
+
+.ProductListSearch label {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: Inter;
+    color: #6D6D6D;
+}
+
+.ProductListSearch input {
+    font-family: Inter;
+    width: 404px;
+}
+
+.ProductFilter {
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+    align-items: center;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.ProductFilter label {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: Inter;
+    color: #6D6D6D;
+    padding-top: 2px;
+}
+
+.ProductFilter button {
+    font-size: 18px;
+    font-weight: 400;
+    font-family: Inter;
+    color: #BFBEBE;
+    background-color: #6D6D6D;
+    border-radius: 6px;
+    /* padding: 2px 12px 30px 12px; */
+    /* height: 26px; */
+    /* width: 202px; */
+    margin-top: 5px;
+    /* margin-left: 10px; */
+}
+
+.ProductFilter button:hover {
+    cursor: pointer;
+    background-color: #BFBEBE;
+    color: #6D6D6D;
+}
+
+.ProductList ul {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2%;
+    background-color: #A99E99;
+}
+
+.ProductArticle {
+    width: 90%;
+    margin-left: 5%;
+    background-color: #5A656D;
+    border: 1px;
+    border-style: solid;
+    border-color: #000000;
+    border-radius: 6px;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.ProductDetails {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.ProductDetails div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+    width: 60%;
+    align-items: flex-start;
+}
+
+.ProductDetails div h2 {
+    width: 80%;
+    text-align: left;
+    font-size: 24px;
+    font-weight: 600;
+    font-family: Inter;
+    color: #BFBEBE;
+    border-bottom: 1px;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-color: #BFBEBE;
+    border-style: solid;
+}
+
+.ProductDetails div h3 {
+    font-size: 20px;
+    font-weight: 400;
+    font-family: Inter;
+    color: #BFBEBE;
+}
+
+.ProductDetails button {
+    font-size: 18px;
+    font-weight: 400;
+    font-family: Inter;
+    color: #BFBEBE;
+    background-color: #5A656D;
+    border: 1px;
+    border-color: #BFBEBE;
+    border-style: solid;
+    border-radius: 6px;
+    padding: 2px 24px 30px 24px;
+    height: 26px;
+    width: 107px;
+    margin-bottom: 10px;
+    margin-right: 30px;
+}
+
+.ProductDetails button:hover {
+    cursor: pointer;
+    background-color: #BFBEBE;
+    color: #5A656D;
+}
+
+.ProductsPagination ul li {
+    background-color: #A99E99;
+}
+
+.ProductsPagination ul li button {
+    padding: 2px 10px 2px 10px;
+    background-color: #6D6D6D;
+    color: #BFBEBE;
+    font-weight: 600;
+    border-radius: 1px;
+    border-style: solid;
+    border-color: #6D6D6D;
+    border-radius: 100%;
+    font-size: 18px;
+    font-family: Inter;
+}
+
+.ProductsPagination ul li button:hover {
+    cursor: pointer;
+    background-color: #BFBEBE;
+    color: #6D6D6D;
+}
+
+.ProductNew {
+    position: absolute;
+    left: 8.9vw;
+    right: 2.5vw;
+    top: 10vh;
+    bottom: 5vh;
+    background-color: white 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.ProductNew form {
+    background-color: #6D6D6D;
+    border: 1px;
+    border-color: #000000 ;
+    border-style: solid;
+    border-radius: 10px;
+    display: flex;
+    row-gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    width: 50vw;
+    padding-bottom: 20px;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.ProductNew form h2 {
+    width: 100%;
+    text-align: center;
+    color: #BFBEBE;
+    font-size: 40px;
+    font-weight: 600;
+    font-family: Inter;
+}
+
+.ProductNew form section {
+    display: flex;
+    width: 100%;
+    row-gap: 10px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ProductNew form section div {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.ProductNew form section div p {
+    color: #bdacac;
+    font-family: Inter;
+    font-size: 18px;
+    padding-right: 10px;
+}
+
+.ProductNew form section label {
+    width: 28%;
+    text-align: left;
+    color: #BFBEBE;
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 400;
+    padding-right: 10px;
+}
+
+.ProductNew form section input {
+    width: 62%;
+    text-align: center;
+    border: 1px;
+    border-color: #000000 ;
+    border-style: solid;
+    border-radius: 6px;
+    padding: 0px;
+    font-family: Inter;
+    font-size: 18px;
+}
+
+.ProductNew form section select {
+    width: 62%;
+    text-align: center;
+    border: 1px;
+    border-color: #000000 ;
+    border-style: solid;
+    border-radius: 6px;
+    height: 36px;
+    font-family: Inter;
+    font-size: 18px;
+}
+
+.ProductNew form section button {
+    background-color: #6D6D6D;
+    border: 1px;
+    border-radius: 6px;
+    border-color: #BFBEBE ;
+    border-style: solid;
+    padding: 2px 24px 2px 24px;
+    color: #BFBEBE;
+    margin: 15px;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: Inter;
+}
+
+.ProductNew form section button:hover {
+    cursor: pointer;
+    background-color: #BFBEBE ;
+    color: #6D6D6D;
+}
+
+.ProductData {
+    position: absolute;
+    left: 8.9vw;
+    right: 2.5vw;
+    top: 10vh;
+    bottom: 5vh;
+    background-color: white 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.ProductData form {
+    background-color: #6D6D6D;
+    border: 1px;
+    border-color: #000000 ;
+    border-style: solid;
+    border-radius: 10px;
+    display: flex;
+    row-gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    width: 50vw;
+    padding-bottom: 20px;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.ProductData form h2 {
+    width: 100%;
+    text-align: center;
+    color: #BFBEBE;
+    font-size: 40px;
+    font-weight: 600;
+    font-family: Inter;
+}
+
+.ProductData form section {
+    display: flex;
+    width: 100%;
+    row-gap: 10px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ProductData form section div {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.ProductData form section div p {
+    color: #bdacac;
+    font-family: Inter;
+    font-size: 18px;
+    padding-right: 10px;
+}
+
+.ProductData form section label {
+    width: 28%;
+    text-align: left;
+    color: #BFBEBE;
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 400;
+    padding-right: 10px;
+}
+
+.ProductData form section input {
+    width: 62%;
+    text-align: center;
+    border: 1px;
+    border-color: #000000 ;
+    border-style: solid;
+    border-radius: 6px;
+    padding: 0px;
+    font-family: Inter;
+    font-size: 18px;
+}
+
+.ProductData form section select {
+    width: 62%;
+    text-align: center;
+    border: 1px;
+    border-color: #000000 ;
+    border-style: solid;
+    border-radius: 6px;
+    height: 36px;
+    font-family: Inter;
+    font-size: 18px;
+}
+
+.ProductData form section button {
+    background-color: #6D6D6D;
+    border: 1px;
+    border-radius: 6px;
+    border-color: #BFBEBE ;
+    border-style: solid;
+    padding: 2px 24px 2px 24px;
+    color: #BFBEBE;
+    margin: 15px;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: Inter;
+}
+
+.ProductData form section button:hover {
+    cursor: pointer;
+    background-color: #BFBEBE ;
+    color: #6D6D6D;
+}

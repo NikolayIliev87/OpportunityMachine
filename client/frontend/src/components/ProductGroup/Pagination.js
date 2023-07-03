@@ -16,8 +16,8 @@ export const Pagination = (props) => {
     }
 
     return (
-        <div>
-            <ul className={styles.ProductGroupsPagination}>
+        <div className={styles.ProductGroupsPagination}>
+            <ul>
                 {pageNumbers.map(number => (
                     <li key={number}>
                         <button className={currentPage===number?"active":"inactive"} type="button" onClick={() => onPageClickHandler(number)}>{number}</button>

@@ -1,10 +1,15 @@
+import styles from './ProductGroup.module.css'
+
 export const ProductGroup = (props) => {
 
     return (
         <>
-            <h2>{props.name}</h2>
-            <h2>{props.id}</h2>
+        <div className={styles.ProductGroupDetails}>
+            <div>
+                <h2>{props.name}</h2>
+            </div>
             <button onClick={() => props.onDetailsClick(props.id)}>Details</button>
+        </div>
         </>
     );
 }

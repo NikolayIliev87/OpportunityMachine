@@ -1,10 +1,13 @@
+import styles from './RoleType.module.css'
+
 export const RoleType = (props) => {
 
     return (
-        <>
-            <h2>{props.name}</h2>
-            <h2>{props.id}</h2>
+        <div className={styles.RoleTypeDetails}>
+            <div>
+                <h2>{props.name}</h2>
+            </div>
             <button onClick={() => props.onDetailsClick(props.id)}>Details</button>
-        </>
+        </div>
     );
 }

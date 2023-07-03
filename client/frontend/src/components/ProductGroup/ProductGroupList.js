@@ -87,7 +87,7 @@ export const ProductGroupList = () => {
     };
 
     return (
-        <div>
+        <div className={styles.ProductGroups}>
             <>
                 {selectedProductGroup && <ProductGroupDetails {...selectedProductGroup} 
                                                     onUpdateClick={onUpdateHandler} 
@@ -99,24 +99,27 @@ export const ProductGroupList = () => {
                 />}
             </>
             <div className={styles.ProductGroupList}>
-                <h1>Product Groups List</h1>
-                <button 
-                    className={styles.CreateNewProductGroup} 
-                    onClick={newProductGroupHandler}
-                    hidden={!auth.is_superuser?true:false}
-                > ADD NEW PRODUCT GROUP</button>
-                <div className={styles.ProductGroupsArray}>
-                {productGroups.length !== 0
-                ?
-                currentProductGroups().map(productGroup => 
-                    <article key={productGroup.id}>
-                        <ProductGroup {...productGroup} onDetailsClick={onClientDetailsHandler} />
-                    </article>
-                )
-                :
-                <p>No Product Groups to show!</p>
-                }
+                {/* <h1>Product Groups List</h1> */}
+                <div className={styles.ProductGroupRibbon}>
+                    <button 
+                        className={styles.CreateNewProductGroup} 
+                        onClick={newProductGroupHandler}
+                        hidden={!auth.is_superuser?true:false}
+                    > ADD NEW PRODUCT GROUP</button>
                 </div>
+                {/* <div className={styles.ProductGroupsArray}> */}
+                <ul>
+                    {productGroups.length !== 0
+                    ?
+                    currentProductGroups().map(productGroup => 
+                        <article className={styles.ProductGroupArticle} key={productGroup.id}>
+                            <ProductGroup {...productGroup} onDetailsClick={onClientDetailsHandler} />
+                        </article>
+                    )
+                    :
+                    <p>No Product Groups to show!</p>
+                    }
+                </ul>
                 <Pagination 
                     groupsPerPage={productGroupsPerPage} 
                     totalGroups={productGroups?productGroups.length:1}

@@ -59,8 +59,9 @@ export const CityOfficeDetails = (props) => {
       }
 
     return (
-            <form className={styles.CityOfficeDetails} onSubmit={onSubmitHandler}>
-                <h1>City Office Details</h1>
+        <div className={styles.CityOfficeData} >
+            <form onSubmit={onSubmitHandler}>
+                <h2>City Office Details</h2>
                 <section>
                     <div>
                         <label htmlFor="name"  value={values.name} >City Office:</label>
@@ -102,5 +103,6 @@ export const CityOfficeDetails = (props) => {
                     </div>
                 </section>
             </form>
+        </div>
     );
 }

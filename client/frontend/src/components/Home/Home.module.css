@@ -99,7 +99,7 @@
     /* row-gap: 15vh; */
 }
 
-.HomeUser h1 {
+.HomeUserTitle {
     width: 100%;
     height: 6%;
     text-align: center;
@@ -109,7 +109,11 @@
     font-weight: 600;
 }
 
-.HomeUser div {
+.HomeUserWorkspace {
+    width: 100%;
+}
+
+.HomeUserOptions {
     width: 100%;
     height: 94%;
     text-align: center;
@@ -119,22 +123,22 @@
     background-color: #A99E99;
 }
 
-.HomeUser div ul {
+.HomeUserOptions ul {
     height: 100%;
-    width: 10%;
+    width: 10vw;
     padding: 0px;
     margin: 0px;
     background-color: #5A656D;
 }
 
-.HomeUser div ul li {
+.HomeUserOptions ul li {
     list-style: none;
     width: 100%;
     background-color: #6D6D6D;
     margin-bottom: 2px;
 }
 
-.HomeUser div ul li a {
+.HomeUserOptions ul li a {
     text-decoration: none;
     display: block;
     font-size: 18px;
@@ -146,7 +150,7 @@
     border-style: solid;
 }
 
-.HomeUser div ul a:hover {
+.HomeUserOptions ul a:hover {
     cursor: pointer;
     background-color: #BFBEBE;
     color: #6D6D6D;
@@ -155,10 +159,11 @@
     border-style: solid;
 }
 
-.HomeUser div p {
+.HomeUserColumnt {
     height: 100%;
-    width: 3%;
+    width: 3vw;
     padding: 0px;
     margin: 0px;
     background-color: #5A656D;
 }
+

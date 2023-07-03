@@ -159,6 +159,8 @@
     border-style: solid;
     border-radius: 6px;
     height: 36px;
+    font-family: Inter;
+    font-size: 18px;
 }
 
 .Authentication ul {

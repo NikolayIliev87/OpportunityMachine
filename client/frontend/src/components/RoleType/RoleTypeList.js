@@ -87,7 +87,7 @@ export const RoleTypeList = () => {
     };
 
     return (
-        <div>
+        <div className={styles.RoleTypes}>
             <>
                 {selectedRoleType && <RoleTypeDetails {...selectedRoleType} 
                                                     onUpdateClick={onUpdateHandler} 
@@ -99,24 +99,26 @@ export const RoleTypeList = () => {
                 />}
             </>
             <div className={styles.RoleTypeList}>
-                <h1>Role Types List</h1>
-                <button 
-                    className={styles.CreateNewRoleType} 
-                    onClick={newRoleTypeHandler}
-                    hidden={!auth.is_superuser?true:false}
-                > ADD NEW ROLE TYPE</button>
-                <div className={styles.RoleTypesArray}>
+                {/* <h1>Role Types List</h1> */}
+                <div className={styles.RoleTypeRibbon}>
+                    <button 
+                        className={styles.CreateNewRoleType} 
+                        onClick={newRoleTypeHandler}
+                        hidden={!auth.is_superuser?true:false}
+                    > ADD NEW ROLE TYPE</button>
+                </div>
+                <ul>
                 {roleTypes.length !== 0
                 ?
                 currentRoleTypes().map(roleType => 
-                    <article key={roleType.id}>
+                    <article className={styles.RoleTypeArticle} key={roleType.id}>
                         <RoleType {...roleType} onDetailsClick={onRoleTypeDetailsHandler} />
                     </article>
                 )
                 :
                 <p>No Role Types to show!</p>
                 }
-                </div>
+                </ul>
                 <Pagination 
                     rolesPerPage={roleTypesPerPage} 
                     totalRoles={roleTypes?roleTypes.length:1}

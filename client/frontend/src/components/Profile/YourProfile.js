@@ -262,8 +262,8 @@ export const YourProfile = () => {
                             </div>
                             <div className={styles.YourProfileDataDetails}>
                                 <ul>
-                                    <li><label>Phone:</label><span>{yourprofile.phone}</span></li>
-                                    <li><label>Username:</label><span>{yourprofile.user_email}</span></li>
+                                    <li><label><i class="fas fa-phone-alt"></i></label><span>{yourprofile.phone}</span></li>
+                                    <li><label><i class="fas fa-envelope"></i></label><span>{yourprofile.user_email}</span></li>
                                     <li><label>Office City:</label><span>{yourprofile.city_office?yourprofile.city_office.name:''}</span></li>
                                     <li><label>Manager:</label><span>{yourprofile.manager===null?'':yourprofile.manager}</span></li>
                                 </ul>

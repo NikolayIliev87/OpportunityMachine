@@ -70,8 +70,9 @@ export const ProductDetails = (props) => {
       }
 
     return (
-            <form className={styles.ProductDetails} onSubmit={onSubmitHandler}>
-                <h1>Product Details</h1>
+        <div className={styles.ProductData} >
+            <form onSubmit={onSubmitHandler}>
+                <h2>Product Details</h2>
                 <section>
                     <div>
                         <label htmlFor="name"  value={values.name} >Product Name:</label>
@@ -153,5 +154,6 @@ export const ProductDetails = (props) => {
 
                 </section>
             </form>
+        </div>
     );
 }

@@ -59,8 +59,9 @@ export const RoleTypeDetails = (props) => {
       }
 
     return (
-            <form className={styles.RoleTypeDetails} onSubmit={onSubmitHandler}>
-                <h1>Role Type Details</h1>
+        <div className={styles.RoleTypeData} >
+            <form onSubmit={onSubmitHandler}>
+                <h2>Role Type Details</h2>
                 <section>
                     <div>
                         <label htmlFor="name"  value={values.name} >Role Type:</label>
@@ -100,5 +101,6 @@ export const RoleTypeDetails = (props) => {
                     </div>
                 </section>
             </form>
+        </div>
     );
 }
