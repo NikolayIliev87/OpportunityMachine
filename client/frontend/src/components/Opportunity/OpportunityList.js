@@ -291,7 +291,7 @@ export const OpportunityList = () => {
                 </ul>
                 <Pagination 
                     opportunitiesPerPage={opportunitiesPerPage} 
-                    totalOpportunities={opportunities?opportunities.length:1}
+                    totalOpportunities={searchedOpportunities?searchedOpportunities.length:1}
                     paginate={paginateHandler}
                 />
             </div>

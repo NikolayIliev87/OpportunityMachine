@@ -201,7 +201,7 @@ export const ProductList = () => {
                 </ul>
                 <Pagination 
                     productsPerPage={productsPerPage} 
-                    totalProducts={products?products.length:1}
+                    totalProducts={searchedproducts?searchedproducts.length:1}
                     paginate={paginateHandler}
                 />
             </div>

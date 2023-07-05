@@ -201,7 +201,7 @@ export const ClientList = () => {
                 </ul>
                 <Pagination 
                     clientsPerPage={clientsPerPage} 
-                    totalClients={clients?clients.length:1}
+                    totalClients={searchedclients?searchedclients.length:1}
                     paginate={paginateHandler}
                 />
             </div>

@@ -127,7 +127,7 @@ export const ProfilesList = () => {
                     </ul>
                     <PaginationProfiles 
                         profilesPerPage={profilesPerPage} 
-                        totalProfiles={profiles.length}
+                        totalProfiles={searchedProfiles?searchedProfiles.length:1}
                         paginate={paginateHandler}
                     />
                 </div>

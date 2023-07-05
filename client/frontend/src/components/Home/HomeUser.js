@@ -11,7 +11,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 export const HomeUser = () => {
     const {auth} = useContext(AuthContext)
     const outlet = useOutlet()
-    const aaa = <h1 className={styles.HomeUserTitle}>{auth.email} workspace</h1>
+    const aaa = <h1 className={styles.HomeUserTitle}>{auth.email} workspace. Placeholder for main home page</h1>
     // const {tickets} = useContext(TicketsContext)
     // const incomplete = tickets.filter(x => x['status'] === false)
 
