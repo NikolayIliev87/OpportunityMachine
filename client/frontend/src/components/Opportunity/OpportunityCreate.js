@@ -2,6 +2,12 @@ import styles from './Opportunity.module.css'
 import Select from 'react-select';
 
 import { validator } from '../../services/validator';
+import { 
+        formatter, 
+        calcClientProductPrice, 
+        calcClientProductTotalNetPrice, 
+        clacTotalProductsValue 
+        } from '../../utils/currency_formater'
 
 import { useState, useEffect } from "react";
 
@@ -15,13 +21,36 @@ export const OpportunityCreate = (props) => {
     const [selectedProduct, setSelectedProduct] = useState({});
     const user = JSON.parse(localStorage.getItem('auth'))['id']
 
-    const clacTotalProductsValue = () => {
-        let total = 0;
-        opportunity_products.map(({product,quantity}) => 
-        total = total + ((product.price-(product.price * (selectedClient[0].discount/100))) * quantity))
 
-        return total;
-    }
+    // const calcClientProductPrice = (price, discount) => {
+    //     let total = price - (price * (discount/100))
+        
+    //     return total
+    // }
+
+    // const calcClientProductTotalNetPrice = (price, discount, VAT, quantity) => {
+    //     let clientPrice = price - (price * (discount/100))
+    //     let total = (clientPrice + (clientPrice * (VAT/100))) * quantity
+
+    //     return total
+    // }
+
+    // const clacTotalProductsValue = () => {
+    //     let total = 0;
+    //     opportunity_products.map(({product,quantity}) => 
+    //     total = total + ((product.price-(product.price * (selectedClient[0].discount/100))) * quantity))
+
+    //     return total;
+    // }
+
+    // const clacTotalProductsValue = () => {
+    //     let total = 0;
+    //     opportunity_products.map(({product,quantity}) => 
+    //     total = total + calcClientProductTotalNetPrice(product.price, selectedClient[0].discount, 20, quantity))
+
+    //     return total;
+    // }
+
 
     // const uid = function(){
     //     return `${Date.now()}${user}`
@@ -121,6 +150,7 @@ export const OpportunityCreate = (props) => {
         else {
           setErrors({})
         }
+        
         // else {
         //     setErrors(state => ({
         //       ...state,
@@ -307,15 +337,15 @@ export const OpportunityCreate = (props) => {
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Product Details</th>
-                                            <th>Qty</th>
-                                            <th>List Price</th>
-                                            <th>Discont %</th>
-                                            <th>Client Price</th>
-                                            <th>VAT %</th>
-                                            <th>Total</th>
+                                            <th className={styles.NewTableId}>ID</th>
+                                            <th className={styles.NewTableName}>Name</th>
+                                            <th className={styles.NewTableDetails}>Details</th>
+                                            <th className={styles.NewTablePrice}>List Price</th>
+                                            <th className={styles.NewTableDiscount}>Discont %</th>
+                                            <th className={styles.NewTableClientPrice}>Client Price</th>
+                                            <th className={styles.NewTableQuantity}>Qty</th>
+                                            <th className={styles.NewTableVAT}>VAT %</th>
+                                            <th className={styles.NewTableTotal}>Total</th>
                                         </tr>
                                     </thead>
                                     {opportunity_products.map(product => 
@@ -324,20 +354,30 @@ export const OpportunityCreate = (props) => {
                                             <td>{product.product.id}</td>
                                             <td>{product.product.name}</td>
                                             <td>{product.product.description}</td>
-                                            <td>{product.quantity}</td>
-                                            <td>{product.product.price}</td>
+                                            <td>{formatter.format(product.product.price)}</td>
                                             <td>{selectedClient[0].discount}%</td>
                                             <td>
-                                            {(product.product.price 
+                                            {formatter.format(calcClientProductPrice(
+                                                product.product.price,
+                                                selectedClient[0].discount
+                                            ))}
+                                            {/* (product.product.price 
                                             - (product.product.price 
                                             * (selectedClient[0].discount/100)
                                             ))
-                                            * product.quantity
-                                            }
+                                            // * product.quantity
+                                            }$ */}
                                             </td>
+                                            <td>{product.quantity}</td>
                                             <td>20%</td>
                                             <td>
-                                            {((product.product.price 
+                                            {formatter.format(calcClientProductTotalNetPrice(
+                                                product.product.price,
+                                                selectedClient[0].discount,
+                                                20,
+                                                product.quantity
+                                            ))}
+                                            {/* ((product.product.price 
                                             - (product.product.price 
                                             * (selectedClient[0].discount/100)
                                             ))
@@ -350,7 +390,7 @@ export const OpportunityCreate = (props) => {
                                                 * 0.2
                                             )
                                             * product.quantity
-                                            }
+                                            }$ */}
                                             </td>
                                             <button 
                                                 onClick={event => 
@@ -362,7 +402,6 @@ export const OpportunityCreate = (props) => {
                                     </tbody>
                                     )}
                                 </table>
-                                {clacTotalProductsValue()+clacTotalProductsValue()*(20/100)}
                                 {/* {opportunity_products.map(product => 
                                 <div key={product.product.id}>
                                     <span>{product.product.name}</span>
@@ -385,18 +424,35 @@ export const OpportunityCreate = (props) => {
                             <p>No Products included!</p>
                             }
                     </div>
-                    <div className={styles.OpportunityNewDiv}>
-                        <label htmlFor="description">Note:</label>
-                        <input 
-                            id='description' 
-                            type="text"  
-                            onChange={changeHandler} 
-                            value={values.description}
-                            onBlur={validateInputs} 
-                        />
-                        {errors.description && <p>{errors.description}</p>}
+                    <div className={styles.OpportunityNewDescription}>
+                        <div className={styles.OpportunityNewDescriptionArea}>
+                            <label htmlFor="description">Description:</label>
+                            <textarea 
+                                id="description" 
+                                onChange={changeHandler} 
+                                value={values.description}
+                                onBlur={validateInputs}
+                            />
+                            {/* <input 
+                                id='description' 
+                                type="text"  
+                                onChange={changeHandler} 
+                                value={values.description}
+                                onBlur={validateInputs} 
+                            /> */}
+                            {errors.description && <p>{errors.description}</p>}
+                        </div>
+                        <div className={styles.NewGrandTotal}>
+                            <span>Net Total</span>
+                            <div>
+                                {formatter.format(
+                                    clacTotalProductsValue(opportunity_products, selectedClient[0])
+                                )}
+                                {/* {clacTotalProductsValue()+clacTotalProductsValue()*(20/100)}$ */}
+                            </div>
+                        </div>
                     </div>
-                    <div>
+                    <div className={styles.OpportunityNewButtons}>
                         <button 
                             type="submit"
                             hidden={Object.keys(errors).length > 0 || values.name === '' ||

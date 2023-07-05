@@ -1,4 +1,5 @@
 import styles from './YourProfile.module.css'
+import {Link} from 'react-router-dom'
 
 import { validator } from '../../services/validator';
 
@@ -246,7 +247,7 @@ export const YourProfile = () => {
             {!editableProfile
                 ?
                 <div className={styles.YourProfileView}>
-                    <h1>Your Profile</h1>
+                    {/* <h1>Your Profile</h1> */}
                     <article>
                         <img src={
                             yourprofile.photo_url===null || yourprofile.photo_url===""
@@ -280,7 +281,10 @@ export const YourProfile = () => {
                                             }
                                         </li>
                                         </li>
-                                    <button onClick={onEditHandler}>Edit</button>
+                                    <span className={styles.ProfileButtons}>
+                                        <Link to="/">Cancle</Link>
+                                        <button onClick={onEditHandler}>Edit</button>
+                                    </span>
                                 </ul>
                             </div>
                         </div>
@@ -397,12 +401,13 @@ export const YourProfile = () => {
                         </div>
                         <div>
                             <label htmlFor="role_description">Role Description:</label>
-                            <input 
+                            <textarea 
                             id='role_description' 
-                            type="text" 
-                            onChange={changeHandler} 
+                            onChange={changeHandler}
+                            onBlur={validateInputs}
                             defaultValue={yourprofile.role_description}
                             />
+                            {errors.role_description && <p>{errors.role_description}</p>}
                         </div>
                         {values.is_manager && values.role_type !== '' && role_type_name !== 'Team Manager'
                             ?

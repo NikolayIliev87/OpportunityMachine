@@ -97,10 +97,9 @@ export const ProductDetails = (props) => {
                     </div>
                     <div>
                         <label htmlFor="description"  value={values.description} >Product Description:</label>
-                        <input
+                        <textarea
                             readOnly={auth.is_superuser||auth.is_staff?false:true} 
                             id='description' 
-                            type="text"  
                             onChange={changeHandler} 
                             defaultValue={props.description}
                             onBlur={validateInputs} 
@@ -123,7 +122,7 @@ export const ProductDetails = (props) => {
                         </select>
                     </div> 
                     <div>
-                        <label htmlFor="price"  value={values.price} >Customer Address:</label>
+                        <label htmlFor="price"  value={values.price} >Product Price:</label>
                         <input
                             readOnly={auth.is_superuser || auth.is_staff?false:true} 
                             id='price' 

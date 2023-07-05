@@ -110,7 +110,12 @@
     gap: 10px;
 }
 
-.YourProfileView button {
+.ProfileButtons {
+    display: flex;
+    flex-direction: row;
+}
+
+.ProfileButtons button {
     background-color: #6D6D6D;
     border: 1px;
     border-radius: 6px;
@@ -122,11 +127,41 @@
     font-weight: 400;
     font-family: Inter;
     width: 25%;
-    margin-top: 4%;
-    margin-left: 75%;
+    /* margin-top: 4%;
+    margin-left: 75%; */
 }
 
-.YourProfileView button:hover {
+.ProfileButtons button:hover {
+    cursor: pointer;
+    background-color: #BFBEBE ;
+    color: #6D6D6D;
+}
+
+.ProfileButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    margin-top: 20px;   
+}
+
+.ProfileButtons a {
+    background-color: #6D6D6D;
+    border: 1px;
+    border-radius: 6px;
+    border-color: #BFBEBE ;
+    border-style: solid;
+    color: #BFBEBE;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: Inter;
+    width: 25%;
+    margin-right: 20px;
+    text-align: center;
+    text-decoration: none;
+    padding: 2px 0px 2px 0px;
+}
+
+.ProfileButtons a:hover {
     cursor: pointer;
     background-color: #BFBEBE ;
     color: #6D6D6D;
@@ -197,6 +232,18 @@
 }
 
 .ProfileEditForm input {
+    width: 62%;
+    text-align: center;
+    border: 1px;
+    border-color: #000000 ;
+    border-style: solid;
+    border-radius: 6px;
+    padding: 0px;
+    font-family: Inter;
+    font-size: 18px;
+}
+
+.ProfileEditForm textarea {
     width: 62%;
     text-align: center;
     border: 1px;

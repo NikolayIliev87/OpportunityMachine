@@ -176,7 +176,7 @@ export const ProductList = () => {
                             onChange={onSearchHandler}/>
                     </div>
                     <div className={styles.ProductFilter}>
-                        <span>Categories Filter:</span>
+                        <label>Categories Filter:</label>
                         <button onClick={onGroupFilterHandler} value={"All"}>All</button>
                         {productGroups.map(group =>
                             <button 

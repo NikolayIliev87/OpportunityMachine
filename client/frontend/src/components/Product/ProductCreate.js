@@ -75,9 +75,8 @@ export const ProductCreate = (props) => {
                     </div>
                     <div>
                         <label htmlFor="description">Product Description:</label>
-                        <input 
+                        <textarea 
                             id='description' 
-                            type="text"  
                             onChange={changeHandler} 
                             value={values.description}
                             onBlur={validateInputs} 

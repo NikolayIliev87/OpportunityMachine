@@ -43,7 +43,7 @@ export const OpportunityList = () => {
 
     // pagination client side
     const [currentPage, setCurrentPage] = useState(1);
-    const [opportunitiesPerPage] = useState(10);
+    const [opportunitiesPerPage] = useState(6);
     
     const indexOfLastOpportunity = currentPage * opportunitiesPerPage;
     const indexOfFirstOpportunity = indexOfLastOpportunity - opportunitiesPerPage;

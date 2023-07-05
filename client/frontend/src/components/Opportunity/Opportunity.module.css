@@ -11,12 +11,13 @@
 }
 
 .OpportunityListRibbon {
-    height: 5%;
+    height: 6%;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 1%;
+    background-color: #5A656D;
 }
 
 .CreateNewOpportunity{
@@ -50,9 +51,9 @@
 
 .OpportunityListSearch label {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 500;
     font-family: Inter;
-    color: #6D6D6D;
+    color: white;
     margin-right: 5px;
 }
 
@@ -84,11 +85,11 @@
     margin-top: 5px;
 }
 
-.ProfileFiOpportunityFilterlter label {
+.OpportunityFilter label {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 500;
     font-family: Inter;
-    color: #6D6D6D;
+    color: white;
     padding-top: 2px;
 }
 
@@ -212,14 +213,6 @@
     text-align: left;
 }
 
-/* .ProfileDetailsInnerGroup span {
-    margin-right: 10px;
-} */
-
-/* .OpportunityDetailsInnerGroup i {
-    margin-right: 10px;
-} */
-
 .OpportunityDetails button {
     font-size: 18px;
     font-weight: 400;
@@ -243,12 +236,22 @@
     color: #5A656D;
 }
 
+.OpportunitiesPagination ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 100%;
+    margin-bottom: 0px;
+}
+
 .OpportunitiesPagination ul li {
     background-color: #A99E99;
+    width: auto;
+    margin-right: 5px;
 }
 
 .OpportunitiesPagination ul li button {
-    padding: 2px 10px 2px 10px;
+    width: 30px;
     background-color: #6D6D6D;
     color: #BFBEBE;
     font-weight: 600;
@@ -266,11 +269,13 @@
     color: #6D6D6D;
 }
 
+/* NEW OPPORTUNIY CEE */
+
 .OpportunityNew {
     position: absolute;
     left: 8.9vw;
     right: 2.5vw;
-    top: 10vh;
+    top: 6vh;
     bottom: 5vh;
     background-color: white 0;
     display: flex;
@@ -291,9 +296,9 @@
     flex-direction: column;
     align-items: center;
     width: 70vw;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
-    margin-top: 2%;
+    /* margin-top: 1%; */
 }
 
 .OpportunityNew form h2 {
@@ -315,11 +320,21 @@
 
 .OpportunityNewMain {
     width: 97%;
-    padding: 0% 1% 1% 1%;
-    border: 1px;
+    padding: 1% 1% 1% 1%;
+    border-top: 1px;
+    border-bottom: 1px;
+    border-right: 0px;
+    border-left: 0px;
     border-style: solid;
     border-color: #BFBEBE;
     border-radius: 10px;
+}
+
+.OpportunityNewMain p {
+    color: #bdacac;
+    font-family: Inter;
+    font-size: 18px;
+    padding-right: 10px;
 }
 
 .OpportunityNewNameCustomer {
@@ -328,6 +343,7 @@
     justify-content: space-between;
     width: 100%;
     height: 60px;
+    margin-bottom: 1%;
 }
 
 .OpportunityNewName {
@@ -385,7 +401,7 @@
 
 .OpportunityNewSelectDiv{
     width: 70%;
-    height: 36px;
+    height: 40px;
     text-align: center;
     padding: 0px;
     font-family: Inter;
@@ -397,6 +413,9 @@
     flex-direction: row;
     width: 49%;
     margin-right: 52%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .OpportunityNewCloseDate label {
@@ -482,61 +501,202 @@
 
 .OpportunityNewProductsTable {
     width: 97%;
+    max-height: 350px;
+    overflow-y: auto;
+    padding: 1% 1% 1% 1%;
+    border-top: 1px;
+    border-bottom: 0px;
+    border-right: 0px;
+    border-left: 0px;
+    border-style: solid;
+    border-color: #BFBEBE;
+    border-radius: 10px;
 }
 
-/* .OpportunityNewSelectDiv {
-    width: 62%;
+.OpportunityNewProductsTable p {
+    color: #BFBEBE;
+    font-family: Inter;
+    font-size: 18px;
+    padding-right: 10px;
 }
 
-.OpportunityNewDiv {
-    display: flex;
+
+.OpportunityNewProductsTable table {
     width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
 }
 
-.OpportunityNewDiv p {
+.OpportunityNewProductsTable table button {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-color: #6D6D6D;
+    border: 0px;
+    color: #E79494;
+    font-weight: 600;
+}
+
+.OpportunityNewProductsTable table button:hover {
+    color: #e36c6c;
+    cursor: pointer;
+}
+
+.OpportunityNewProductsTable table tr {
+    padding: 0px;
+    margin: 0px;
+    background-color: #BFBEBE;
+}
+
+.OpportunityNewProductsTable table th {
+    padding: 0px;
+    margin: 0px;
+    border-top: 1px;
+    border-left: 1px;
+    border-bottom: 1px;
+    border-right: 0px;
+    border-color: #000000;
+    border-style: solid;
+    font-size: 14px;
+    font-family: Inter;
+    font-weight: 600;
+    color: #000000;
+}
+
+.OpportunityNewProductsTable table tbody td {
+    padding: 0px;
+    margin: 0px;
+    background-color: white;
+    border-top: 1px;
+    border-left: 1px;
+    border-bottom: 1px;
+    border-right: 0px;
+    border-color: #000000;
+    border-style: solid;
+    font-size: 14px;
+    font-family: Inter;
+    font-weight: 400;
+    color: #000000;
+}
+
+.NewTableId {
+    width: 5%;
+}
+
+.NewTableName {
+    width: 20%;
+}
+
+.NewTableDetails {
+    width: 30%;
+    overflow: hidden;
+}
+
+.NewTableQuantity {
+    width: 5%;
+}
+
+.NewTablePrice {
+    width: 8%;
+}
+
+.NewTableDiscount {
+    width: 8%;
+}
+
+.NewTableClientPrice {
+    width: 8%;
+}
+
+.NewTableVAT {
+    width: 5%;
+}
+
+.NewTableTotal {
+    width: 8%;
+}
+
+.OpportunityNewDescription {
+    width: 97%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 0px;
+    border-bottom: 1px;
+    border-right: 0px;
+    border-left: 0px;
+    border-style: solid;
+    border-color: #BFBEBE;
+    border-radius: 10px;
+    padding: 0% 1% 1% 1%;
+}
+
+.OpportunityNewDescription p {
     color: #bdacac;
     font-family: Inter;
     font-size: 18px;
     padding-right: 10px;
 }
 
-.OpportunityNew form section label {
-    width: 28%;
-    text-align: left;
+.OpportunityNewDescriptionArea {
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.OpportunityNewDescriptionArea label {
+    width: 20%;
+    text-align: right;
     color: #BFBEBE;
     font-family: Inter;
     font-size: 24px;
     font-weight: 400;
-    padding-right: 10px;
+    padding-right: 5px;
+    margin: 0px;
 }
 
-.OpportunityNew form section input {
-    width: 62%;
-    text-align: center;
-    border: 1px;
-    border-color: #000000 ;
-    border-style: solid;
-    border-radius: 6px;
+.OpportunityNewDescriptionArea textarea {
+    width: 80%;
+    height: 60px;
+    text-align: left;
     padding: 0px;
     font-family: Inter;
     font-size: 18px;
-}
-
-.OpportunityNew form section select {
-    width: 62%;
-    text-align: center;
     border: 1px;
-    border-color: #000000 ;
+    border-color: #6D6D6D;
     border-style: solid;
     border-radius: 6px;
-    height: 36px;
-    font-family: Inter;
-    font-size: 18px;
+    overflow-y: auto;
 }
 
-.OpportunityNew form section button {
+.NewGrandTotal {
+    width: 23%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: start;
+    margin-right: 3%;
+}
+
+.NewGrandTotal span {
+    width: 44%;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    text-decoration: underline;
+} 
+
+.NewGrandTotal div {
+    width: 35%;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    text-decoration: underline;
+}
+
+.OpportunityNewButtons button {
     background-color: #6D6D6D;
     border: 1px;
     border-radius: 6px;
@@ -544,28 +704,30 @@
     border-style: solid;
     padding: 2px 24px 2px 24px;
     color: #BFBEBE;
-    margin: 15px;
+    margin-right: 15px;
     font-size: 18px;
     font-weight: 400;
     font-family: Inter;
 }
 
-.OpportunityNew form section button:hover {
+.OpportunityNewButtons button:hover {
     cursor: pointer;
     background-color: #BFBEBE ;
     color: #6D6D6D;
-} */
+}
+
+/* DETAILS OPPORTUNITY CSS */
 
 .OpportunityData {
     position: absolute;
     left: 8.9vw;
     right: 2.5vw;
-    top: 10vh;
+    top: 6vh;
     bottom: 5vh;
     background-color: white 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -580,9 +742,10 @@
     row-gap: 10px;
     flex-direction: column;
     align-items: center;
-    width: 50vw;
-    padding-bottom: 20px;
+    width: 70vw;
+    padding-bottom: 10px;
     box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+    /* margin-top: 1%; */
 }
 
 .OpportunityData form h2 {
@@ -592,6 +755,404 @@
     font-size: 40px;
     font-weight: 600;
     font-family: Inter;
+}
+
+.OpportunityData form section {
+    display: flex;
+    width: 100%;
+    row-gap: 10px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.OpportunityDataMain {
+    width: 97%;
+    padding: 1% 1% 0.5% 1%;
+    border-top: 1px;
+    border-bottom: 1px;
+    border-right: 0px;
+    border-left: 0px;
+    border-style: solid;
+    border-color: #BFBEBE;
+    border-radius: 10px;
+}
+
+.OpportunityDataMain p {
+    color: #bdacac;
+    font-family: Inter;
+    font-size: 18px;
+    padding-right: 10px;
+}
+
+.OpportunityDataMainLines{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 1%;
+}
+
+.OpportunityDataMainLinesUser {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 1%;
+}
+
+.OpportunityDataMainLinesItem {
+    width: 49%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.OpportunityDataMainLinesItemUser {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.OpportunityDataMainLinesItem label {
+    width: 30%;
+    text-align: right;
+    color: #BFBEBE;
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 400;
+    padding-right: 5px;
+    margin: 0px;
+}
+
+.OpportunityDataMainLinesItemUser label {
+    width: 60%;
+    text-align: right;
+    color: #E79494;
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 400;
+    padding-right: 5px;
+    margin: 0px;
+}
+
+.OpportunityDataMainLinesItem input {
+    width: 70%;
+    height: 35px;
+    text-align: center;
+    padding: 0px;
+    font-family: Inter;
+    font-size: 18px;
+    border: 1px;
+    border-color: #6D6D6D;
+    border-style: solid;
+    border-radius: 6px;
+}
+
+.OpportunityDataMainLinesItemUser input {
+    width: 10%;
+    height: 35px;
+    text-align: center;
+    padding: 0px;
+    font-family: Inter;
+    font-size: 18px;
+    border: 1px;
+    border-color: #6D6D6D;
+    border-style: solid;
+    border-radius: 6px;
+}
+
+.OpportunityDataMainLinesItem select {
+    width: 70%;
+    height: 35px;
+    text-align: center;
+    padding: 0px;
+    font-family: Inter;
+    font-size: 18px;
+    border: 1px;
+    border-color: #6D6D6D;
+    border-style: solid;
+    border-radius: 6px;;
+}
+
+.OpportunityDataProductInclude {
+    display: flex;
+    flex-direction: row;
+    width: 97%;
+}
+
+.OpportunityDataProductInclude button {
+    width: 17%;
+    background-color: #6D6D6D;
+    border: 1px;
+    border-radius: 6px;
+    border-color: #BFBEBE ;
+    border-style: solid;
+    padding: 2px 24px 2px 24px;
+    color: #BFBEBE;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: Inter;
+}
+
+.OpportunityDataProductInclude button:hover {
+    cursor: pointer;
+    background-color: #BFBEBE ;
+    color: #6D6D6D;
+}
+
+.OpportunityDataProductInclude h3 {
+    width: 23%;
+    text-align: center;
+    margin-left: 22%;
+    color: #BFBEBE;
+    font-size: 24px;
+    font-weight: 400;
+    font-family: Inter;
+}
+
+.OpportunityDataProductIncludeAction {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.OpportunityDataProductIncludeActionSelect {
+    width: 50%;
+}
+
+.OpportunityDataProductIncludeAction input {
+    width: 10%;
+    text-align: center;
+}
+
+.OpportunityDataProductIncludeAction button {
+    width: 12%;
+    text-align: center;
+}
+
+.OpportunityDataProductsTable {
+    width: 97%;
+    max-height: 350px;
+    overflow-y: auto;
+    padding: 1% 1% 1% 1%;
+    border-top: 1px;
+    border-bottom: 0px;
+    border-right: 0px;
+    border-left: 0px;
+    border-style: solid;
+    border-color: #BFBEBE;
+    border-radius: 10px;
+}
+
+.OpportunityDataProductsTable p {
+    color: #BFBEBE;
+    font-family: Inter;
+    font-size: 18px;
+    padding-right: 10px;
+}
+
+
+.OpportunityDataProductsTable table {
+    width: 100%;
+}
+
+.OpportunityDataProductsTable table button {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-color: #6D6D6D;
+    border: 0px;
+    color: #E79494;
+    font-weight: 600;
+}
+
+.OpportunityDataProductsTable table button:hover {
+    color: #e36c6c;
+    cursor: pointer;
+}
+
+.OpportunityDataProductsTable table tr {
+    padding: 0px;
+    margin: 0px;
+    background-color: #BFBEBE;
+}
+
+.OpportunityDataProductsTable table th {
+    padding: 0px;
+    margin: 0px;
+    border-top: 1px;
+    border-left: 1px;
+    border-bottom: 1px;
+    border-right: 0px;
+    border-color: #000000;
+    border-style: solid;
+    font-size: 14px;
+    font-family: Inter;
+    font-weight: 600;
+    color: #000000;
+}
+
+.OpportunityDataProductsTable table tbody td {
+    padding: 0px;
+    margin: 0px;
+    background-color: white;
+    border-top: 1px;
+    border-left: 1px;
+    border-bottom: 1px;
+    border-right: 0px;
+    border-color: #000000;
+    border-style: solid;
+    font-size: 14px;
+    font-family: Inter;
+    font-weight: 400;
+    color: #000000;
+}
+
+.DataTableId {
+    width: 5%;
+}
+
+.DataTableName {
+    width: 20%;
+}
+
+.DataTableDetails {
+    width: 30%;
+    overflow: hidden;
+}
+
+.DataTableQuantity {
+    width: 5%;
+}
+
+.DataTablePrice {
+    width: 8%;
+}
+
+.DataTableDiscount {
+    width: 8%;
+}
+
+.DataTableClientPrice {
+    width: 8%;
+}
+
+.DataTableVAT {
+    width: 5%;
+}
+
+.DataTableTotal {
+    width: 8%;
+}
+
+.OpportunityDataDescription {
+    width: 97%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 0px;
+    border-bottom: 1px;
+    border-right: 0px;
+    border-left: 0px;
+    border-style: solid;
+    border-color: #BFBEBE;
+    border-radius: 10px;
+    padding: 0% 1% 1% 1%;
+}
+
+.OpportunityDataDescription p {
+    color: #bdacac;
+    font-family: Inter;
+    font-size: 18px;
+    padding-right: 10px;
+}
+
+.OpportunityDataDescriptionArea {
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.OpportunityDataDescriptionArea label {
+    width: 20%;
+    text-align: right;
+    color: #BFBEBE;
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 400;
+    padding-right: 5px;
+    margin: 0px;
+}
+
+.OpportunityDataDescriptionArea textarea {
+    width: 80%;
+    height: 60px;
+    text-align: left;
+    padding: 0px;
+    font-family: Inter;
+    font-size: 18px;
+    border: 1px;
+    border-color: #6D6D6D;
+    border-style: solid;
+    border-radius: 6px;
+    overflow-y: auto;
+}
+
+.DataGrandTotal {
+    width: 23%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: start;
+    margin-right: 3%;
+}
+
+.DataGrandTotal span {
+    width: 44%;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    text-decoration: underline;
+} 
+
+.DataGrandTotal div {
+    width: 35%;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    text-decoration: underline;
+}
+
+.OpportunityDataButtons button {
+    background-color: #6D6D6D;
+    border: 1px;
+    border-radius: 6px;
+    border-color: #BFBEBE ;
+    border-style: solid;
+    padding: 2px 24px 2px 24px;
+    color: #BFBEBE;
+    margin-right: 15px;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: Inter;
+}
+
+.OpportunityDataButtons button:hover {
+    cursor: pointer;
+    background-color: #BFBEBE ;
+    color: #6D6D6D;
 }
 
     /* .OpportunityData form section {

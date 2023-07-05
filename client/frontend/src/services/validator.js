@@ -114,6 +114,9 @@ export const validator = (ev) => {
         if (ev.target.value.length < 1) {
             return "Please include brief description of your role."
         }
+        else if(ev.target.value.length > 50) {
+            return "Field should be max 50 chars long."
+        }
         else {
             return false
         } 
@@ -223,8 +226,8 @@ export const validator = (ev) => {
         if (ev.target.value.length < 1) {
             return "Field should be populated."
         }
-        else if(ev.target.value.length > 75) {
-            return "Field should be max 75 chars long."
+        else if(ev.target.value.length > 100) {
+            return "Field should be max 100 chars long."
         }
         else {
             return false
@@ -244,7 +247,6 @@ export const validator = (ev) => {
     }
 
     else if (ev.target.id==='close_date') {
-        console.log(ev.target.value)
         if (ev.target.value.length < 1) {
             return "Please include expected close date"
         }

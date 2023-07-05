@@ -95,7 +95,7 @@ class OpportunityCreateSerializer(serializers.ModelSerializer):
         products_data = validated_data.pop('products')
         instance = super().update(instance, validated_data)
 
-        instance.save()
+        # instance.save()
 
         products_list = OpportunityProducts.objects.filter(opportunity_id=instance.id)
         for product in products_list:
@@ -111,6 +111,8 @@ class OpportunityCreateSerializer(serializers.ModelSerializer):
                     product=product_obj,
                     quantity=product_data['quantity']
                 )
+
+        instance.save()
 
         return instance
 
@@ -128,7 +130,7 @@ class OpportunitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Opportunity
         fields = ('id', 'name', 'description', 'created_date', 'last_modified_date', 'close_date', 'status', 'client',
-                  'username', 'products')
+                  'username', 'user', 'products')
 
     def get_products(self, opportunity_instance):
         query_datas = OpportunityProducts.objects.filter(opportunity_id=opportunity_instance)
