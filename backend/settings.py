@@ -225,3 +225,5 @@ LOGGING = {
 }
 
 AUTH_USER_MODEL = 'auth_app.OpportunityMachineUser'
+
+django_on_heroku.settings(locals())
