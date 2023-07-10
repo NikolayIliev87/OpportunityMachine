@@ -1,6 +1,8 @@
 import * as request from './request_compilator'
+import { hostserver } from '../utils/constants'
 
-const localserver = 'http://127.0.0.1:8000/api/opportunity'
+// const localserver = 'http://127.0.0.1:8000/api/opportunity'
+const localserver = `${hostserver}/api/opportunity`
 
 
 export const getAllOpportunities = () => request.get(`${localserver}`)

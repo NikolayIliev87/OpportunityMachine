@@ -1,6 +1,8 @@
 import * as request from './request_compilator'
+import { hostserver } from '../utils/constants'
 
-const localserver = 'http://127.0.0.1:8000/api/client'
+// const localserver = 'http://127.0.0.1:8000/api/client'
+const localserver = `${hostserver}/api/client`
 
 
 export const getAllClients = () => request.get(`${localserver}`)

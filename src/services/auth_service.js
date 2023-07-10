@@ -1,6 +1,8 @@
 import * as request from './request_compilator'
+import { hostserver } from '../utils/constants'
 
-const authserver = 'http://127.0.0.1:8000/api/auth'
+// const authserver = 'http://127.0.0.1:8000/api/auth'
+const authserver = `${hostserver}/api/auth`
 
 export const login = async (logInData) => {
     const result = request.post(`${authserver}/login/`, logInData)
