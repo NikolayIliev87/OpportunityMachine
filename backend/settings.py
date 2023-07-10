@@ -40,6 +40,7 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1').split(' ')
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
+    'https://opportunity-machine-e9860cf7dfd2.herokuapp.com',
 ]
 
 # CORS_ORIGIN_ALLOW_ALL = True
