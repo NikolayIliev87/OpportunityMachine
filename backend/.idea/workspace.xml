@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="df2e1997-965c-408e-9e82-c542aad7c5b6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/backend.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/asgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/auth_app/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/auth_app/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/auth_app/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/auth_app/managers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/auth_app/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/auth_app/migrations/0002_alter_profile_manager.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/auth_app/migrations/0003_alter_profile_managing_city_offices.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/auth_app/migrations/0004_profile_is_deleted.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/auth_app/migrations/0005_auto_20230425_1414.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/auth_app/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/auth_app/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/auth_app/serializers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/auth_app/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/auth_app/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/auth_app/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/common/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/common/permissions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/common/validators.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/opportunity_app/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/opportunity_app/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/opportunity_app/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/opportunity_app/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/opportunity_app/migrations/0002_auto_20230404_1230.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/opportunity_app/migrations/0003_auto_20230427_2150.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/opportunity_app/migrations/0004_alter_opportunity_status.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/opportunity_app/migrations/0005_alter_product_description.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/opportunity_app/migrations/0006_auto_20230515_2040.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/opportunity_app/migrations/0007_alter_opportunity_opportunity_id.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/opportunity_app/migrations/0008_auto_20230529_1823.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/opportunity_app/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/opportunity_app/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/opportunity_app/serializers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/opportunity_app/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/opportunity_app/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/opportunity_app/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/wsgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/public/modern-reset.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/App.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Authentication/Authentication.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Authentication/Login.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Authentication/Logout.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Authentication/Register.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/CityOffice/CityOffice.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/CityOffice/CityOffice.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/CityOffice/CityOfficeCreate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/CityOffice/CityOfficeDetails.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/CityOffice/CityOfficeList.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/CityOffice/Pagination.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Client/Client.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Client/Client.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Client/ClientCreate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Client/ClientDetails.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Client/ClientList.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Client/Pagination.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Footer/Footer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Footer/Footer.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Home/Home.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Home/Home.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Home/HomeGuest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Home/HomeUser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Navigation/Header.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Navigation/Navigation.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Navigation/Navigation.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Opportunity/Opportunity.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Opportunity/Opportunity.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Opportunity/OpportunityCreate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Opportunity/OpportunityDetails.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Opportunity/OpportunityList.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Opportunity/Pagination.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Product/Pagination.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Product/Product.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Product/Product.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Product/ProductCreate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Product/ProductDetails.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Product/ProductList.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/ProductGroup/Pagination.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/ProductGroup/ProductGroup.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/ProductGroup/ProductGroup.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/ProductGroup/ProductGroupCreate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/ProductGroup/ProductGroupDetails.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/ProductGroup/ProductGroupList.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Profile/PaginationProfiles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Profile/Profile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Profile/ProfilesList.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Profile/ProfilesList.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Profile/YourProfile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/Profile/YourProfile.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/RoleType/Pagination.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/RoleType/RoleType.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/RoleType/RoleType.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/RoleType/RoleTypeCreate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/RoleType/RoleTypeDetails.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/components/RoleType/RoleTypeList.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/contexts/AuthContext.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/contexts/ProfileContext.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/hooks/useLocalStorage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/reportWebVitals.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/services/auth_service.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/services/client_service.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/services/opportunity_service.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/services/product_service.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/services/productgroup_service.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/services/profile_service.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/services/request_compilator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/services/validator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/utils/currency_formater.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/utils/search.js" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2SOLQKBYu3uawQxyZY1I4zYBlfL" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="RunManager">
+    <configuration name="backend" type="Python.DjangoServer" factoryName="Django server">
+      <module name="backend" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="df2e1997-965c-408e-9e82-c542aad7c5b6" name="Changes" comment="" />
+      <created>1689012672278</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1689012672278</updated>
+      <workItem from="1689012674755" duration="320000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
