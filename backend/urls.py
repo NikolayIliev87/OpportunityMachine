@@ -14,10 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
+from django.views.generic import TemplateView
+
+# heroku_react_django_urls = [
+#     re_path('.*', TemplateView.as_view(template_name='index.html', content_type='text/html'))
+# ]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('backend.auth_app.urls')),
-    path('api/', include('backend.opportunity_app.urls'))
+    path('api/', include('backend.opportunity_app.urls')),
+    re_path('.*', TemplateView.as_view(template_name='index.html')),
 ]
