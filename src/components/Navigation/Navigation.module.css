@@ -9,11 +9,13 @@
 
 .Navigation ul:nth-child(1) {
     margin: 0%;
+    padding: 0px;
     height: 5vh;
     display: flex;
     flex-direction:row;
     column-gap: 50px;
     align-items: center;
+    width: 10vw;
 }
 
 .Navigation ul:nth-child(2) {
@@ -23,7 +25,7 @@
     flex-direction:row;
     gap: 100px;
     align-items: center;
-    padding-right: 40px;
+    padding: 0px;
 }
 
 .Settings {
@@ -33,7 +35,9 @@
     flex-direction:row;
     column-gap: 50px;
     align-items: center;
+    justify-content: end;
     padding-right: 20px;
+    width: 10vw;
 }
 
 .Navigation li {

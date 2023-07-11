@@ -201,7 +201,6 @@ LOGGING_LEVEL = 'DEBUG'
 
 is_test = len(sys.argv) > 1 and sys.argv[1] == 'test'
 
-print(sys.argv[1])
 
 if APP_ENVIRONMENT == "Production":
     LOGGING_LEVEL = 'INFO'
