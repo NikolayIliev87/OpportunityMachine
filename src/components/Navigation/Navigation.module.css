@@ -15,7 +15,7 @@
     flex-direction:row;
     column-gap: 50px;
     align-items: center;
-    width: 10vw;
+    width: 20vw;
 }
 
 .Navigation ul:nth-child(2) {
@@ -37,7 +37,7 @@
     align-items: center;
     justify-content: end;
     padding-right: 20px;
-    width: 10vw;
+    width: 20vw;
 }
 
 .Navigation li {
