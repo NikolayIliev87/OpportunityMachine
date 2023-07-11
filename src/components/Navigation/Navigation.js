@@ -33,13 +33,13 @@ export const Navigation = () => {
                     {auth.id
                     ?
                     <>
-                    <Link to="/profile"><i class="fas fa-user-circle"></i></Link>
-                    <Link to="#"><i class="far fa-bell"></i></Link>
+                    <Link to="/profile"><i className="fas fa-user-circle"></i></Link>
+                    <Link to="#"><i className="far fa-bell"></i></Link>
                     </>
                     :
                     <></>
                     }
-                    <Link to="#"><i class="fas fa-cog"></i></Link>
+                    <Link to="#"><i className="fas fa-cog"></i></Link>
                 </div>
         </nav>
     )
