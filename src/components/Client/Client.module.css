@@ -29,10 +29,11 @@
     color: #BFBEBE;
     background-color: #6D6D6D;
     border-radius: 6px;
-    padding: 2px 12px 30px 12px;
+    padding: 2px 12px 25px 12px;
     height: 26px;
     width: 202px;
-    margin-top:10px;
+    margin-top:5px;
+    margin-bottom: 5px;
     margin-left: 5px;
 }
 
@@ -90,6 +91,7 @@
     /* height: 26px; */
     /* width: 202px; */
     margin-top: 5px;
+    margin-bottom: 5px;
     /* margin-left: 10px; */
 }
 
@@ -104,7 +106,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    row-gap: 2%;
+    row-gap: 1%;
     background-color: #A99E99;
 }
 
@@ -147,6 +149,7 @@
     border-right: 0px;
     border-color: #BFBEBE;
     border-style: solid;
+    margin: 0px 0px 3px 0px;
 }
 
 .ClientDetails div h3 {
@@ -154,6 +157,7 @@
     font-weight: 400;
     font-family: Inter;
     color: #BFBEBE;
+    margin: 0px 0px 3px 0px;
 }
 
 .ClientDetails button {
@@ -166,7 +170,7 @@
     border-color: #BFBEBE;
     border-style: solid;
     border-radius: 6px;
-    padding: 2px 24px 30px 24px;
+    padding: 2px 24px 25px 24px;
     height: 26px;
     width: 107px;
     margin-bottom: 10px;
@@ -248,6 +252,7 @@
     font-size: 40px;
     font-weight: 600;
     font-family: Inter;
+    margin: 5px 0px 0px 0px;
 }
 
 .ClientNew form section {
@@ -301,7 +306,7 @@
     border-color: #000000 ;
     border-style: solid;
     border-radius: 6px;
-    height: 36px;
+    height: 30px;
     font-family: Inter;
     font-size: 18px;
 }
@@ -362,6 +367,7 @@
     font-size: 40px;
     font-weight: 600;
     font-family: Inter;
+    margin: 5px 0px 0px 0px;
 }
 
 .ClientData form section {
@@ -415,7 +421,7 @@
     border-color: #000000 ;
     border-style: solid;
     border-radius: 6px;
-    height: 36px;
+    height: 30px;
     font-family: Inter;
     font-size: 18px;
 }

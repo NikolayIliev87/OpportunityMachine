@@ -84,7 +84,7 @@ export const ProductCreate = (props) => {
                         {errors.description && <p>{errors.description}</p>}
                     </div>
                     <div>
-                        <label htmlFor="group">Product Group:</label>
+                        <label htmlFor="group">Product Category:</label>
                         <select id='group' value={values.group} onChange={onGroupsChangeHandler}>
                             <>
                             <option value=""></option>

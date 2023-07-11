@@ -69,10 +69,10 @@ export const ProductGroupDetails = (props) => {
     return (
         <div className={styles.ProductGroupData} >
             <form onSubmit={onSubmitHandler}>
-                <h2>Product Group Details</h2>
+                <h2>Category Details</h2>
                 <section>
                     <div>
-                        <label htmlFor="name"  value={values.name} >Group Name:</label>
+                        <label htmlFor="name"  value={values.name} >Category Name:</label>
                         <input
                             readOnly={auth.is_superuser?false:true} 
                             id='name' 
@@ -84,7 +84,7 @@ export const ProductGroupDetails = (props) => {
                         {errors.name && <p>{errors.name}</p>}
                     </div>
                     <div>
-                        <label htmlFor="id"  value={values.id} >Group ID:</label>
+                        <label htmlFor="id"  value={values.id} >Category ID:</label>
                         <input
                             disabled={true} 
                             id='id' 

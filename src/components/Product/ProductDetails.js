@@ -107,7 +107,7 @@ export const ProductDetails = (props) => {
                         {errors.description && <p>{errors.description}</p>}
                     </div>
                     <div>
-                        <label htmlFor="group">Product Group:</label>
+                        <label htmlFor="group">Product Category:</label>
                         <select 
                             disabled={auth.is_superuser || auth.is_staff?false:true} 
                             id='group' 

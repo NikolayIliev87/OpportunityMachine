@@ -195,10 +195,11 @@
     width: 100%;
     text-align: center;
     color: #BFBEBE;
-    padding: 20px 0px 20px 0px;
+    padding: 10px 0px 10px 0px;
     font-size: 40px;
     font-weight: 600;
     font-family: Inter;
+    margin: 0px;
 }
 
 .ProfileEditForm p {
@@ -262,7 +263,7 @@
     border-color: #000000 ;
     border-style: solid;
     border-radius: 6px;
-    height: 36px;
+    height: 30px;
 }
 
 .ProfileEditForm ul {

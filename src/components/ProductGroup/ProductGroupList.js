@@ -105,7 +105,7 @@ export const ProductGroupList = () => {
                         className={styles.CreateNewProductGroup} 
                         onClick={newProductGroupHandler}
                         hidden={!auth.is_superuser?true:false}
-                    > ADD NEW PRODUCT GROUP</button>
+                    > ADD NEW CATEGORY</button>
                 </div>
                 {/* <div className={styles.ProductGroupsArray}> */}
                 <ul>
@@ -117,7 +117,7 @@ export const ProductGroupList = () => {
                         </article>
                     )
                     :
-                    <p>No Product Groups to show!</p>
+                    <p>No Categories to show!</p>
                     }
                 </ul>
                 <Pagination 

@@ -27,7 +27,7 @@ export const HomeUser = () => {
                     {auth.is_staff || auth.is_superuser
                     ?
                     <>
-                    <li><Link to="/productgrouplist">Product Groups</Link></li>
+                    <li><Link to="/productgrouplist">Categories</Link></li>
                     <li><Link to="/cityofficelist">City Offices</Link></li>
                     <li><Link to="/roletypelist">Role Types</Link></li>
                     </>

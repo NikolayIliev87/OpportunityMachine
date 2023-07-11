@@ -50,10 +50,10 @@ export const ProductGroupCreate = (props) => {
     return (
         <div className={styles.ProductGroupNew} >
             <form onSubmit={onSubmitHandler}>
-                <h2>Add New Product Group</h2>
+                <h2>Add New Category</h2>
                 <section>
                     <div>
-                        <label htmlFor="name">Product Group:</label>
+                        <label htmlFor="name">Category Name:</label>
                         <input 
                             id='name' 
                             type="text"  
