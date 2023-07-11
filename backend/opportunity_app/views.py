@@ -191,7 +191,7 @@ class OpportunityCreateView(api_generic_views.ListCreateAPIView):
 
             return queryset
 
-        if self.request.user.profile.role_type.name == 'Operations':
+        if self.request.user.profile.role_type.name == 'Opperations':
 
             cities = []
             manage_cities = self.request.user.profile.managing_city_offices.all()
