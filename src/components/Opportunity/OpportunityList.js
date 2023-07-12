@@ -10,6 +10,9 @@ import { OpportunityCreate } from "./OpportunityCreate";
 import { arraySearchOpportunitiesGeneral, arraySearchOpportunitiesProduct,
     arraySearchOpportunitiesClient, arraySearchOpportunitiesDate } from "../../utils/search"
 
+import { clacTotalOpportunitiesValueAll, formatter, clacTotalOpportunitiesValueWon,
+    clacTotalOpportunitiesValueOngoing, clacTotalOpportunitiesValueLost } from '../../utils/currency_formater';
+
 import * as clientService from '../../services/client_service'
 import * as opportunityService from '../../services/opportunity_service'
 import * as authService from '../../services/auth_service'
@@ -262,6 +265,10 @@ export const OpportunityList = () => {
                                             ?
                                             "by opp id/name/owner"
                                             :
+                                            searchOption==="Client"
+                                            ?
+                                            "by id/name/city"
+                                            :
                                             "by id/name"
                                             }
                                 onChange={onSearchHandler}/>
@@ -276,6 +283,25 @@ export const OpportunityList = () => {
                         <button onClick={onOpportunityStatusHandler} value={"Won"}>Won</button>
                             
                     </div>
+                </div>
+                <div className={styles.OpportunityCharts}>
+                    <div>
+                        <span>Total $</span>
+                        <p>{formatter.format(clacTotalOpportunitiesValueAll(searchedOpportunities))}</p>
+                    </div>
+                    <div>
+                        <span>Won $</span>
+                        <p>{formatter.format(clacTotalOpportunitiesValueWon(searchedOpportunities))}</p>
+                    </div>
+                    <div>
+                        <span>Ongoing $</span>
+                        <p>{formatter.format(clacTotalOpportunitiesValueOngoing(searchedOpportunities))}</p>
+                    </div>
+                    <div>
+                        <span>Lost $</span>
+                        <p>{formatter.format(clacTotalOpportunitiesValueLost(searchedOpportunities))}</p>
+                    </div>
+                    <button>Charts View</button>
                 </div>
                 <ul>
                 {opportunities.length !== 0

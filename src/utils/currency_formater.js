@@ -24,3 +24,36 @@ export const clacTotalProductsValue = (opportunity_products, selectedClient) => 
     return total;
 }
 
+export const clacTotalOpportunitiesValueAll = (opportunities) => {
+    let total = 0;
+    opportunities.map((opportunity) => 
+    total = total + clacTotalProductsValue(opportunity.products, opportunity.client))
+
+    return total;
+}
+
+export const clacTotalOpportunitiesValueWon = (opportunities) => {
+    let total = 0;
+    opportunities.filter(opp => opp.status == "Won").map((opportunity) => 
+    total = total + clacTotalProductsValue(opportunity.products, opportunity.client))
+
+    return total;
+}
+
+export const clacTotalOpportunitiesValueOngoing = (opportunities) => {
+    let total = 0;
+    opportunities.filter(opp => opp.status == "Ongoing").map((opportunity) => 
+    total = total + clacTotalProductsValue(opportunity.products, opportunity.client))
+
+    return total;
+}
+
+export const clacTotalOpportunitiesValueLost = (opportunities) => {
+    let total = 0;
+    opportunities.filter(opp => opp.status == "Lost").map((opportunity) => 
+    total = total + clacTotalProductsValue(opportunity.products, opportunity.client))
+
+    return total;
+}
+
+

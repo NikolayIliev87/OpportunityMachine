@@ -89,7 +89,8 @@
 }
 
 .YourProfileDataDetailsCities {
-    overflow-x: auto;
+    overflow-y: auto;
+    height: 60px;
 }
 
 .YourProfileDataDetails label {
@@ -101,7 +102,7 @@
 }
 
 .YourProfileDataDetails span {
-    font-size: 24px;
+    font-size: 20px;
     font-family: Inter;
     font-weight: 400;
     color: #BFBEBE;
@@ -289,10 +290,14 @@
     width: auto;
     margin: 0px;
     padding: 0px;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: Inter;
+    text-align: center;
 }
 
 .ProfileEditForm li input {
-    width: 20px;
+    width: 14px;
     margin-right: 5px;
     margin-left: 5px;
 }

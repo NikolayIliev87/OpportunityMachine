@@ -1,5 +1,7 @@
 import styles from './Opportunity.module.css'
 
+import { clacTotalProductsValue, formatter } from '../../utils/currency_formater';
+
 export const Opportunity = (props) => {
 
     return (
@@ -20,6 +22,9 @@ export const Opportunity = (props) => {
                     <div>
                         <h3>Create Date: {props.created_date}</h3>
                         <h3>Expected Close:{props.close_date}</h3>
+                    </div>
+                    <div className={styles.OpportunityDetailsTotalGross}>
+                        <h3>Value: {formatter.format(clacTotalProductsValue(props.products, props.client))}</h3>
                     </div>
                 </div>
             </div>
