@@ -25,5 +25,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('backend.auth_app.urls')),
     path('api/', include('backend.opportunity_app.urls')),
-    path('', TemplateView.as_view(template_name='index.html')),
+    # path('', TemplateView.as_view(template_name='index.html')),
+    re_path('(^(?!(api|admin)).*$)', TemplateView.as_view(template_name='index.html')),
 ]
