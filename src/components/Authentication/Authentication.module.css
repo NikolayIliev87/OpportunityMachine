@@ -40,6 +40,7 @@
     font-size: 24px;
     font-weight: 600;
     font-family: Inter;
+    margin: 0px;
 }
 
 .Logout button {
@@ -85,6 +86,7 @@
     font-size: 40px;
     font-weight: 600;
     font-family: Inter;
+    margin: 0px;
 }
 
 .Authentication p {
@@ -92,6 +94,7 @@
     font-family: Inter;
     font-size: 24px;
     font-weight: 400;
+    margin: 0px;
 }
 
 .Authentication p a {
@@ -119,6 +122,7 @@
     font-family: Inter;
     font-size: 18px;
     padding-right: 10px;
+    margin: 0px;
 }
 
 .Authentication label {
