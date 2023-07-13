@@ -181,7 +181,7 @@ export const YourProfile = () => {
 
             setRoleTypeName(role_name[0].name)
 
-            if (role_type_name === "Team Manager") {
+            if (role_type_name === "Team Manager" || role_type_name === "Seller") {
                 values.managing_city_offices = []
             }
 
@@ -409,23 +409,24 @@ export const YourProfile = () => {
                             />
                             {errors.role_description && <p>{errors.role_description}</p>}
                         </div>
-                        {values.is_manager && values.role_type !== '' && role_type_name !== 'Team Manager'
+                        {/* {values.is_manager && values.role_type !== '' && role_type_name !== 'Team Manager' */}
+                        {values.role_type !== '' && role_type_name !== 'Team Manager' && role_type_name !== 'Seller'
                             ?
                             <div>
-                            <label htmlFor="managing_city_offices">Managing Cities:</label>
-                            <ul>
-                                {cityOffices.map(office => 
-                                        <li  key={office.id}>
-                                        <label>{office.name}</label>
-                                        <input key={office.id} value={office.id} name={office.name}
-                                            id='managing_city_offices' 
-                                            type="checkbox" 
-                                            checked={values.managing_city_offices.includes(office.id)}
-                                            onChange={changeHandler}
-                                        />
-                                        </li>
-                                    )}
-                            </ul>
+                                <label htmlFor="managing_city_offices">Managing Cities:</label>
+                                <ul>
+                                    {cityOffices.map(office => 
+                                            <li  key={office.id}>
+                                            <label>{office.name}</label>
+                                            <input key={office.id} value={office.id} name={office.name}
+                                                id='managing_city_offices' 
+                                                type="checkbox" 
+                                                checked={values.managing_city_offices.includes(office.id)}
+                                                onChange={changeHandler}
+                                            />
+                                            </li>
+                                        )}
+                                </ul>
                             </div>
                             :
                             <></>
@@ -438,7 +439,9 @@ export const YourProfile = () => {
                         {errors.length > 0 || values.first_name === '' || values.last_name === '' ||
                              values.phone === '' || values.city_office === '' || values.role_type === ''
                             ?
-                            <></>
+                            <div>
+                                <button onClick={onCancelHandler}>Cancle</button>
+                            </div>
                             :
                             <div>
                                 <button type="submit" name='update'>Save Changes</button>
