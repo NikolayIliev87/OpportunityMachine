@@ -232,7 +232,7 @@ export const OpportunityDetails = (props) => {
                                 </>
                                 :
                                 <>
-                                <label htmlFor="status">Opportunity Status:</label>
+                                <label htmlFor="status">Status:</label>
                                 <input
                                     readOnly={true} 
                                     id='status' 
