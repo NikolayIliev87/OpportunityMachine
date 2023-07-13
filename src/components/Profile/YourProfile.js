@@ -93,7 +93,7 @@ export const YourProfile = () => {
                 // city_office: `${yourprofile.city_office.id}`,
                 city_office: `${yourprofile.city_office?yourprofile.city_office.id:''}`,
                 manager: `${yourprofile.manager===null?'':yourprofile.manager}`,
-                is_manager: `${yourprofile.is_manager}`,
+                is_manager: yourprofile.is_manager,
                 // role_type: `${yourprofile.role_type.id}`,
                 role_type: `${yourprofile.role_type?yourprofile.role_type.id:''}`,
                 role_description: `${yourprofile.role_description}`,
@@ -377,7 +377,8 @@ export const YourProfile = () => {
                             <label htmlFor="is_manager">Are you Manager?</label>
                             <input
                             id='is_manager'
-                            checked={values.is_manager?true:false}
+                            checked={
+                                values.is_manager?true:false}
                             type="checkbox" 
                             onChange={changeHandler} 
                             />
