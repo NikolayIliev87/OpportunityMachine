@@ -351,46 +351,50 @@ export const OpportunityCreate = (props) => {
                                     {opportunity_products.map(product => 
                                     <tbody key={product.product.id}>
                                         <tr>
-                                            <td>{product.product.id}</td>
-                                            <td>{product.product.name}</td>
-                                            <td>{product.product.description}</td>
-                                            <td>{formatter.format(product.product.price)}</td>
-                                            <td>{selectedClient[0].discount}%</td>
-                                            <td>
-                                            {formatter.format(calcClientProductPrice(
-                                                product.product.price,
-                                                selectedClient[0].discount
-                                            ))}
-                                            {/* (product.product.price 
-                                            - (product.product.price 
-                                            * (selectedClient[0].discount/100)
-                                            ))
-                                            // * product.quantity
-                                            }$ */}
+                                            <td className={styles.CellId}><div>{product.product.id}</div></td>
+                                            <td className={styles.CellName}><div>{product.product.name}</div></td>
+                                            <td className={styles.CellDetails}><div><p>{product.product.description}</p></div></td>
+                                            <td className={styles.CellPrice}><div>{formatter.format(product.product.price)}</div></td>
+                                            <td className={styles.CellDiscount}><div>{selectedClient[0].discount}%</div></td>
+                                            <td className={styles.CellClientPrice}>
+                                                <div>
+                                                    {formatter.format(calcClientProductPrice(
+                                                        product.product.price,
+                                                        selectedClient[0].discount
+                                                    ))}
+                                                    {/* (product.product.price 
+                                                    - (product.product.price 
+                                                    * (selectedClient[0].discount/100)
+                                                    ))
+                                                    // * product.quantity
+                                                    }$ */}
+                                                </div>
                                             </td>
-                                            <td>{product.quantity}</td>
-                                            <td>20%</td>
-                                            <td>
-                                            {formatter.format(calcClientProductTotalNetPrice(
-                                                product.product.price,
-                                                selectedClient[0].discount,
-                                                20,
-                                                product.quantity
-                                            ))}
-                                            {/* ((product.product.price 
-                                            - (product.product.price 
-                                            * (selectedClient[0].discount/100)
-                                            ))
-                                            +
-                                                (product.product.price 
-                                                - (product.product.price 
-                                                * (selectedClient[0].discount/100)
-                                                )
-                                                )
-                                                * 0.2
-                                            )
-                                            * product.quantity
-                                            }$ */}
+                                            <td className={styles.CellQuantity}><div>{product.quantity}</div></td>
+                                            <td className={styles.CellVAT}><div>20%</div></td>
+                                            <td className={styles.CellTotal}>
+                                                <div>
+                                                    {formatter.format(calcClientProductTotalNetPrice(
+                                                        product.product.price,
+                                                        selectedClient[0].discount,
+                                                        20,
+                                                        product.quantity
+                                                    ))}
+                                                    {/* ((product.product.price 
+                                                    - (product.product.price 
+                                                    * (selectedClient[0].discount/100)
+                                                    ))
+                                                    +
+                                                        (product.product.price 
+                                                        - (product.product.price 
+                                                        * (selectedClient[0].discount/100)
+                                                        )
+                                                        )
+                                                        * 0.2
+                                                    )
+                                                    * product.quantity
+                                                    }$ */}
+                                                </div>
                                             </td>
                                             <button 
                                                 onClick={event => 
