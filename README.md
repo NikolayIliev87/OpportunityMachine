@@ -1,10 +1,10 @@
 # Opportunity Management Tool (Python Django Rest backend with React Frontend )
 
-1.This App is small CRM system for tracking deals/opporunitties which one company may have ( app is under constructions and at that moment has limited features which will be expanded in the future ). 
-2. Non Registered users cannot participate in this app and registration is required ( as during the registration form will be selected specific details which will then give specific options to the user to interact with the app). 
+1. This App is small CRM system for tracking deals/opporunitties which one company may have ( app is under constructions and at that moment has limited features          which    will be expanded in the future ). 
+2. Non Registered users cannot participate in this app and registration is required ( as during the registration form will be selected specific details which will       then give specific options to the user to interact with the app). 
 3. Registered users can start their participation with creating new / edditing current opportunities based on their roles.
-4. Each user can see his/her own opportunities or if the user is on specific role ( like city/regional/country/opps role ) can see also opportunities created withing the respective region or within his/her own team. 
-Created opportunities can be modified/edited only by the owner of the opportunity or admin user. 
+4. Each user can see his/her own opportunities or if the user is on specific role ( like city/regional/country/opps role ) can see also opportunities created withing    the respective region or within his/her own team. 
+5. Created opportunities can be modified/edited only by the owner of the opportunity or admin user. 
 
 # Available views
 
