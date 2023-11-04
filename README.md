@@ -10,13 +10,13 @@
 
 1. If not logged in - can  be reached home page and options for Login or Register
 2. If registered user can see home page ( where main pannel with tools is placed) profile page and logout - further features to be added!
-3. in home page tools pannel - user can access opportunities list available for him/her ( based on the role ):
-   3.1 add new opportunity feater - where user can create/add new opportunity ( can select client for it based on user responsible regoin, can include products from products list. can select date for it's finalization/close and put some description ).
-   3.2 in opportunities list user can see summary charts for all available for him/her opportunities and then list for each single record.
-   3.3 can see details for each opportunity ( and only if user is also owner of the opportunity can modify it ).
+3. in home page tools pannel - user can access opportunities list available for him/her ( based on the role ).
+   1. Add new opportunity feater - where user can create/add new opportunity ( can select client for it based on user responsible regoin, can include products from products list. can select date for it's finalization/close and put some description ).
+   2. In opportunities list user can see summary charts for all available for him/her opportunities and then list for each single record.
+   3. Can see details for each opportunity ( and only if user is also owner of the opportunity can modify it ).
 4. in home page tools pannel - user can also access lists of available for him/her clients and all listed products.
-5. Admin User ( all app functonalities ) - can take every action available for normal users but also can manage other users profile status ( activate/deactivate ), can change Opportunity ownership, can create new roles, cities, products, categories
-6. Opps have specific scope of actons mix between normal sales user and admind but with significant differences where:
-   6.1 can't  manage other users profile status, changing opportunity ownership or editing them, creating new opportunities, creation/editting of categories, roles, cities
-   6.2 can see list of roles, categories, cities (without edit/create functionality ), can create new clients ( in respnsible region ) new products and edit existing ones and have visibility of all opportunities in responsible region.
+5. Admin User ( all app functonalities ) - can take every action available for normal users but also can manage other users profile status ( activate/deactivate ),       can change Opportunity ownership, can create new roles, cities, products, categories
+6. Opps have specific scope of actons mix between normal sales user and admind but with significant differences where.
+   1. Can't  manage other users profile status, changing opportunity ownership or editing them, creating new opportunities, creation/editting of categories, roles, cities
+   2. Can see list of roles, categories, cities (without edit/create functionality ), can create new clients ( in respnsible region ) new products and edit existing ones and have visibility of all opportunities in responsible region.
 
